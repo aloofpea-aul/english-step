@@ -40,6 +40,89 @@ function hubAuth_(b) {
   return { ok: true, token: newSession_(u), user: { username: u, name: name, role: r.role }, data: p ? JSON.parse(p.vals[1]) : null };
 }
 
+/* ---------- ช่องสำหรับน้องมีไฟ ----------
+ * น้องมีไฟส่งชื่อ/รหัสศูนย์รวมงานที่ตั้งไว้ในเครื่อง (hubUser/hubPass) มาด้วยทุกครั้ง
+ * ตรวจกับศูนย์รวมงานแล้วจำผลไว้ 10 นาที */
+const TOTAL_WORDS = 48, TOTAL_SOUNDS = 12;
+function hubRole_(name, pass) {
+  name = String(name || '').trim(); pass = String(pass || '');
+  if (!name || !pass) return '';
+  const key = 'hr_' + Utilities.base64EncodeWebSafe(Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, name + '\n' + pass)).slice(0, 40);
+  const c = CacheService.getScriptCache(), hit = c.get(key);
+  if (hit !== null) return hit;
+  let role = '';
+  try {
+    const r = JSON.parse(UrlFetchApp.fetch(HUB_URL, { method: 'post', contentType: 'text/plain', muteHttpExceptions: true,
+      payload: JSON.stringify({ action: 'whoAmI', changedBy: name, changedByPassword: pass }) }).getContentText());
+    role = r && r.role ? String(r.role) : '';
+  } catch (e) { return ''; }
+  c.put(key, role, 600);
+  return role;
+}
+const bkkDay_ = (d) => Utilities.formatDate(d || new Date(), 'UTC', 'yyyy-MM-dd');   // ให้ตรงกับแอป (toISOString)
+function summarize_(username, name, data, updated) {
+  const d = data || {}, cards = d.cards || {}, sounds = d.sounds || {};
+  const ks = Object.keys(cards), now = Date.now();
+  const snd = Object.keys(sounds);
+  return {
+    ชื่อ: name, คำที่จำได้แล้ว: ks.filter((k) => cards[k].box >= 2).length, คำที่เคยเรียน: ks.length, คำทั้งหมดใน_Level0: TOTAL_WORDS,
+    คำที่ครบรอบทบทวน: ks.filter((k) => cards[k].due <= now).length,
+    คำที่ลืมบ่อย: ks.filter((k) => cards[k].box === 0).slice(0, 8),
+    เสียงที่ผ่านแล้ว: snd.filter((k) => sounds[k].best >= 70).length, เสียงทั้งหมด: TOTAL_SOUNDS,
+    เสียงที่ยังต้องฝึก: snd.filter((k) => sounds[k].best < 70).map((k) => ({ เสียง: k, คะแนนดีสุด: sounds[k].best })),
+    เรียนต่อเนื่อง_วัน: d.last === bkkDay_() || d.last === bkkDay_(new Date(Date.now() - 864e5)) ? (d.streak || 0) : 0,
+    เรียนล่าสุด: updated ? bkkDay_(new Date(updated)) : ''
+  };
+}
+function findLearner_(name) {
+  const want = String(name || '').trim().toLowerCase().replace(/\s+/g, ' ');
+  if (!want) return null;
+  const v = users_().getDataRange().getValues();
+  let hit = null;
+  for (let i = 1; i < v.length; i++) {
+    const u = String(v[i][0]), n = String(v[i][1] || '').toLowerCase().replace(/\s+/g, ' ');
+    if (u.indexOf('hub:') !== 0) continue;
+    if (u === 'hub:' + want || n === want) return { username: u, name: String(v[i][1]) };
+    if (!hit && (n.indexOf(want) >= 0 || want.indexOf(n) >= 0)) hit = { username: u, name: String(v[i][1]) };
+  }
+  return hit;
+}
+function robotUser_(b) {
+  if (!hubRole_(b.hubUser, b.hubPass)) return { ok: false, msg: 'ชื่อ/รหัสศูนย์รวมงานในเครื่องน้องมีไฟใช้ไม่ได้' };
+  const who = findLearner_(b.name);
+  if (!who) return { ok: true, found: false, msg: 'ยังไม่พบผู้เรียนชื่อนี้ใน English Step (ต้องเข้าแอปจากศูนย์รวมงานอย่างน้อย 1 ครั้ง)' };
+  const p = find_(progress_(), who.username);
+  return { ok: true, found: true, learner: summarize_(who.username, who.name, p ? JSON.parse(p.vals[1]) : null, p ? p.vals[2] : null) };
+}
+function robotSummary_(b) {
+  if (hubRole_(b.hubUser, b.hubPass) !== 'admin') return { ok: false, msg: 'ภาพรวมผู้เรียนดูได้เฉพาะบัญชีผู้ดูแลระบบ' };
+  const v = users_().getDataRange().getValues(), pv = progress_().getDataRange().getValues(), pm = {};
+  for (let i = 1; i < pv.length; i++) pm[String(pv[i][0])] = pv[i];
+  const out = [];
+  for (let i = 1; i < v.length; i++) {
+    const u = String(v[i][0]); if (u.indexOf('hub:') !== 0) continue;
+    const p = pm[u];
+    out.push(summarize_(u, String(v[i][1]), p ? JSON.parse(p[1]) : null, p ? p[2] : null));
+  }
+  out.sort((a, c) => String(c.เรียนล่าสุด).localeCompare(String(a.เรียนล่าสุด)));
+  return { ok: true, ผู้เรียนทั้งหมด: out.length, รายชื่อ: out };
+}
+/** บันทึกคะแนนฝึกพูดกับน้องมีไฟ เข้าผลเรียนของผู้เรียนคนนั้น */
+function robotLog_(b) {
+  if (!hubRole_(b.hubUser, b.hubPass)) return { ok: false, msg: 'ชื่อ/รหัสศูนย์รวมงานในเครื่องน้องมีไฟใช้ไม่ได้' };
+  const who = findLearner_(b.name);
+  if (!who) return { ok: false, found: false, msg: 'ยังไม่พบผู้เรียนชื่อนี้ใน English Step' };
+  const sound = String(b.sound || '').slice(0, 10), score = Math.max(0, Math.min(100, Number(b.score) || 0));
+  const sh = progress_(), f = find_(sh, who.username);
+  const d = f ? JSON.parse(f.vals[1]) : { cards: {}, sounds: {}, streak: 0, last: '', newToday: 0, newDay: '', showTH: true };
+  d.sounds = d.sounds || {};
+  if (sound) { const st = d.sounds[sound] || { best: 0, tries: 0 }; st.tries++; st.best = Math.max(st.best, score); d.sounds[sound] = st; }
+  const t = bkkDay_(); if (d.last !== t) { d.streak = d.last === bkkDay_(new Date(Date.now() - 864e5)) ? (d.streak || 0) + 1 : 1; d.last = t; }
+  const json = JSON.stringify(d);
+  if (f) sh.getRange(f.row, 2, 1, 2).setValues([[json, new Date()]]); else sh.appendRow([who.username, json, new Date()]);
+  return { ok: true, name: who.name };
+}
+
 /** กดรันครั้งเดียวเพื่อขอสิทธิ์เชื่อมต่อภายนอก (UrlFetchApp) */
 function authorizeHub() { UrlFetchApp.fetch(HUB_URL, { method: 'post', contentType: 'text/plain', payload: JSON.stringify({ action: 'whoAmI' }), muteHttpExceptions: true }); }
 
@@ -68,6 +151,9 @@ function out_(o) {
 function route_(b) {
   switch (b.action) {
     case 'hubAuth': return hubAuth_(b);
+    case 'robotUser': return robotUser_(b);
+    case 'robotSummary': return robotSummary_(b);
+    case 'robotLog': return robotLog_(b);
     case 'register':
     case 'login': return { ok: false, msg: 'กรุณาเข้าสู่ระบบด้วยบัญชีศูนย์รวมงาน' };
     case 'load': return load_(b);
