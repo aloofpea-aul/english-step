@@ -35,6 +35,10 @@ nav button{border:none;background:none;color:var(--mut);font-size:13px}nav butto
 .inp{min-height:48px;border:1px solid #C9D3F2;border-radius:12px;padding:0 12px;font:inherit;font-size:16px;color:var(--ink)}
 .inp:focus,button:focus-visible{outline:3px solid #9DB3FF;outline-offset:1px}
 label{font-size:14px;font-weight:600}
+.stage{display:flex;align-items:center;gap:8px;background:#FBF7F3;border-radius:14px;padding:8px}
+.stage svg{width:100%;height:auto;display:block}
+.step{padding:6px 10px;border-radius:10px;transition:background .3s}.step.on{background:#FFF1C7}
+.yt{display:flex;align-items:center;gap:8px;justify-content:center;min-height:44px;border-radius:12px;border:1px solid #E3B4B4;background:#FFF5F5;color:#8A1C1C;font-weight:600;text-decoration:none}
 .back{border:none;background:none;width:44px;color:var(--ink);padding:0}
 </style>
 </head>
@@ -43,6 +47,7 @@ label{font-size:14px;font-weight:600}
 <nav id="nav">
 <button data-go="home">หน้าหลัก</button><button data-go="sounds">ออกเสียง</button><button data-go="vocab">คำศัพท์</button><button data-go="tips">เทคนิคจำ</button>
 </nav>
+<script src="mouth.js"></script>
 <script>
 /* ================= ข้อมูลบทเรียน Level 0 ================= */
 const SOUNDS=[
@@ -83,6 +88,20 @@ const SOUNDS=[
  steps:['คนไทยมักเติมสระแทรก เช่น “ซะ-ตอป”','พูดพยัญชนะติดกันโดยไม่มีสระคั่น: s-t-o-p','ฝึกช้าๆ แล้วค่อยเร็วขึ้น'],
  pairs:[['sport','support'],['blow','below'],['plight','polite'],['prayed','parade']]}
 ];
+const DEMO={
+th1:{m:'θ',w:'think',cmp:[['θ','think'],['s','sink']],yt:'how to pronounce th sound think'},
+th2:{m:'ð',w:'this',cmp:[['ð','they'],['d','day']],yt:'how to pronounce voiced th sound this'},
+v:{m:'v',w:'very',cmp:[['v','vest'],['w','west']],yt:'how to pronounce v and w sound'},
+lr:{m:'l',w:'light',cmp:[['l','light'],['r','right']],yt:'how to pronounce l and r sound'},
+sh:{m:'ʃ',w:'she',cmp:[['ʃ','she'],['s','see']],yt:'how to pronounce sh and s sound'},
+ch:{m:'tʃ',w:'chair',cmp:[['tʃ','chip'],['ʃ','ship']],yt:'how to pronounce ch and sh sound'},
+z:{m:'z',w:'zoo',cmp:[['z','zoo'],['s','sue']],yt:'how to pronounce z sound'},
+ii:{m:'iː',w:'sheep',cmp:[['iː','sheep'],['ɪ','ship']],yt:'long ee vs short i sheep ship pronunciation'},
+ae:{m:'æ',w:'bad',cmp:[['æ','bad'],['e','bed']],yt:'how to pronounce ae vs e bad bed'},
+fs:{m:'s',w:'cats',seq:['æ','t','s'],yt:'how to pronounce final s sound'},
+fd:{m:'d',w:'bad',seq:['æ','d'],cmp:[['d','bad'],['t','bat']],yt:'how to pronounce final t and d sounds'},
+cl:{m:'s',w:'stop',seq:['s','t','ɒ','p'],yt:'consonant clusters pronunciation st sp'}
+};
 const VOCAB=[
 ['ทักทาย','hello','สวัสดี','Hello, my name is Mali.'],['ทักทาย','goodbye','ลาก่อน','Goodbye, see you tomorrow.'],['ทักทาย','please','กรุณา / ได้โปรด','Water, please.'],['ทักทาย','thank you','ขอบคุณ','Thank you very much.'],['ทักทาย','sorry','ขอโทษ (ทำผิด)','Sorry, I am late.'],['ทักทาย','excuse me','ขอโทษนะ (เรียก/ขอทาง)','Excuse me, where is the bank?'],['ทักทาย','yes','ใช่','Yes, I do.'],['ทักทาย','no','ไม่','No, thank you.'],
 ['ตัวเลข','one','หนึ่ง','I have one bag.'],['ตัวเลข','two','สอง','I have two cats.'],['ตัวเลข','three','สาม','Three eggs, please.'],['ตัวเลข','four','สี่','We are four people.'],['ตัวเลข','five','ห้า','It is five o’clock.'],['ตัวเลข','six','หก','I wake up at six.'],['ตัวเลข','seven','เจ็ด','There are seven days in a week.'],['ตัวเลข','eight','แปด','He is eight years old.'],['ตัวเลข','nine','เก้า','The shop opens at nine.'],['ตัวเลข','ten','สิบ','It costs ten baht.'],
@@ -171,14 +190,42 @@ function sounds(){app.innerHTML=`<h1>ห้องออกเสียง</h1><d
  return `<button class="item" data-i="${i}"><span><b>${i+1}. ${esc(s.name)}</b><br><span class="mut">${s.ex.join(' · ')}</span></span>${t}</button>`}).join('');
  app.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>go('sound',+b.dataset.i))}
 
-function sound(i){const s=SOUNDS[i];let q=null,rec=null;
+function sound(i){const s=SOUNDS[i],dm=DEMO[s.id];let q=null,rec=null;
  app.innerHTML=`<div class="row" style="align-items:center"><button class="back" id="bk" aria-label="กลับ">${BACK}</button><div><div class="mut">เสียงที่ ${i+1} จาก ${SOUNDS.length}</div><h1>${esc(s.name)}</h1></div></div>
- <div class="card"><h2>วิธีวางปาก</h2>${s.steps.map((t,k)=>`<div><b>${k+1}.</b> ${esc(t)}</div>`).join('')}</div>
+ <div class="card"><h2>ดูปากขยับ</h2>
+ <div class="stage"><div style="flex:3" id="sv"></div><div style="flex:2" id="fv"></div></div>
+ <div class="row" style="justify-content:space-between;align-items:center"><span class="tag" id="cap" style="background:#EEF0F5;color:#16213E">ท่าปกติ</span><span class="mut" id="capw"></span></div>
+ <div class="g2"><button class="btn org" id="pl">เล่นพร้อมเสียง</button><button class="soft" id="ps">เล่นช้า</button></div>
+ ${dm.cmp?`<button class="soft" id="pc">เทียบ ${esc(dm.cmp[0][1])} กับ ${esc(dm.cmp[1][1])}</button>`:''}
+ ${dm.seq?`<button class="soft" id="pq">ดูทีละเสียงในคำ “${esc(dm.w)}”</button>`:''}
+ <div class="mut" style="font-size:13px">ภาพซ้าย = มองด้านข้าง · ภาพขวา = มองด้านหน้า · วงเขียว = จุดที่แตะ · ลูกศรน้ำเงิน = ลมออก · คลื่นส้มที่คอ = เสียงก้อง</div></div>
+ <div class="card"><h2>วิธีวางปาก</h2>${s.steps.map((t,k)=>`<div class="step" id="st${k}"><b>${k+1}.</b> ${esc(t)}</div>`).join('')}
+ <a class="yt" href="https://www.youtube.com/results?search_query=${encodeURIComponent(dm.yt)}" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg>ดูวิดีโอสอนจากครูบน YouTube</a></div>
  <div class="card"><h2>ฟังตัวอย่าง</h2><div class="g2">${s.ex.map(w=>`<button class="soft" data-say="${w}">${w}</button>`).join('')}</div><div class="mut">แตะคำเพื่อฟัง แตะค้างฟังช้า</div></div>
  <div class="card"><h2>ทายคู่เสียง</h2><div class="mut">กดฟัง แล้วเลือกคำที่ได้ยิน</div><button class="soft" id="play">ฟังคำปริศนา</button><div class="g2" id="opts"></div><div id="qres"></div></div>
  <div class="card"><h2>พูดให้ระบบฟัง</h2><div class="mut">พูดคำนี้:</div><div class="big" id="tw"></div><div class="row"><button class="soft" id="hear">ฟังต้นแบบ</button><button class="soft" id="slow">ฟังช้า</button><button class="soft" id="nx">คำถัดไป</button></div>
  <button class="mic" id="mic" aria-label="กดแล้วพูด">${MIC}</button><div id="sres"></div></div>`;
- $('#bk').onclick=()=>go('sounds');
+ $('#bk').onclick=()=>{run++;go('sounds')};
+ const MO=window.MOUTH;let cur=MO.REST,run=0;
+ const draw=p=>{if(!$('#sv')){run++;return}$('#sv').innerHTML=MO.side(p);$('#fv').innerHTML=MO.front(p.f)};draw(cur);
+ const wait=ms=>new Promise(r=>setTimeout(r,ms));
+ const hi=k=>s.steps.forEach((_,n)=>{const e=$('#st'+n);if(e)e.classList.toggle('on',n===k)});
+ const cap=(t,w)=>{$('#cap').textContent=t;$('#capw').textContent=w||''};
+ function move(to,ms,id){const from=cur;return new Promise(res=>{const t0=performance.now();
+  const f=now=>{if(id!==run)return res(false);let t=Math.min(1,(now-t0)/ms);const e=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;draw(MO.lerp(from,to,e));
+   if(t<1)requestAnimationFrame(f);else{cur=to;res(true)}};requestAnimationFrame(f)})}
+ async function playMain(slow){const id=++run,k=slow?1.8:1,P=MO.M[dm.m];
+  cap('ท่าปกติ');hi(0);draw(cur=MO.REST);await wait(300*k);
+  if(!await move(P,800*k,id))return;cap(P.label,dm.w);hi(1);say(dm.w,slow?0.55:0.85);await wait(1400*k);if(id!==run)return;
+  hi(2);await wait(1200*k);if(id!==run)return;if(!await move(MO.REST,600*k,id))return;cap('ท่าปกติ');hi(-1)}
+ async function playCmp(){const id=++run;hi(-1);for(const [kk,w] of dm.cmp){const P=MO.M[kk];
+  if(!await move(P,700,id))return;cap(P.label,w);say(w,0.8);await wait(1600);if(id!==run)return;
+  if(!await move(MO.REST,450,id))return;cap('ท่าปกติ');await wait(350)}}
+ async function playSeq(){const id=++run;hi(-1);say(dm.w,0.6);for(const kk of dm.seq){const P=MO.M[kk];
+  if(!await move(P,550,id))return;cap(P.label,dm.w);await wait(650);if(id!==run)return}
+  await wait(400);if(!await move(MO.REST,500,id))return;cap('ท่าปกติ');say(dm.w,0.85)}
+ $('#pl').onclick=()=>playMain(false);$('#ps').onclick=()=>playMain(true);
+ if($('#pc'))$('#pc').onclick=playCmp;if($('#pq'))$('#pq').onclick=playSeq;
  app.querySelectorAll('[data-say]').forEach(b=>{let t;b.onpointerdown=()=>{t=setTimeout(()=>{t=0;say(b.dataset.say,0.55)},450)};b.onpointerup=()=>{if(t){clearTimeout(t);say(b.dataset.say)}}});
  function newQ(){const p=s.pairs[Math.floor(Math.random()*s.pairs.length)];const a=Math.random()<.5?0:1;q={p,a};
   $('#opts').innerHTML=p.map((w,k)=>`<button class="opt" data-k="${k}">${w}</button>`).join('');$('#qres').innerHTML='';
