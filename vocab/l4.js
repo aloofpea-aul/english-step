@@ -843,3 +843,767 @@ thoroughly|อย่างละเอียด|{เธอ}-โร่ว-ลี�
 ultimately|ท้ายที่สุด|อัล-ทิ-เม็ท-ลี่|Ultimately, the customer decides.|ท้ายที่สุดลูกค้าเป็นผู้ตัดสินใจ
 virtually|แทบจะ|เวอร์-ชวล-ลี่|It's virtually impossible.|แทบจะเป็นไปไม่ได้
 `);
+ES_ADD(4,'คำปรากฏคู่ (Collocations)',`
+make progress|มีความก้าวหน้า|เมค-โพร-เกรส|We are making good progress.|เรามีความก้าวหน้าที่ดี
+make an effort|พยายาม|เมค-แอน-เอฟ-เฟิร์ท|Make an effort to speak English.|พยายามพูดภาษาอังกฤษ
+make a profit|ทำกำไร|เมค-อะ-พรอฟ-ฟิท|The project made a profit.|โครงการทำกำไร
+make arrangements|จัดเตรียม|เมค-อะ-เรนจ์-เมิ่นท์ส์|I'll make arrangements for the visit.|ฉันจะจัดเตรียมการเยี่ยมชม
+make a complaint|ร้องเรียน|เมค-อะ-เคิ่ม-เพลนท์|He made a complaint.|เขายื่นข้อร้องเรียน
+take responsibility|รับผิดชอบ|เทค-รีส-ปอน-ซิ-บิล-ลิ-ตี้|Take responsibility for your work.|รับผิดชอบงานของคุณ
+take action|ลงมือดำเนินการ|เทค-แอ็ค-{ชั่น}|We must take action now.|เราต้องลงมือตอนนี้
+take into account|นำมาพิจารณา|เทค-อิน-ทู-อะ-เคาท์|Take the weather into account.|นำสภาพอากาศมาพิจารณาด้วย
+take precautions|ใช้ความระมัดระวัง|เทค-พรี-คอ-{ชั่น}ส์|Take precautions before work.|ระมัดระวังก่อนทำงาน
+take advantage of|ใช้ประโยชน์จาก|เทค-แอ็ด-แวน-ทิจ-ออฟ|Take advantage of the discount.|ใช้ประโยชน์จากส่วนลด
+do research|ทำวิจัย|ดู-รี-เซิร์ช|We did research on outages.|เราทำวิจัยเรื่องไฟดับ
+do business|ทำธุรกิจ|ดู-บิซ-{เนส}|We do business with many companies.|เราทำธุรกิจกับหลายบริษัท
+do damage|สร้างความเสียหาย|ดู-แดม-มิจ|The storm did a lot of damage.|พายุสร้างความเสียหายมาก
+pay a visit|ไปเยี่ยม|เพย์-อะ-{วิ}-ซิท|The director paid us a visit.|ผู้อำนวยการมาเยี่ยมเรา
+raise awareness|สร้างความตระหนัก|เร{ซฺ}-อะ-แวร์-เนส|We raise awareness about safety.|เราสร้างความตระหนักเรื่องความปลอดภัย
+raise a question|ตั้งคำถาม|เร{ซฺ}-อะ-เควส-{ชั่น}|He raised an important question.|เขาตั้งคำถามที่สำคัญ
+reach an agreement|บรรลุข้อตกลง|รีช-แอน-อะ-กรี-เมิ่นท์|We reached an agreement.|เราบรรลุข้อตกลง
+meet a deadline|ทันกำหนด|มีท-อะ-เด{ดฺ}-ไลน์|We met the deadline.|เราส่งทันกำหนด
+meet the needs|ตอบสนองความต้องการ|มีท-{เดอะ}-นี{ดฺ}{ซฺ}|We meet customer needs.|เราตอบสนองความต้องการลูกค้า
+set a goal|ตั้งเป้าหมาย|เซ็ท-อะ-โกล|Set a clear goal.|ตั้งเป้าหมายที่ชัดเจน
+gain experience|ได้ประสบการณ์|เกน-อิก-สเปีย-เรียนซ์|You will gain experience.|คุณจะได้รับประสบการณ์
+draw attention to|ดึงความสนใจไปที่|ดรอว์-อะ-เทน-{ชั่น}-ทู|I want to draw attention to safety.|ฉันขอดึงความสนใจไปที่เรื่องความปลอดภัย
+place an order|สั่งซื้อ|เพลส-แอน-ออร์-เดอร์|We placed an order for 50 poles.|เราสั่งเสา 50 ต้น
+run a business|ดำเนินธุรกิจ|รัน-อะ-บิซ-{เนส}|She runs a small business.|เธอดำเนินธุรกิจเล็กๆ
+run out of time|หมดเวลา|รัน-เอาท์-ออฟ-ไทม์|We ran out of time.|เราหมดเวลา
+keep track of|ติดตาม / จดบันทึก|คีพ-แทรค-ออฟ|Keep track of your spending.|ติดตามการใช้จ่ายของคุณ
+keep a record|เก็บบันทึก|คีพ-อะ-เรค-คอร์{ดฺ}|Keep a record of every job.|เก็บบันทึกทุกงาน
+give priority to|ให้ความสำคัญกับ|กิ{ฟฺ}-ไพร-ออ-ริ-ตี้-ทู|Give priority to hospitals.|ให้ความสำคัญกับโรงพยาบาลก่อน
+come to a conclusion|ได้ข้อสรุป|คัม-ทู-อะ-เคิ่น-คลู-{ฌั่น}|We came to a conclusion.|เราได้ข้อสรุปแล้ว
+play a role|มีบทบาท|เพลย์-อะ-โรล|Technology plays a big role.|เทคโนโลยีมีบทบาทสำคัญ
+`);
+ES_ADD(4,'คำนามวิชาการ',`
+abstract|บทคัดย่อ / นามธรรม|แอ็บ-สแทรคท์|Read the abstract first.|อ่านบทคัดย่อก่อน
+approach|แนวทาง / เข้าใกล้|อะ-โพรช|We need a new approach.|เราต้องการแนวทางใหม่
+category|หมวดหมู่|แคท-ทิ-กอ-รี่|Put them in categories.|จัดเป็นหมวดหมู่
+component|ส่วนประกอบ|คอม-โพ-เนินท์|Replace the broken component.|เปลี่ยนชิ้นส่วนที่เสีย
+consumption|การบริโภค / การใช้|เคิ่น-ซัมพ์-{ชั่น}|Electricity consumption rose.|การใช้ไฟฟ้าเพิ่มขึ้น
+contribution|การมีส่วนช่วย|คอน-ทริ-บิว-{ชั่น}|Thank you for your contribution.|ขอบคุณที่มีส่วนช่วย
+correlation|ความสัมพันธ์ (สถิติ)|คอ-เร-เล-{ชั่น}|There is a correlation between heat and load.|ความร้อนกับโหลดมีความสัมพันธ์กัน
+definition|คำนิยาม|เดฟ-ฟิ-นิ{ช}-ชั่น|What is the definition?|คำนิยามคืออะไร
+distribution|การกระจาย / การจำหน่าย|ดิส-ทริ-บิว-{ชั่น}|Look at the distribution of outages.|ดูการกระจายของไฟดับ
+evolution|วิวัฒนาการ|อี-โว-ลู-{ชั่น}|The evolution of the grid.|วิวัฒนาการของโครงข่ายไฟฟ้า
+fluctuation|ความผันผวน|ฟลัค-ชู-เอ-{ชั่น}|Voltage fluctuation damages devices.|ความผันผวนของแรงดันทำให้อุปกรณ์เสีย
+formula|สูตร|ฟอร์-มิว-ล่า|Use this formula in the sheet.|ใช้สูตรนี้ในชีต
+hypothesis|สมมติฐาน|ไฮ-พอ{ธ}-เธ-ซิส|Test the hypothesis.|ทดสอบสมมติฐาน
+indicator|ตัวชี้วัด|อิน-ดิ-เค-เตอร์|This is a key indicator.|นี่คือตัวชี้วัดสำคัญ
+input|ข้อมูลเข้า / ความเห็น|อิน-พุท|Thank you for your input.|ขอบคุณสำหรับความเห็น
+output|ผลผลิต / กำลังออก|เอาท์-พุท|The solar output is 5 kW.|กำลังผลิตโซลาร์ 5 กิโลวัตต์
+interaction|ปฏิสัมพันธ์|อิน-เทอร์-แอ็ค-{ชั่น}|Customer interaction is important.|ปฏิสัมพันธ์กับลูกค้าสำคัญ
+parameter|พารามิเตอร์|พะ-แรม-มิ-เตอร์|Set the relay parameters.|ตั้งค่ารีเลย์
+ratio|อัตราส่วน|เร-{ชิ}-โอ|What is the ratio?|อัตราส่วนเท่าไหร่
+sequence|ลำดับ|ซี-เควินซ์|Follow the switching sequence.|ทำตามลำดับการปลดสับ
+simulation|การจำลอง|ซิม-มิว-เล-{ชั่น}|We ran a simulation.|เราทำการจำลอง
+statement|คำแถลง / ใบแจ้งยอด|สเตท-เมิ่นท์|The company made a statement.|บริษัทออกแถลงการณ์
+summary|บทสรุป|ซัม-มะ-รี่|Write a short summary.|เขียนบทสรุปสั้นๆ
+technique|เทคนิค|เท็ค-นีค|Learn this new technique.|เรียนรู้เทคนิคใหม่นี้
+variable|ตัวแปร|แว-เรีย-เบิ้ล|Weather is a key variable.|สภาพอากาศเป็นตัวแปรสำคัญ
+capacity building|การเสริมสร้างขีดความสามารถ|คะ-แพส-ซิ-ตี้-บิล-ดิ้ง|We focus on capacity building.|เรามุ่งเสริมสร้างขีดความสามารถ
+core value|ค่านิยมหลัก|คอร์-แวล-ลิว|Integrity is a core value.|ความซื่อตรงคือค่านิยมหลัก
+knowledge management|การจัดการความรู้ (KM)|นอล-ลิจ-แมน-นิจ-เมิ่นท์|We have a KM project.|เรามีโครงการจัดการความรู้
+quality assurance|การประกันคุณภาพ|ควอ-ลิ-ตี้-อะ-{ชัว}-เรินซ์|Quality assurance is strict.|การประกันคุณภาพเข้มงวด
+`);
+ES_ADD(4,'คำกริยาวิชาการ',`
+assert|ยืนยัน / กล่าวอ้าง|อะ-เซิร์ท|He asserted that it was safe.|เขายืนยันว่าปลอดภัย
+categorize|จัดหมวดหมู่|แคท-ทิ-โก-ไรซ์|Categorize the outages by cause.|จัดหมวดไฟดับตามสาเหตุ
+cite|อ้างอิง|ไซท์|Cite your sources.|อ้างอิงแหล่งที่มา
+conceive|คิดขึ้น / ตั้งครรภ์|เคิ่น-ซี{ฟฺ}|He conceived the idea.|เขาเป็นผู้คิดไอเดียนี้
+constrain|จำกัด|เคิ่น-สเตรน|The budget constrains us.|งบประมาณจำกัดเรา
+correspond|สอดคล้อง / ติดต่อทางจดหมาย|คอ-เรส-ปอน{ดฺ}|The data corresponds to the map.|ข้อมูลสอดคล้องกับแผนที่
+deduce|อนุมาน|ดิ-ดิวซ์|We deduced the cause from the data.|เราอนุมานสาเหตุจากข้อมูล
+derive|ได้มาจาก|ดิ-ไร{ฟฺ}|The word derives from Latin.|คำนี้มาจากภาษาละติน
+differentiate|แยกแยะ|ดิฟ-เฟอ-เรน-{ชิ}-เอท|Differentiate between live and dead lines.|แยกแยะระหว่างสายมีไฟและไม่มีไฟ
+exhibit|แสดง / จัดแสดง|อิก-ซิบ-บิท|The patient exhibits symptoms.|ผู้ป่วยแสดงอาการ
+extract|สกัด / ดึงออก|อิก-สแทรคท์|Extract data from the system.|ดึงข้อมูลจากระบบ
+generalize|สรุปรวม|เจน-เนอ-รัล-ไลซ์|Don't generalize.|อย่าเหมารวม
+hypothesize|ตั้งสมมติฐาน|ไฮ-พอ{ธ}-เธ-ไซซ์|We hypothesize that trees cause it.|เราตั้งสมมติฐานว่าต้นไม้เป็นสาเหตุ
+infer|อนุมาน|อิน-เฟอร์|What can we infer from this?|เราอนุมานอะไรได้จากสิ่งนี้
+investigate|สอบสวน / ตรวจสอบ|อิน-เวส-ทิ-เกท|We investigated the accident.|เราสอบสวนอุบัติเหตุ
+manipulate|จัดการ / ปั่น|มะ-นิพ-พิว-เลท|Don't manipulate the data.|อย่าบิดเบือนข้อมูล
+outweigh|มีน้ำหนักมากกว่า|เอาท์-เวย์|The benefits outweigh the costs.|ประโยชน์มากกว่าต้นทุน
+presume|สันนิษฐาน|พรี-ซูม|I presume you are the manager.|ฉันคิดว่าคุณคือผู้จัดการ
+quantify|วัดปริมาณ|ควอน-ทิ-ฟาย|Quantify the damage.|ประเมินมูลค่าความเสียหาย
+refine|ปรับปรุงให้ดีขึ้น|รี-ไฟน์|We refined the design.|เราปรับปรุงแบบให้ดีขึ้น
+validate|ตรวจสอบความถูกต้อง|แวล-ลิ-เดท|Validate the data before use.|ตรวจความถูกต้องของข้อมูลก่อนใช้
+`);
+ES_ADD(4,'สุขภาพขั้นสูง',`
+chronic|เรื้อรัง|ครอน-นิค|He has a chronic illness.|เขามีโรคเรื้อรัง
+acute|เฉียบพลัน|อะ-คิวท์|It's an acute infection.|เป็นการติดเชื้อเฉียบพลัน
+diagnosis|การวินิจฉัย|ได-แอก-โน-ซิส|The diagnosis was clear.|การวินิจฉัยชัดเจน
+therapy|การบำบัด|{เธ}-ระ-พี่|He needs physical therapy.|เขาต้องทำกายภาพบำบัด
+rehabilitation|การฟื้นฟูสมรรถภาพ|รี-ฮะ-บิล-ลิ-เท-{ชั่น}|Rehabilitation takes months.|การฟื้นฟูใช้เวลาหลายเดือน
+immune system|ระบบภูมิคุ้มกัน|อิ-มิวน์-ซิส-เท็ม|Exercise boosts the immune system.|การออกกำลังกายเสริมภูมิคุ้มกัน
+vaccine|วัคซีน|แวค-ซีน|Get the flu vaccine.|ฉีดวัคซีนไข้หวัดใหญ่
+outbreak|การระบาด|เอาท์-เบรค|There was a dengue outbreak.|มีการระบาดของไข้เลือดออก
+epidemic|โรคระบาด|เอพ-พิ-เดม-มิค|The epidemic spread fast.|โรคระบาดแพร่เร็ว
+contagious|ติดต่อได้|เคิ่น-เท-จัส|The flu is contagious.|ไข้หวัดใหญ่ติดต่อได้
+hygiene|สุขอนามัย|ไฮ-จีน|Good hygiene prevents disease.|สุขอนามัยที่ดีป้องกันโรค
+sanitize|ฆ่าเชื้อ|แซน-นิ-ไทซ์|Sanitize your hands.|ล้างมือด้วยเจลฆ่าเชื้อ
+dehydration|ภาวะขาดน้ำ|ดี-ไฮ-เดร-{ชั่น}|Dehydration is dangerous in the heat.|ภาวะขาดน้ำอันตรายในอากาศร้อน
+obesity|โรคอ้วน|โอ-บี-ซิ-ตี้|Obesity is a growing problem.|โรคอ้วนเป็นปัญหาที่เพิ่มขึ้น
+hypertension|ความดันโลหิตสูง|ไฮ-เพอร์-เทน-{ชั่น}|He has hypertension.|เขาเป็นความดันสูง
+cholesterol|คอเลสเตอรอล|คอ-เลส-เทอ-รอล|Check your cholesterol.|ตรวจคอเลสเตอรอล
+medical certificate|ใบรับรองแพทย์|เมด-ดิ-เคิ่ล-เซอร์-ทิ-ฟิ-เค็ท|Bring a medical certificate.|นำใบรับรองแพทย์มา
+medical expenses|ค่ารักษาพยาบาล|เมด-ดิ-เคิ่ล-อิก-สเปน-ซิ{ซฺ}|You can claim medical expenses.|คุณเบิกค่ารักษาพยาบาลได้
+outpatient|ผู้ป่วยนอก|เอาท์-เพ-{เชินท์}|He was treated as an outpatient.|เขารักษาแบบผู้ป่วยนอก
+inpatient|ผู้ป่วยใน|อิน-เพ-{เชินท์}|She is an inpatient.|เธอเป็นผู้ป่วยใน
+well-being|ความเป็นอยู่ที่ดี|เวล-บี-อิ้ง|We care about staff well-being.|เราใส่ใจความเป็นอยู่ที่ดีของพนักงาน
+anxiety|ความวิตกกังวล|แองค์-ไซ-อะ-ตี้|Anxiety affects sleep.|ความวิตกกังวลส่งผลต่อการนอน
+depression|ภาวะซึมเศร้า|ดิ-เพร{ช}-ชั่น|Depression is a real illness.|ภาวะซึมเศร้าเป็นโรคจริง
+counseling|การให้คำปรึกษา|เคาน์-เซิ่ล-ลิ่ง|Free counseling is available.|มีบริการให้คำปรึกษาฟรี
+`);
+ES_ADD(4,'การโรงแรมและการท่องเที่ยวขั้นสูง',`
+hospitality|การต้อนรับ / ธุรกิจบริการ|ฮอส-พิ-แทล-ลิ-ตี้|Thai hospitality is famous.|การต้อนรับแบบไทยมีชื่อเสียง
+amenities|สิ่งอำนวยความสะดวก|อะ-เมน-นิ-ตี้{ซฺ}|The resort has many amenities.|รีสอร์ตมีสิ่งอำนวยความสะดวกมากมาย
+occupancy rate|อัตราการเข้าพัก|ออค-คิว-เพิ่น-ซี่-เรท|The occupancy rate is 90%.|อัตราการเข้าพัก 90%
+high season|ช่วงไฮซีซัน|ไฮ-ซี-เซิ่น|Prices go up in high season.|ราคาสูงขึ้นช่วงไฮซีซัน
+low season|ช่วงโลว์ซีซัน|โลว์-ซี-เซิ่น|It's quiet in low season.|ช่วงโลว์ซีซันเงียบ
+ecotourism|การท่องเที่ยวเชิงนิเวศ|อี-โค-ทัว-ริ-ซึ่ม|Ao Luek is great for ecotourism.|อ่าวลึกเหมาะกับการท่องเที่ยวเชิงนิเวศ
+national park|อุทยานแห่งชาติ|แนช-ชั่น-เนิ่ล-พาร์ค|Than Bok Khorani is a national park.|ธารโบกขรณีเป็นอุทยานแห่งชาติ
+heritage|มรดก|เฮ-ริ-ทิจ|It's a cultural heritage site.|เป็นแหล่งมรดกทางวัฒนธรรม
+cuisine|อาหาร (ประจำชาติ/ภูมิภาค)|ควิ-ซีน|Southern Thai cuisine is spicy.|อาหารใต้เผ็ด
+travel insurance|ประกันการเดินทาง|แทร-{เวิ่ล}-อิน-{ชัว}-เรินซ์|Buy travel insurance.|ซื้อประกันการเดินทาง
+travel agency|บริษัทนำเที่ยว|แทร-{เวิ่ล}-เอ-เจิ่น-ซี่|Book through a travel agency.|จองผ่านบริษัทนำเที่ยว
+package tour|ทัวร์แบบเหมา|แพ็ค-คิจ-ทัวร์|We booked a package tour.|เราจองแพ็กเกจทัวร์
+jet lag|อาการเจ็ตแล็ก|เจ็ท-แลก|I have jet lag.|ฉันมีอาการเจ็ตแล็ก
+layover|การแวะพักต่อเครื่อง|เลย์-โอ-{เวอร์}|We have a layover in Bangkok.|เราแวะต่อเครื่องที่กรุงเทพฯ
+overbooked|จองเกิน|โอ-{เวอร์}-บุ๊ค{ทฺ}|The flight was overbooked.|เที่ยวบินจองเกิน
+`);
+ES_ADD(4,'การโทรศัพท์ในที่ทำงาน',`
+may I speak to|ขอเรียนสายกับ|เม-ไอ-สปีค-ทู|May I speak to Mr. Somchai?|ขอเรียนสายคุณสมชายค่ะ
+who's calling|ใครโทรมาครับ/คะ|ฮูส-คอล-ลิ่ง|May I ask who's calling?|ขอทราบว่าใครโทรมาคะ
+put you through|โอนสายให้|พุท-ยู-{ธรู}|I'll put you through.|เดี๋ยวโอนสายให้นะคะ
+hold the line|ถือสายรอ|โฮล{ดฺ}-{เดอะ}-ไลน์|Please hold the line.|กรุณาถือสายรอ
+leave a message|ฝากข้อความ|ลี{ฟฺ}-อะ-เมส-สิจ|Would you like to leave a message?|ต้องการฝากข้อความไหมคะ
+take a message|รับฝากข้อความ|เทค-อะ-เมส-สิจ|Can I take a message?|ให้รับฝากข้อความไหมคะ
+call you back|โทรกลับหาคุณ|คอล-ยู-แบ็ค|I'll call you back later.|เดี๋ยวโทรกลับนะคะ
+the line is busy|สายไม่ว่าง|{เดอะ}-ไลน์-อิส-บิซ-ซี่|Sorry, the line is busy.|ขอโทษค่ะ สายไม่ว่าง
+bad connection|สัญญาณไม่ดี|แบ{ดฺ}-เคิ่น-เน็ค-{ชั่น}|Sorry, it's a bad connection.|ขอโทษค่ะ สัญญาณไม่ดี
+speak up|พูดดังขึ้น|สปีค-อัพ|Could you speak up, please?|ช่วยพูดดังขึ้นหน่อยได้ไหมคะ
+spell that|สะกดคำนั้น|สเปล-{แดท}|Could you spell that, please?|ช่วยสะกดให้หน่อยได้ไหมคะ
+extension|เบอร์ต่อภายใน / การขยาย|อิก-สเตน-{ชั่น}|My extension is 205.|เบอร์ต่อของฉันคือ 205
+voicemail|ข้อความเสียง|{วอยซ์}-เมล|Leave a voicemail.|ฝากข้อความเสียงไว้
+conference call|การประชุมทางโทรศัพท์|คอน-เฟอ-เรินซ์-คอล|Join the conference call at 10.|เข้าร่วมประชุมทางโทรศัพท์สิบโมง
+`);
+ES_ADD(4,'การอธิบายแนวโน้มและกราฟ',`
+rise steadily|เพิ่มขึ้นอย่างต่อเนื่อง|ไรซ์-สเต-ดิ-ลี่|Demand rose steadily.|ความต้องการเพิ่มขึ้นอย่างต่อเนื่อง
+fall sharply|ลดลงอย่างรวดเร็ว|ฟอล-{ชาร์พ}-ลี่|Outages fell sharply.|ไฟดับลดลงอย่างรวดเร็ว
+level off|คงตัว|เลฟ-เวิ่ล-ออฟ|The load leveled off at night.|โหลดคงตัวในตอนกลางคืน
+remain stable|คงที่|รี-เมน-สเต-เบิ้ล|Prices remained stable.|ราคาคงที่
+reach a peak|ถึงจุดสูงสุด|รีช-อะ-พีค|Demand reached a peak in April.|ความต้องการถึงจุดสูงสุดในเดือนเมษายน
+hit a low|ถึงจุดต่ำสุด|ฮิท-อะ-โลว์|Sales hit a low in June.|ยอดขายต่ำสุดในเดือนมิถุนายน
+upward trend|แนวโน้มขาขึ้น|อัพ-เวิร์{ดฺ}-เทรน{ดฺ}|There is an upward trend.|มีแนวโน้มขาขึ้น
+downward trend|แนวโน้มขาลง|ดาวน์-เวิร์{ดฺ}-เทรน{ดฺ}|Complaints show a downward trend.|ข้อร้องเรียนมีแนวโน้มลดลง
+year-on-year|เทียบปีต่อปี|เยียร์-ออน-เยียร์|Sales grew 5% year-on-year.|ยอดขายโตขึ้น 5% เทียบปีต่อปี
+dramatic|อย่างมาก / ฉับพลัน|ดระ-แมท-ติค|There was a dramatic increase.|มีการเพิ่มขึ้นอย่างมาก
+slight|เล็กน้อย|สไลท์|There was a slight drop.|ลดลงเล็กน้อย
+slightly|เล็กน้อย|สไลท์-ลี่|It rose slightly.|เพิ่มขึ้นเล็กน้อย
+rapid|รวดเร็ว|แรพ-พิด|There was rapid growth.|มีการเติบโตอย่างรวดเร็ว
+`);
+ES_ADD(4,'คำคุณศัพท์ขั้นสูง 2',`
+abundant|อุดมสมบูรณ์|อะ-บัน-เดินท์|Krabi has abundant natural resources.|กระบี่มีทรัพยากรธรรมชาติอุดมสมบูรณ์
+affordable|ราคาพอจ่ายได้|อะ-ฟอร์-ดะ-เบิ้ล|Solar is now affordable.|โซลาร์ราคาจับต้องได้แล้ว
+ambiguous|กำกวม|แอม-บิก-กิว-อัส|The instruction is ambiguous.|คำสั่งกำกวม
+compulsory|บังคับ|เคิ่ม-พัล-ซอ-รี่|Wearing a helmet is compulsory.|การสวมหมวกนิรภัยเป็นข้อบังคับ
+concise|กระชับ|เคิ่น-ไซซ์|Keep your report concise.|เขียนรายงานให้กระชับ
+contemporary|ร่วมสมัย|เคิ่น-เทม-โพ-เร-รี่|It's contemporary art.|เป็นศิลปะร่วมสมัย
+conventional|แบบดั้งเดิม|เคิ่น-เวน-{ชั่น}-เนิ่ล|Conventional meters are being replaced.|มิเตอร์แบบเดิมกำลังถูกเปลี่ยน
+defective|ชำรุด|ดิ-เฟ็ค-ที{ฟฺ}|Return the defective meter.|ส่งคืนมิเตอร์ที่ชำรุด
+durable|ทนทาน|ดิว-ระ-เบิ้ล|Concrete poles are durable.|เสาคอนกรีตทนทาน
+excessive|มากเกินไป|อิก-เซส-ซิ{ฟฺ}|Excessive heat damages cables.|ความร้อนมากเกินไปทำลายสายเคเบิล
+fragile|เปราะบาง|แฟรจ-จายล์|Handle with care. Fragile.|ระวัง แตกง่าย
+hectic|วุ่นวาย|เฮ็ค-ติค|Today was hectic.|วันนี้วุ่นมาก
+identical|เหมือนกันทุกประการ|ไอ-เดน-ทิ-เคิ่ล|The two meters are identical.|มิเตอร์สองลูกเหมือนกันทุกประการ
+indispensable|ขาดไม่ได้|อิน-ดิส-เพน-ซะ-เบิ้ล|Electricity is indispensable.|ไฟฟ้าเป็นสิ่งที่ขาดไม่ได้
+intensive|เข้มข้น|อิน-เทน-ซิ{ฟฺ}|It was an intensive course.|เป็นคอร์สเข้มข้น
+intermittent|เป็นพักๆ|อิน-เทอร์-มิท-เทินท์|The fault is intermittent.|ปัญหาเกิดเป็นพักๆ
+lengthy|ยืดยาว|เลง{ธ}-ธี่|It was a lengthy meeting.|เป็นการประชุมที่ยืดยาว
+lucrative|ทำกำไรดี|ลู-คระ-ที{ฟฺ}|Tourism is lucrative.|การท่องเที่ยวทำกำไรดี
+meaningful|มีความหมาย|มีน-นิ่ง-ฟู่ล|It was a meaningful day.|เป็นวันที่มีความหมาย
+minimal|น้อยที่สุด|มิน-นิ-เมิ่ล|The impact was minimal.|ผลกระทบน้อยมาก
+obsolete|ล้าสมัย|ออบ-โซ-ลีท|This equipment is obsolete.|อุปกรณ์นี้ล้าสมัย
+outdated|ล้าสมัย|เอาท์-เด-ทิ{ดฺ}|The map is outdated.|แผนที่ล้าสมัย
+plausible|น่าเชื่อ|พลอ-ซิ-เบิ้ล|That's a plausible explanation.|เป็นคำอธิบายที่น่าเชื่อ
+prominent|โดดเด่น / มีชื่อเสียง|พรอม-มิ-เนินท์|He is a prominent leader.|เขาเป็นผู้นำที่โดดเด่น
+prone to|มีแนวโน้มที่จะเกิด|โพรน-ทู|This area is prone to floods.|พื้นที่นี้เสี่ยงน้ำท่วม
+redundant|ซ้ำซ้อน / ถูกเลิกจ้าง|รี-ดัน-เดินท์|Remove redundant steps.|ตัดขั้นตอนที่ซ้ำซ้อนออก
+reasonable|สมเหตุสมผล|รี-ซอ-นะ-เบิ้ล|The price is reasonable.|ราคาสมเหตุสมผล
+robust|แข็งแกร่ง / ทนทาน|โร-บัสท์|We need a robust system.|เราต้องการระบบที่แข็งแกร่ง
+severe|รุนแรง|ซิ-เวียร์|There was severe damage.|ความเสียหายรุนแรง
+spacious|กว้างขวาง|สเป-{ชัส}|The new office is spacious.|สำนักงานใหม่กว้างขวาง
+spontaneous|เกิดขึ้นเอง|สปอน-เท-เนียส|It was a spontaneous decision.|เป็นการตัดสินใจแบบทันที
+straightforward|ตรงไปตรงมา / ง่าย|สเตรท-ฟอร์-เวิร์{ดฺ}|The process is straightforward.|ขั้นตอนง่ายไม่ซับซ้อน
+tedious|น่าเบื่อหน่าย|ที-เดียส|Data entry is tedious.|การกรอกข้อมูลน่าเบื่อ
+tremendous|มหาศาล|ทระ-เมน-ดัส|They did a tremendous job.|พวกเขาทำงานได้ยอดเยี่ยมมาก
+unprecedented|ไม่เคยมีมาก่อน|อัน-เพรส-ซิ-เดน-ทิ{ดฺ}|The flood was unprecedented.|น้ำท่วมครั้งนี้ไม่เคยมีมาก่อน
+viable|เป็นไปได้ / อยู่รอดได้|ไว-อะ-เบิ้ล|Is the plan viable?|แผนนี้เป็นไปได้ไหม
+worthwhile|คุ้มค่า|เวิร์{ธ}-ไวล์|The training was worthwhile.|การอบรมคุ้มค่า
+`);
+ES_ADD(4,'คำกริยาขั้นสูง 3',`
+accompany|ไปเป็นเพื่อน / มาพร้อมกับ|อะ-คัม-พะ-นี่|I will accompany the director.|ฉันจะไปกับผู้อำนวยการ
+alleviate|บรรเทา|อะ-ลี-{วิ}-เอท|We alleviate the impact of outages.|เราบรรเทาผลกระทบจากไฟดับ
+boost|กระตุ้น / เพิ่ม|บูสท์|The project boosted morale.|โครงการเพิ่มขวัญกำลังใจ
+cater|จัดหา / ตอบสนอง|เค-เตอร์|We cater to all customers.|เราให้บริการลูกค้าทุกกลุ่ม
+clarification|การชี้แจง|แคล-ริ-ฟิ-เค-{ชั่น}|I need clarification.|ฉันต้องการคำชี้แจง
+commence|เริ่ม|คอม-เมนซ์|Work will commence on Monday.|งานจะเริ่มวันจันทร์
+comprise|ประกอบด้วย|เคิ่ม-ไพรซ์|The team comprises ten people.|ทีมประกอบด้วยสิบคน
+convert|แปลง|เคิ่น-เวิร์ท|Convert the file to PDF.|แปลงไฟล์เป็น PDF
+curb|ควบคุม / ยับยั้ง|เคิร์บ|We curb energy waste.|เราควบคุมการใช้พลังงานอย่างสิ้นเปลือง
+diminish|ลดลง|ดิ-มิน-นิ{ช}|The risk has diminished.|ความเสี่ยงลดลง
+disclose|เปิดเผย|ดิส-โคล{ซฺ}|Don't disclose customer data.|อย่าเปิดเผยข้อมูลลูกค้า
+dismiss|ปลด / ไม่สนใจ|ดิส-มิส|Don't dismiss small faults.|อย่ามองข้ามความผิดปกติเล็กๆ
+embrace|โอบรับ|อิม-เบรส|Embrace new technology.|เปิดรับเทคโนโลยีใหม่
+endure|อดทน|อิน-ดิวร์|They endured the storm.|พวกเขาฝ่าพายุมาได้
+enroll|ลงทะเบียนเรียน|อิน-โรล|Enroll in the English course.|ลงทะเบียนเรียนคอร์สภาษาอังกฤษ
+envision|มองเห็นภาพ (อนาคต)|อิน-{วิ}-{ฌั่น}|We envision a smart grid.|เรามองเห็นภาพสมาร์ทกริดในอนาคต
+excel|ทำได้ดีเยี่ยม|อิก-เซล|She excels at customer service.|เธอเก่งเรื่องบริการลูกค้า
+foster|ส่งเสริม|ฟอส-เตอร์|We foster teamwork.|เราส่งเสริมการทำงานเป็นทีม
+grasp|เข้าใจ / จับ|กราสพ์|He grasped the idea quickly.|เขาเข้าใจไอเดียได้เร็ว
+hinder|ขัดขวาง|ฮิน-เดอร์|Rain hindered the work.|ฝนขัดขวางการทำงาน
+inherit|สืบทอด|อิน-เฮ-ริท|We inherited old equipment.|เรารับช่วงอุปกรณ์เก่ามา
+intensify|ทวีความรุนแรง|อิน-เทน-ซิ-ฟาย|The storm intensified.|พายุทวีความรุนแรง
+lessen|ลดลง|เลส-เซิ่น|Trimming trees lessens outages.|การตัดต้นไม้ช่วยลดไฟดับ
+mitigate|บรรเทา / ลดผลกระทบ|มิท-ทิ-เกท|Mitigate the risks.|ลดความเสี่ยง
+oversee|กำกับดูแล|โอ-{เวอร์}-ซี|He oversees the project.|เขากำกับดูแลโครงการ
+persevere|อุตสาหะ|เพอร์-เซ-เวียร์|Persevere and you will succeed.|อดทนแล้วจะสำเร็จ
+prolong|ยืดเวลา|โพร-ลอง|Maintenance prolongs equipment life.|การบำรุงรักษายืดอายุอุปกรณ์
+reconcile|กระทบยอด / คืนดี|เรค-เคิ่น-ไซล์|Reconcile the stock with SAP.|กระทบยอดสต็อกกับ SAP
+reimburse|คืนเงิน (เบิก)|รี-อิม-เบิร์ส|We will reimburse your travel costs.|เราจะคืนค่าเดินทางให้คุณ
+retrieve|ดึงข้อมูลกลับ / กู้คืน|รี-ทรี{ฟฺ}|Retrieve the old file.|เรียกไฟล์เก่าคืนมา
+safeguard|ปกป้อง|เซฟ-การ์{ดฺ}|Safeguard customer information.|ปกป้องข้อมูลลูกค้า
+scrutinize|ตรวจสอบอย่างละเอียด|สครู-ทิ-ไนซ์|Scrutinize the contract.|ตรวจสัญญาอย่างละเอียด
+streamline|ทำให้คล่องตัว|สตรีม-ไลน์|We streamlined the process.|เราทำให้กระบวนการคล่องตัวขึ้น
+strengthen|เสริมให้แข็งแรง|สเตรง-{เธิ่น}|Strengthen the poles before the storm.|เสริมความแข็งแรงเสาก่อนพายุ
+surpass|เหนือกว่า / แซงหน้า|เซอร์-พาส|We surpassed our target.|เราทำได้เกินเป้า
+tackle|จัดการ / รับมือ|แทค-เคิ่ล|Let's tackle the problem.|มาจัดการปัญหากัน
+uphold|รักษาไว้ / ยึดถือ|อัพ-โฮล{ดฺ}|We uphold high standards.|เรายึดถือมาตรฐานสูง
+yield|ให้ผล|ยีล{ดฺ}|The project yielded good results.|โครงการให้ผลดี
+`);
+ES_ADD(4,'ภาษาเพื่อการสื่อสาร (แสดงความเห็น ขอร้อง)',`
+I couldn't agree more|เห็นด้วยอย่างยิ่ง|ไอ-คู-เดิ่นท์-อะ-กรี-มอร์|I couldn't agree more.|เห็นด้วยอย่างยิ่ง
+I see your point, but|เข้าใจประเด็นคุณ แต่|ไอ-ซี-ยัวร์-พอยน์ท์-บัท|I see your point, but it's too expensive.|เข้าใจประเด็นคุณ แต่มันแพงเกินไป
+I'm not sure about that|ไม่แน่ใจเรื่องนั้น|ไอม์-น็อท-{ชัวร์}-อะ-เบาท์-{แดท}|I'm not sure about that.|ฉันไม่แน่ใจเรื่องนั้น
+from my point of view|จากมุมมองของฉัน|ฟรอม-ไม-พอยน์ท์-ออฟ-{วิว}|From my point of view, it's safe.|จากมุมมองของฉัน มันปลอดภัย
+as far as I know|เท่าที่ฉันรู้|แอ{ซฺ}-ฟาร์-แอ{ซฺ}-ไอ-โน|As far as I know, he is on leave.|เท่าที่ฉันรู้ เขาลาอยู่
+would you mind|รบกวนช่วย...ได้ไหม|วู{ดฺ}-ยู-ไมน{ดฺ}|Would you mind closing the door?|รบกวนช่วยปิดประตูได้ไหม
+I was wondering if|ไม่ทราบว่า...ได้ไหม (สุภาพ)|ไอ-วอซ-วัน-เดอ-ริ่ง-อิฟ|I was wondering if you could help me.|ไม่ทราบว่าคุณจะช่วยฉันได้ไหม
+could you possibly|พอจะ...ได้ไหม|คู{ดฺ}-ยู-พอส-ซิ-บลี่|Could you possibly come earlier?|พอจะมาเร็วขึ้นได้ไหม
+I'd appreciate it if|จะขอบคุณมากถ้า|ไอ{ดฺ}-อะ-พรี-{ชิ}-เอท-อิท-อิฟ|I'd appreciate it if you replied today.|จะขอบคุณมากถ้าตอบกลับวันนี้
+let me get back to you|ขอกลับไปเช็คแล้วแจ้งคุณ|เล็ท-มี-เก็ท-แบ็ค-ทู-ยู|Let me get back to you on that.|ขอเช็คแล้วจะแจ้งกลับนะ
+that's a good question|เป็นคำถามที่ดี|{แดทส์}-อะ-กุ{ดฺ}-เควส-{ชั่น}|That's a good question.|เป็นคำถามที่ดีมาก
+to be honest|พูดตามตรง|ทู-บี-ออน-เนสท์|To be honest, I don't know.|พูดตามตรง ฉันไม่รู้
+if I'm not mistaken|ถ้าฉันจำไม่ผิด|อิฟ-ไอม์-น็อท-มิส-เท-เคิ่น|If I'm not mistaken, it's Friday.|ถ้าจำไม่ผิด วันศุกร์
+what I mean is|ที่ฉันหมายถึงคือ|วอท-ไอ-มีน-อิซ|What I mean is, we need more time.|ที่ฉันหมายถึงคือเราต้องการเวลาเพิ่ม
+in other words|พูดอีกอย่างคือ|อิน-อัท-{เดอร์}-เวิร์{ดฺ}{ซฺ}|In other words, the line is overloaded.|พูดง่ายๆ คือสายโหลดเกิน
+let me put it another way|ขออธิบายอีกแบบ|เล็ท-มี-พุท-อิท-อะ-นัท-{เดอร์}-เวย์|Let me put it another way.|ขออธิบายอีกแบบหนึ่ง
+I'm afraid I can't|เกรงว่าทำไม่ได้|ไอม์-อะ-เฟร{ดฺ}-ไอ-คานท์|I'm afraid I can't attend.|เกรงว่าจะเข้าร่วมไม่ได้
+no offense|ไม่ได้มีเจตนาร้าย|โน-ออฟ-เฟนซ์|No offense, but it's wrong.|ไม่ได้ว่าอะไรนะ แต่มันผิด
+fair enough|ก็สมเหตุสมผล|แฟร์-อี-นัฟ|Fair enough.|ก็ได้ สมเหตุสมผล
+that makes sense|ฟังดูมีเหตุผล|{แดท}-เมคส์-เซนส์|That makes sense.|ฟังดูมีเหตุผล
+I'll look into it|ฉันจะตรวจสอบให้|ไอล์-ลุค-อิน-ทู-อิท|I'll look into it right away.|ฉันจะตรวจสอบให้ทันที
+thank you for your patience|ขอบคุณที่รอ|{แธงค์}-ยู-ฟอร์-ยัวร์-เพ-{เชินซ์}|Thank you for your patience.|ขอบคุณที่อดทนรอ
+I apologize for the delay|ขออภัยในความล่าช้า|ไอ-อะ-พอล-โล-ไจซ์-ฟอร์-{เดอะ}-ดิ-เลย์|I apologize for the delay.|ขออภัยในความล่าช้า
+it's my pleasure|ด้วยความยินดี|อิทส์-ไม-เพล-{ชเชอร์}|It's my pleasure.|ด้วยความยินดี
+please bear with me|กรุณารอสักครู่ / อดทนหน่อย|พลี{ซฺ}-แบร์-วิ{ธ}-มี|Please bear with me.|กรุณารอสักครู่
+`);
+ES_ADD(4,'ศิลปะ วัฒนธรรม สื่อ',`
+exhibition|นิทรรศการ|เอ็ก-ซิ-บิ{ช}-ชั่น|Visit the innovation exhibition.|ไปชมนิทรรศการนวัตกรรม
+masterpiece|ผลงานชิ้นเอก|มาส-เตอร์-พีซ|It's a masterpiece.|เป็นผลงานชิ้นเอก
+literature|วรรณกรรม|ลิท-เทอ-ระ-เชอร์|I study English literature.|ฉันเรียนวรรณกรรมอังกฤษ
+documentary|สารคดี|ด็อค-คิว-เมน-ทะ-รี่|I watched a documentary about the sea.|ฉันดูสารคดีเกี่ยวกับทะเล
+broadcast|ออกอากาศ|บรอด-คาสท์|The news was broadcast live.|ข่าวออกอากาศสด
+journalism|วารสารศาสตร์|เจอร์-นะ-ลิ-ซึ่ม|She studied journalism.|เธอเรียนวารสารศาสตร์
+press release|ข่าวประชาสัมพันธ์|เพรส-รี-ลีส|We issued a press release.|เราออกข่าวประชาสัมพันธ์
+press conference|การแถลงข่าว|เพรส-คอน-เฟอ-เรินซ์|There is a press conference at 3.|มีแถลงข่าวบ่ายสาม
+coverage|การรายงานข่าว / ความครอบคลุม|คัฟ-เวอ-ริจ|The news coverage was positive.|การรายงานข่าวเป็นไปในทางบวก
+viral|แพร่กระจายอย่างรวดเร็ว (ไวรัล)|ไว-เริ่ล|The video went viral.|คลิปกลายเป็นไวรัล
+influencer|ผู้มีอิทธิพลทางโซเชียล|อิน-ฟลู-เอิ่น-เซอร์|She is a travel influencer.|เธอเป็นอินฟลูเอนเซอร์สายท่องเที่ยว
+content creator|ผู้สร้างคอนเทนต์|คอน-เท็นท์-ครี-เอ-เตอร์|I want to be a content creator.|ฉันอยากเป็นครีเอเตอร์
+caption|คำบรรยายภาพ|แคพ-{ชั่น}|Write a short caption.|เขียนคำบรรยายสั้นๆ
+subtitle|คำบรรยายใต้ภาพ|ซับ-ไท-เทิ่ล|Watch with English subtitles.|ดูพร้อมคำบรรยายภาษาอังกฤษ
+script|บท|สคริพท์|I wrote the video script.|ฉันเขียนบทวิดีโอ
+editing|การตัดต่อ / การแก้ไข|เอ็ด-ดิ-ทิ่ง|Video editing takes time.|การตัดต่อวิดีโอใช้เวลา
+storytelling|การเล่าเรื่อง|สตอ-รี่-เทล-ลิ่ง|Good storytelling sells.|การเล่าเรื่องที่ดีขายได้
+engagement|การมีส่วนร่วม / การหมั้น|อิน-เกจ-เมิ่นท์|Staff engagement is high.|พนักงานมีส่วนร่วมสูง
+folk|พื้นบ้าน|โฟล์ค|We love folk music.|เราชอบดนตรีพื้นบ้าน
+craft|งานฝีมือ|คราฟท์|Batik is a local craft.|ผ้าบาติกเป็นงานฝีมือท้องถิ่น
+`);
+ES_ADD(4,'อาชญากรรมและความมั่นคง',`
+investigation|การสอบสวน|อิน-เวส-ทิ-เก-{ชั่น}|The investigation is ongoing.|การสอบสวนยังดำเนินอยู่
+arrest|จับกุม|อะ-เรสท์|The thief was arrested.|ขโมยถูกจับกุม
+theft|การโจรกรรม|{เธฟท์}|Cable theft is a big problem.|การขโมยสายเคเบิลเป็นปัญหาใหญ่
+fraud|การฉ้อโกง|ฟรอด|Report any fraud.|แจ้งการฉ้อโกงทุกกรณี
+vandalism|การทำลายทรัพย์สิน|แวน-เดิ่ล-ลิ-ซึ่ม|Vandalism damaged the meter.|มีการทำลายมิเตอร์
+trespass|บุกรุก|เทรส-พาส|No trespassing.|ห้ามบุกรุก
+surveillance|การเฝ้าระวัง|เซอร์-เว-เลินซ์|We installed surveillance cameras.|เราติดตั้งกล้องวงจรปิด
+CCTV|กล้องวงจรปิด|ซี-ซี-ที-วี|Check the CCTV footage.|ตรวจภาพกล้องวงจรปิด
+footage|ภาพวิดีโอที่บันทึก|ฟุท-ทิจ|We reviewed the footage.|เราตรวจดูภาพที่บันทึกไว้
+identity theft|การขโมยข้อมูลตัวตน|ไอ-เดน-ทิ-ตี้-{เธฟท์}|Protect yourself from identity theft.|ป้องกันตัวเองจากการขโมยข้อมูลตัวตน
+counterfeit|ปลอมแปลง|เคาน์-เตอร์-ฟิท|Don't buy counterfeit products.|อย่าซื้อสินค้าปลอม
+tamper|ดัดแปลง / แก้ไขโดยมิชอบ|แทม-เพอร์|Don't tamper with the meter.|อย่าดัดแปลงมิเตอร์
+electricity theft|การลักใช้ไฟฟ้า|อิ-เล็ค-ทริส-ซิ-ตี้-{เธฟท์}|Electricity theft is a crime.|การลักใช้ไฟฟ้าเป็นความผิด
+prosecute|ดำเนินคดี|พรอส-ซิ-คิวท์|Offenders will be prosecuted.|ผู้กระทำผิดจะถูกดำเนินคดี
+offender|ผู้กระทำผิด|ออฟ-เฟน-เดอร์|The offender paid a fine.|ผู้กระทำผิดจ่ายค่าปรับ
+`);
+ES_ADD(4,'วิทยาศาสตร์และธรรมชาติขั้นสูง',`
+atmosphere|บรรยากาศ|แอท-โมส-เฟียร์|The office has a friendly atmosphere.|สำนักงานมีบรรยากาศเป็นกันเอง
+radiation|รังสี|เร-ดิ-เอ-{ชั่น}|Solar radiation is strong here.|รังสีดวงอาทิตย์ที่นี่แรง
+magnetic field|สนามแม่เหล็ก|แมก-เน็ท-ติค-ฟีล{ดฺ}|Current creates a magnetic field.|กระแสไฟฟ้าสร้างสนามแม่เหล็ก
+electromagnetic|แม่เหล็กไฟฟ้า|อิ-เล็ค-โทร-แมก-เน็ท-ติค|Electromagnetic waves are everywhere.|คลื่นแม่เหล็กไฟฟ้ามีอยู่ทั่วไป
+corrosion|การกัดกร่อน|คอ-โร-{ฌั่น}|Salt air causes corrosion.|ไอเค็มทำให้เกิดการกัดกร่อน
+rust|สนิม|รัสท์|The tower has rust.|เสาโครงขึ้นสนิม
+moisture|ความชื้น|มอยส์-เชอร์|Moisture damages the meter.|ความชื้นทำให้มิเตอร์เสีย
+evaporate|ระเหย|อิ-แวพ-พอ-เรท|Water evaporates in the sun.|น้ำระเหยเมื่อโดนแดด
+density|ความหนาแน่น|เดน-ซิ-ตี้|Population density is low.|ความหนาแน่นประชากรต่ำ
+velocity|ความเร็ว (ทางฟิสิกส์)|{วะ}-ลอส-ซิ-ตี้|Wind velocity is 60 km/h.|ความเร็วลม 60 กม./ชม.
+mass|มวล|แมส|What is the mass?|มวลเท่าไหร่
+friction|แรงเสียดทาน|ฟริค-{ชั่น}|Friction creates heat.|แรงเสียดทานทำให้เกิดความร้อน
+appliance|เครื่องใช้ไฟฟ้า|อะ-พลาย-เอินซ์|Unplug appliances when not in use.|ถอดปลั๊กเครื่องใช้ไฟฟ้าเมื่อไม่ใช้
+erosion|การกัดเซาะ|อิ-โร-{ฌั่น}|Erosion damaged the pole base.|การกัดเซาะทำให้ฐานเสาเสียหาย
+sediment|ตะกอน|เซด-ดิ-เมิ่นท์|The river has a lot of sediment.|แม่น้ำมีตะกอนมาก
+tide|น้ำขึ้นน้ำลง|ไทด์|The tide is high now.|ตอนนี้น้ำขึ้น
+limestone|หินปูน|ไลม์-สโตน|Krabi has limestone cliffs.|กระบี่มีหน้าผาหินปูน
+coral reef|แนวปะการัง|คอ-เริ่ล-รีฟ|Protect the coral reefs.|ปกป้องแนวปะการัง
+marine life|สิ่งมีชีวิตในทะเล|มะ-รีน-ไลฟ์|Plastic harms marine life.|พลาสติกทำร้ายสิ่งมีชีวิตในทะเล
+species|สายพันธุ์|สปี-{ชีส}|This species is endangered.|สายพันธุ์นี้ใกล้สูญพันธุ์
+endangered|ใกล้สูญพันธุ์|อิน-เดน-เจอร์{ดฺ}|Dugongs are endangered.|พะยูนใกล้สูญพันธุ์
+extinct|สูญพันธุ์|อิก-สติงค์ท์|Dinosaurs are extinct.|ไดโนเสาร์สูญพันธุ์แล้ว
+habitat|ถิ่นที่อยู่อาศัย|แฮบ-บิ-แทท|Protect their natural habitat.|ปกป้องถิ่นที่อยู่ตามธรรมชาติของพวกมัน
+`);
+ES_ADD(4,'ชีวิตประจำวันขั้นสูง',`
+errand|ธุระ|เอ-เริ่น{ดฺ}|I have some errands to run.|ฉันมีธุระต้องไปทำ
+chore|งานบ้าน|ชอร์|We share household chores.|เราแบ่งงานบ้านกัน
+commute|การเดินทางไปทำงาน|คอม-มิวท์|My commute is 30 minutes.|ฉันเดินทางไปทำงาน 30 นาที
+routine|กิจวัตร|รู-ทีน|Exercise is part of my routine.|การออกกำลังกายเป็นกิจวัตรของฉัน
+utility bill|ค่าสาธารณูปโภค|ยู-ทิล-ลิ-ตี้-บิล|Pay your utility bills on time.|จ่ายค่าสาธารณูปโภคตรงเวลา
+groceries|ของชำ|โกร-เซอ-รี{ซฺ}|I buy groceries on Saturday.|ฉันซื้อของชำวันเสาร์
+neighborhood|ละแวกบ้าน|เน-เบอร์-ฮู{ดฺ}|It's a quiet neighborhood.|เป็นละแวกที่เงียบสงบ
+landlord|เจ้าของที่พัก|แลน{ดฺ}-ลอร์{ดฺ}|Call the landlord about the leak.|โทรหาเจ้าของบ้านเรื่องน้ำรั่ว
+tenant|ผู้เช่า|เทน-เนินท์|The tenant pays the electric bill.|ผู้เช่าจ่ายค่าไฟ
+lease|สัญญาเช่า|ลีส|The lease is for one year.|สัญญาเช่าหนึ่งปี
+mortgage|สินเชื่อบ้าน|มอร์-กิจ|We pay the mortgage monthly.|เราผ่อนบ้านรายเดือน
+renovate|ปรับปรุง (อาคาร)|เรน-โน-เวท|We are renovating the house.|เรากำลังรีโนเวทบ้าน
+plumber|ช่างประปา|พลัม-เมอร์|Call a plumber.|เรียกช่างประปา
+handyman|ช่างซ่อมทั่วไป|แฮน-ดี้-แมน|My father is a good handyman.|พ่อเป็นช่างซ่อมฝีมือดี
+DIY|ทำด้วยตัวเอง|ดี-ไอ-วาย|I like DIY projects.|ฉันชอบงานทำเอง
+parenting|การเลี้ยงลูก|แพ-เริ่น-ทิ่ง|Parenting is not easy.|การเลี้ยงลูกไม่ใช่เรื่องง่าย
+screen time|เวลาหน้าจอ|สกรีน-ไทม์|Limit your children's screen time.|จำกัดเวลาหน้าจอของลูก
+`);
+ES_ADD(4,'ธุรกิจทั่วไปขั้นสูง',`
+entrepreneur|ผู้ประกอบการ|ออน-ทระ-เพร-เนอร์|He is a young entrepreneur.|เขาเป็นผู้ประกอบการรุ่นใหม่
+startup|บริษัทเกิดใหม่ (สตาร์ทอัพ)|สตาร์ท-อัพ|She runs a tech startup.|เธอทำสตาร์ทอัพด้านเทคโนโลยี
+SME|ธุรกิจขนาดกลางและขนาดย่อม|เอส-เอ็ม-อี|We support local SMEs.|เราสนับสนุน SME ท้องถิ่น
+merger|การควบรวมกิจการ|เมอร์-เจอร์|The merger was approved.|การควบรวมได้รับอนุมัติ
+partnership|ความเป็นหุ้นส่วน|พาร์ท-เนอร์-{ชิพ}|We formed a partnership.|เราร่วมเป็นหุ้นส่วนกัน
+competitor|คู่แข่ง|เคิ่ม-เพท-ทิ-เตอร์|Our competitor is cheaper.|คู่แข่งของเราถูกกว่า
+competitive|แข่งขันได้|เคิ่ม-เพท-ทิ-ที{ฟฺ}|Our prices are competitive.|ราคาของเราแข่งขันได้
+market research|การวิจัยตลาด|มาร์-เก็ท-รี-เซิร์ช|Do market research first.|ทำวิจัยตลาดก่อน
+target group|กลุ่มเป้าหมาย|ทาร์-เก็ท-กรุพ|Who is the target group?|กลุ่มเป้าหมายคือใคร
+brand awareness|การรับรู้แบรนด์|แบรนด์-อะ-แวร์-เนส|We need more brand awareness.|เราต้องการให้คนรู้จักแบรนด์มากขึ้น
+marketing|การตลาด|มาร์-เก็ท-ทิ่ง|She works in marketing.|เธอทำงานด้านการตลาด
+sales figures|ตัวเลขยอดขาย|เซลส์-ฟิก-เกอร์{ซฺ}|Sales figures are up.|ยอดขายเพิ่มขึ้น
+turnover|ยอดขาย / อัตราการลาออก|เทิร์น-โอ-{เวอร์}|Staff turnover is low.|อัตราการลาออกต่ำ
+logistics|โลจิสติกส์|โล-จิส-ติคส์|Logistics costs are rising.|ค่าขนส่งสูงขึ้น
+inventory|สินค้าคงคลัง|อิน-{เวิ่น}-ทอ-รี่|We count inventory every month.|เราตรวจนับพัสดุทุกเดือน
+shipment|การขนส่งสินค้า|{ชิพ}-เมิ่นท์|The shipment arrives tomorrow.|สินค้าจะมาถึงพรุ่งนี้
+lead time|ระยะเวลารอสินค้า|ลี{ดฺ}-ไทม์|The lead time is six weeks.|ระยะเวลารอสินค้าหกสัปดาห์
+shortage|การขาดแคลน|{ชอร์}-ทิจ|There is a shortage of transformers.|หม้อแปลงขาดแคลน
+demand and supply|อุปสงค์และอุปทาน|ดิ-แมน{ดฺ}-แอน{ดฺ}-ซัพ-พลาย|Prices depend on demand and supply.|ราคาขึ้นอยู่กับอุปสงค์และอุปทาน
+outsourcing|การจ้างภายนอก|เอาท์-ซอร์-ซิ่ง|Outsourcing reduces costs.|การจ้างภายนอกช่วยลดต้นทุน
+franchise|แฟรนไชส์|แฟรน-ไชส์|He bought a coffee franchise.|เขาซื้อแฟรนไชส์ร้านกาแฟ
+negotiation|การเจรจา|นิ-โก-{ชิ}-เอ-{ชั่น}|The negotiation went well.|การเจรจาเป็นไปด้วยดี
+sponsor|ผู้สนับสนุน|สปอน-เซอร์|PEA is a sponsor of the event.|กฟภ. เป็นผู้สนับสนุนงาน
+venue|สถานที่จัดงาน|เวน-นิว|The venue is a hotel in Krabi.|สถานที่จัดงานเป็นโรงแรมในกระบี่
+`);
+ES_ADD(4,'คำนามขั้นสูงทั่วไป',`
+anticipation|การคาดหวัง|แอน-ทิส-ซิ-เพ-{ชั่น}|There is great anticipation.|มีความคาดหวังสูง
+breakthrough|ความก้าวหน้าครั้งสำคัญ|เบรค-{ธรู}|It was a breakthrough.|เป็นความก้าวหน้าครั้งสำคัญ
+burden|ภาระ|เบอร์-เดิ่น|High bills are a burden.|ค่าไฟสูงเป็นภาระ
+clarity|ความชัดเจน|แคล-ริ-ตี้|We need clarity on the rules.|เราต้องการความชัดเจนเรื่องกฎ
+coherence|ความสอดคล้องกัน|โค-เฮีย-เรินซ์|The plan lacks coherence.|แผนขาดความสอดคล้อง
+complexity|ความซับซ้อน|เคิ่ม-เพล็ก-ซิ-ตี้|The complexity of the system is high.|ระบบมีความซับซ้อนสูง
+convenience|ความสะดวก|เคิ่น-{วี}-เนียนซ์|Pay online for convenience.|จ่ายออนไลน์เพื่อความสะดวก
+credibility|ความน่าเชื่อถือ|เครด-ดิ-บิล-ลิ-ตี้|Data gives credibility.|ข้อมูลทำให้น่าเชื่อถือ
+dilemma|สถานการณ์ลำบากใจ|ได-เลม-ม่า|We face a dilemma.|เราเผชิญทางเลือกที่ลำบาก
+discrepancy|ความคลาดเคลื่อน|ดิส-เครพ-เพิ่น-ซี่|There is a discrepancy in the stock count.|ยอดนับสต็อกคลาดเคลื่อน
+drawback|ข้อเสีย|ดรอว์-แบ็ค|The main drawback is the cost.|ข้อเสียหลักคือราคา
+enthusiasm|ความกระตือรือร้น|อิน-{ธู}-ซี-แอ-ซึ่ม|Thank you for your enthusiasm.|ขอบคุณสำหรับความกระตือรือร้น
+flexibility|ความยืดหยุ่น|เฟล็ก-ซิ-บิล-ลิ-ตี้|We need flexibility.|เราต้องการความยืดหยุ่น
+foundation|รากฐาน / มูลนิธิ|ฟาวน์-เด-{ชั่น}|Safety is our foundation.|ความปลอดภัยคือรากฐานของเรา
+intention|ความตั้งใจ|อิน-เทน-{ชั่น}|My intention was to help.|ความตั้งใจของฉันคือการช่วยเหลือ
+interference|การรบกวน|อิน-เทอร์-เฟีย-เรินซ์|There is signal interference.|สัญญาณถูกรบกวน
+misunderstanding|ความเข้าใจผิด|มิส-อัน-เดอร์-สแตน-ดิ้ง|It was a misunderstanding.|เป็นความเข้าใจผิด
+necessity|ความจำเป็น|เน-เซส-ซิ-ตี้|Electricity is a necessity.|ไฟฟ้าเป็นสิ่งจำเป็น
+outlook|แนวโน้ม / มุมมอง|เอาท์-ลุค|The economic outlook is positive.|แนวโน้มเศรษฐกิจเป็นบวก
+precision|ความแม่นยำ|พรี-ซิ{ฌ}-ชั่น|This work requires precision.|งานนี้ต้องการความแม่นยำ
+prospect|โอกาส / ความหวัง|พรอส-เป็คท์|The job has good prospects.|งานนี้มีอนาคต
+relevance|ความเกี่ยวข้อง|เรล-เล-{เวินซ์}|What is the relevance?|มีความเกี่ยวข้องอย่างไร
+reluctance|ความไม่เต็มใจ|รี-ลัค-เทินซ์|There was some reluctance.|มีความไม่เต็มใจอยู่บ้าง
+setback|อุปสรรค / ความล้มเหลวชั่วคราว|เซ็ท-แบ็ค|It's just a small setback.|เป็นแค่อุปสรรคเล็กๆ
+shortcoming|ข้อบกพร่อง|{ชอร์ท}-คัม-มิ่ง|Every system has shortcomings.|ทุกระบบมีข้อบกพร่อง
+stamina|ความอดทน (ร่างกาย)|สแตม-มิ-น่า|Line work needs stamina.|งานสายต้องใช้ความอดทน
+tolerance|ความอดทน / ค่าความคลาดเคลื่อน|ทอล-เลอ-เรินซ์|The voltage tolerance is ±5%.|ค่าคลาดเคลื่อนแรงดัน ±5%
+uncertainty|ความไม่แน่นอน|อัน-เซอร์-เทิ่น-ตี้|There is uncertainty about the price.|ราคายังไม่แน่นอน
+viewpoint|มุมมอง|{วิว}-พอยน์ท์|Consider the customer's viewpoint.|คำนึงถึงมุมมองของลูกค้า
+`);
+ES_ADD(4,'คุณลักษณะในการทำงาน',`
+accountable|ต้องรับผิดชอบ|อะ-เคาน์-ทะ-เบิ้ล|Managers are accountable for results.|ผู้จัดการต้องรับผิดชอบผลลัพธ์
+adaptable|ปรับตัวได้|อะ-แดพ-ทะ-เบิ้ล|Be adaptable to change.|ปรับตัวต่อการเปลี่ยนแปลงได้
+analytical|เชิงวิเคราะห์|แอน-นะ-ลิท-ทิ-เคิ่ล|He has analytical skills.|เขามีทักษะเชิงวิเคราะห์
+approachable|เข้าถึงง่าย|อะ-โพร-ชะ-เบิ้ล|Our manager is approachable.|ผู้จัดการของเราเข้าถึงง่าย
+attentive|เอาใจใส่|อะ-เทน-ที{ฟฺ}|Be attentive to details.|ใส่ใจรายละเอียด
+collaborative|ร่วมมือกัน|คอล-แลบ-บอ-ระ-ที{ฟฺ}|We have a collaborative culture.|เรามีวัฒนธรรมการร่วมมือ
+committed|มุ่งมั่น|คอม-มิท-ทิ{ดฺ}|We are committed to quality.|เรามุ่งมั่นในคุณภาพ
+cooperative|ให้ความร่วมมือ|โค-ออพ-เพอ-ระ-ที{ฟฺ}|The villagers were cooperative.|ชาวบ้านให้ความร่วมมือดี
+detail-oriented|ใส่ใจรายละเอียด|ดี-เทล-ออ-เรียน-ทิ{ดฺ}|She is detail-oriented.|เธอเป็นคนละเอียด
+disciplined|มีวินัย|ดิส-ซิ-พลิน{ดฺ}|A disciplined team works safely.|ทีมที่มีวินัยทำงานอย่างปลอดภัย
+experienced|มีประสบการณ์|อิก-สเปีย-เรียนซ์{ทฺ}|He is an experienced lineman.|เขาเป็นช่างสายที่มีประสบการณ์
+inexperienced|ขาดประสบการณ์|อิน-อิก-สเปีย-เรียนซ์{ทฺ}|Inexperienced staff need a mentor.|พนักงานที่ขาดประสบการณ์ต้องมีพี่เลี้ยง
+innovative|มีนวัตกรรม|อิน-โน-เว-ที{ฟฺ}|It's an innovative idea.|เป็นไอเดียที่สร้างสรรค์
+knowledgeable|มีความรู้|นอล-ลิ-จะ-เบิ้ล|He is very knowledgeable.|เขามีความรู้มาก
+methodical|มีระเบียบแบบแผน|เมะ-{ธอ}-ดิ-เคิ่ล|She works in a methodical way.|เธอทำงานอย่างมีแบบแผน
+professional|มืออาชีพ|โพร-เฟ{ช}-ชั่น-เนิ่ล|Be professional.|ทำตัวเป็นมืออาชีพ
+qualified|มีคุณสมบัติ|ควอล-ลิ-ฟาย{ดฺ}|Only qualified staff can do it.|เฉพาะผู้มีคุณสมบัติเท่านั้นที่ทำได้
+result-oriented|มุ่งผลลัพธ์|รี-ซัลท์-ออ-เรียน-ทิ{ดฺ}|He is result-oriented.|เขาเป็นคนมุ่งผลลัพธ์
+self-motivated|มีแรงจูงใจในตัวเอง|เซลฟ์-โม-ทิ-เว-ทิ{ดฺ}|She is self-motivated.|เธอมีแรงจูงใจในตนเอง
+skilled|มีทักษะ|สกิล{ดฺ}|We need skilled workers.|เราต้องการแรงงานมีฝีมือ
+supportive|คอยสนับสนุน|ซัพ-พอร์-ที{ฟฺ}|My team is supportive.|ทีมของฉันคอยสนับสนุนกัน
+`);
+ES_ADD(4,'คำกริยาขั้นสูง 4',`
+abide by|ปฏิบัติตาม|อะ-ไบด์-บาย|Abide by the rules.|ปฏิบัติตามกฎ
+adhere to|ยึดถือ|แอ็ด-เฮียร์-ทู|Adhere to the safety standards.|ยึดถือมาตรฐานความปลอดภัย
+amend|แก้ไขเพิ่มเติม|อะ-เมน{ดฺ}|We amended the contract.|เราแก้ไขสัญญา
+appoint|แต่งตั้ง|อะ-พอยน์ท์|He was appointed manager.|เขาได้รับการแต่งตั้งเป็นผู้จัดการ
+assemble|ประกอบ / รวมตัว|อะ-เซม-เบิ้ล|Assemble the crossarm.|ประกอบคอนสาย
+attribute|ถือว่าเป็นผลจาก|อะ-ทริบ-บิวท์|We attribute the success to teamwork.|เราถือว่าความสำเร็จมาจากการทำงานเป็นทีม
+broaden|ขยายให้กว้างขึ้น|บรอ-เดิ่น|Travel broadens the mind.|การเดินทางเปิดโลกทัศน์
+calibrate|สอบเทียบ|แคล-ลิ-เบรท|Calibrate the meter every year.|สอบเทียบมิเตอร์ทุกปี
+cluster|รวมกลุ่ม|คลัส-เตอร์|Outages cluster in the rainy season.|ไฟดับเกิดหนาแน่นช่วงฤดูฝน
+compel|บังคับ|เคิ่ม-เพล|The storm compelled us to stop.|พายุบังคับให้เราต้องหยุด
+consolidate|รวบรวม / ทำให้มั่นคง|เคิ่น-ซอล-ลิ-เดท|We consolidated all reports.|เรารวมรายงานทั้งหมดเข้าด้วยกัน
+dispatch|ส่ง (ทีม)|ดิส-แพทช์|Dispatch a crew immediately.|ส่งทีมช่างไปทันที
+enlarge|ขยาย|อิน-ลาร์จ|Enlarge the photo.|ขยายรูป
+excavate|ขุด|เอ็กซ์-คะ-เวท|Excavate carefully near cables.|ขุดอย่างระมัดระวังใกล้สายเคเบิล
+forfeit|สูญเสียสิทธิ์|ฟอร์-ฟิท|You will forfeit the deposit.|คุณจะเสียเงินมัดจำ
+illuminate|ส่องสว่าง|อิ-ลู-มิ-เนท|Street lights illuminate the road.|ไฟถนนส่องสว่าง
+inaugurate|เปิดอย่างเป็นทางการ|อิ-นอ-กิว-เรท|The governor inaugurated the substation.|ผู้ว่าฯ เปิดสถานีไฟฟ้าอย่างเป็นทางการ
+mandate|มอบอำนาจ / กำหนดให้ต้อง|แมน-เดท|The law mandates safety training.|กฎหมายกำหนดให้ต้องอบรมความปลอดภัย
+nominate|เสนอชื่อ|นอม-มิ-เนท|She was nominated for an award.|เธอได้รับการเสนอชื่อชิงรางวัล
+perceive|รับรู้|เพอร์-ซี{ฟฺ}|Customers perceive us as reliable.|ลูกค้ามองเราว่าเชื่อถือได้
+pinpoint|ระบุตำแหน่งแน่ชัด|พิน-พอยน์ท์|We pinpointed the fault.|เราระบุจุดเสียได้แน่ชัด
+reassign|มอบหมายใหม่|รี-อะ-ไซน์|He was reassigned to another team.|เขาถูกย้ายไปทีมอื่น
+reiterate|ย้ำ|รี-อิท-เทอ-เรท|Let me reiterate the rules.|ขอย้ำกฎอีกครั้ง
+replenish|เติมให้เต็ม|รี-เพลน-นิ{ช}|Replenish the stock.|เติมสต็อก
+standardize|ทำให้เป็นมาตรฐาน|สแตน-เดอร์-ไดซ์|We standardized the forms.|เราทำแบบฟอร์มให้เป็นมาตรฐาน
+supervise|ควบคุมดูแล|ซู-เปอร์-ไวซ์|Who supervises the contractor?|ใครควบคุมผู้รับเหมา
+underestimate|ประเมินต่ำไป|อัน-เดอร์-เอส-ทิ-เมท|Don't underestimate the risk.|อย่าประเมินความเสี่ยงต่ำเกินไป
+overestimate|ประเมินสูงไป|โอ-{เวอร์}-เอส-ทิ-เมท|We overestimated the cost.|เราประเมินค่าใช้จ่ายสูงเกินไป
+`);
+ES_ADD(4,'พลังงานและบริการไฟฟ้า',`
+energy efficiency|ประสิทธิภาพการใช้พลังงาน|เอน-เนอร์-จี้-อิ-ฟิ{ช}-เชิ่น-ซี่|Energy efficiency reduces bills.|การใช้พลังงานอย่างมีประสิทธิภาพช่วยลดค่าไฟ
+peak demand|ความต้องการไฟสูงสุด|พีค-ดิ-แมน{ดฺ}|Peak demand is in the afternoon.|ความต้องการไฟสูงสุดช่วงบ่าย
+time of use|อัตราตามช่วงเวลา (TOU)|ไทม์-ออฟ-ยูส|TOU rates are cheaper at night.|อัตรา TOU ถูกกว่าตอนกลางคืน
+net metering|การหักลบหน่วยไฟ|เน็ท-มี-เทอ-ริ่ง|Net metering helps solar users.|การหักลบหน่วยช่วยผู้ใช้โซลาร์
+power purchase agreement|สัญญาซื้อขายไฟฟ้า|พาว-เวอร์-เพอร์-เชส-อะ-กรี-เมิ่นท์|They signed a power purchase agreement.|พวกเขาเซ็นสัญญาซื้อขายไฟฟ้า
+installed capacity|กำลังผลิตติดตั้ง|อิน-สตอล{ดฺ}-คะ-แพส-ซิ-ตี้|The installed capacity is 500 kW.|กำลังผลิตติดตั้ง 500 กิโลวัตต์
+electricity bill|บิลค่าไฟฟ้า|อิ-เล็ค-ทริส-ซิ-ตี้-บิล|Check your electricity bill online.|ตรวจบิลค่าไฟออนไลน์
+Ft charge|ค่าเอฟที|เอฟ-ที-ชาร์จ|The Ft charge changed this month.|ค่าเอฟทีเปลี่ยนเดือนนี้
+security deposit|เงินประกันการใช้ไฟ|ซิ-คิว-ริ-ตี้-ดิ-พอ-ซิท|You must pay a security deposit.|คุณต้องจ่ายเงินประกันการใช้ไฟ
+meter relocation|การย้ายมิเตอร์|มี-เตอร์-รี-โล-เค-{ชั่น}|Apply for meter relocation.|ยื่นขอย้ายมิเตอร์
+service request|คำร้องขอรับบริการ|เซอร์-{วิส}-รี-เควสท์|Submit a service request.|ยื่นคำร้องขอรับบริการ
+outage notification|การแจ้งดับไฟ|เอาท์-เทจ-โน-ทิ-ฟิ-เค-{ชั่น}|We sent an outage notification.|เราส่งประกาศดับไฟแล้ว
+restoration time|เวลาจ่ายไฟคืน|เรส-ทอ-เร-{ชั่น}-ไทม์|The estimated restoration time is 3 p.m.|คาดว่าจะจ่ายไฟคืนบ่ายสาม
+service area|เขตพื้นที่บริการ|เซอร์-{วิส}-แอ-เรีย|This is outside our service area.|นี่อยู่นอกเขตพื้นที่บริการของเรา
+power quality|คุณภาพไฟฟ้า|พาว-เวอร์-ควอ-ลิ-ตี้|We monitor power quality.|เราตรวจวัดคุณภาพไฟฟ้า
+energy audit|การตรวจวัดการใช้พลังงาน|เอน-เนอร์-จี้-ออ-ดิท|We did an energy audit at the factory.|เราตรวจวัดพลังงานที่โรงงาน
+demand response|การตอบสนองด้านโหลด|ดิ-แมน{ดฺ}-รีส-ปอนส์|Demand response reduces peak load.|การตอบสนองด้านโหลดช่วยลดโหลดสูงสุด
+battery storage|ระบบกักเก็บพลังงาน|แบท-เทอ-รี่-สตอ-ริจ|Battery storage works with solar.|ระบบแบตเตอรี่ใช้คู่กับโซลาร์
+charging station|สถานีชาร์จ|ชาร์-จิ้ง-สเต-{ชั่น}|There is a charging station in town.|ในเมืองมีสถานีชาร์จ
+`);
+ES_ADD(4,'การแก้ปัญหาและการตัดสินใจ',`
+trade-off|การได้อย่างเสียอย่าง|เทรด-ออฟ|There is a trade-off between cost and quality.|ต้นทุนกับคุณภาพต้องแลกกัน
+pros and cons|ข้อดีข้อเสีย|โปรส-แอน{ดฺ}-คอนส์|List the pros and cons.|เขียนข้อดีข้อเสีย
+workaround|วิธีแก้ขัด|เวิร์ค-อะ-ราวน์{ดฺ}|We found a workaround.|เราหาวิธีแก้ขัดได้
+quick fix|การแก้ไขเฉพาะหน้า|ควิค-ฟิกซ์|This is only a quick fix.|นี่เป็นแค่การแก้เฉพาะหน้า
+long-term solution|ทางแก้ระยะยาว|ลอง-เทิร์ม-โซ-ลู-{ชั่น}|We need a long-term solution.|เราต้องการทางแก้ระยะยาว
+short-term|ระยะสั้น|{ชอร์ท}-เทิร์ม|This is a short-term plan.|นี่คือแผนระยะสั้น
+long-term|ระยะยาว|ลอง-เทิร์ม|Think long-term.|คิดในระยะยาว
+course of action|แนวทางปฏิบัติ|คอร์ส-ออฟ-แอ็ค-{ชั่น}|What is the best course of action?|แนวทางที่ดีที่สุดคืออะไร
+step by step|ทีละขั้นตอน|สเต็พ-บาย-สเต็พ|Do it step by step.|ทำทีละขั้นตอน
+trial and error|ลองผิดลองถูก|ไทร-เอิ่ล-แอน{ดฺ}-เอ-เรอร์|We learned by trial and error.|เราเรียนรู้จากการลองผิดลองถูก
+worst-case scenario|กรณีเลวร้ายที่สุด|เวิร์สท์-เคส-ซิ-นา-ริ-โอ|Plan for the worst-case scenario.|วางแผนรับกรณีเลวร้ายที่สุด
+scenario|สถานการณ์จำลอง|ซิ-นา-ริ-โอ|Let's look at three scenarios.|มาดูสามสถานการณ์กัน
+countermeasure|มาตรการตอบโต้ / แก้ไข|เคาน์-เตอร์-เมช-{เชอร์}|We set countermeasures for floods.|เราวางมาตรการรับมือน้ำท่วม
+deadlock|ทางตัน|เด{ดฺ}-ล็อค|The negotiation reached a deadlock.|การเจรจาถึงทางตัน
+`);
+ES_ADD(4,'ภูมิศาสตร์และการปกครอง',`
+geography|ภูมิศาสตร์|จี-ออก-กระ-ฟี่|The geography of Krabi is unique.|ภูมิศาสตร์ของกระบี่มีเอกลักษณ์
+terrain|ภูมิประเทศ|เทอ-เรน|The terrain is mountainous.|ภูมิประเทศเป็นภูเขา
+mountainous|เป็นภูเขา|เมาน์-เทิ่น-นัส|It's a mountainous area.|เป็นพื้นที่ภูเขา
+coastal|ชายฝั่ง|โคส-เทิ่ล|We serve many coastal villages.|เราให้บริการหมู่บ้านชายฝั่งหลายแห่ง
+peninsula|คาบสมุทร|เพ-นิน-ซู-ล่า|Thailand is on the Malay Peninsula.|ไทยอยู่บนคาบสมุทรมลายู
+archipelago|หมู่เกาะ|อาร์-คิ-เพล-ละ-โก่|Krabi has an archipelago of 150 islands.|กระบี่มีหมู่เกาะกว่า 150 เกาะ
+latitude|เส้นรุ้ง / ละติจูด|แลท-ทิ-ทิว{ดฺ}|Record the latitude and longitude.|บันทึกละติจูดและลองจิจูด
+longitude|เส้นแวง / ลองจิจูด|ลอน-จิ-ทิว{ดฺ}|The longitude is 98.7.|ลองจิจูด 98.7
+coordinates|พิกัด|โค-ออร์-ดิ-เน็ทส์|Send me the GPS coordinates.|ส่งพิกัด GPS มาให้หน่อย
+sub-district|ตำบล|ซับ-ดิส-ทริคท์|Ao Luek has several sub-districts.|อ่าวลึกมีหลายตำบล
+municipality|เทศบาล|มิว-นิส-ซิ-แพล-ลิ-ตี้|Contact the municipality.|ติดต่อเทศบาล
+provincial|ระดับจังหวัด|โพร-{วิน}-{เชิ่ล}|The provincial office approved it.|สำนักงานจังหวัดอนุมัติแล้ว
+regional office|สำนักงานเขต|รี-เจิ่น-เนิ่ล-ออฟ-ฟิส|Send it to the regional office.|ส่งไปที่สำนักงานเขต
+nationwide|ทั่วประเทศ|เน-{ชั่น}-ไวด์|PEA serves customers nationwide.|กฟภ. ให้บริการลูกค้าทั่วประเทศ
+`);
+ES_ADD(4,'การศึกษาและการพัฒนาตนเอง',`
+curriculum|หลักสูตร|เคอ-ริค-คิว-ลั่ม|The curriculum has five levels.|หลักสูตรมีห้าระดับ
+proficiency|ความชำนาญ|โพร-ฟิ{ช}-เชิ่น-ซี่|Test your English proficiency.|ทดสอบความชำนาญภาษาอังกฤษ
+literacy|การอ่านออกเขียนได้|ลิท-เทอ-ระ-ซี่|Digital literacy is important.|ทักษะดิจิทัลสำคัญ
+self-study|การเรียนด้วยตนเอง|เซลฟ์-สตัด-ดี้|I learn English by self-study.|ฉันเรียนภาษาอังกฤษด้วยตนเอง
+lifelong learning|การเรียนรู้ตลอดชีวิต|ไลฟ์-ลอง-เลิร์-นิ่ง|We support lifelong learning.|เราสนับสนุนการเรียนรู้ตลอดชีวิต
+e-learning|การเรียนออนไลน์|อี-เลิร์-นิ่ง|Complete the e-learning course.|เรียนคอร์สออนไลน์ให้จบ
+mastery|ความเชี่ยวชาญ|มาส-เทอ-รี่|Mastery takes practice.|ความเชี่ยวชาญต้องใช้การฝึกฝน
+memorize|ท่องจำ|เมม-โม-ไรซ์|Memorize ten words a day.|ท่องจำวันละสิบคำ
+comprehension|ความเข้าใจ|คอม-พรี-เฮน-{ชั่น}|Reading comprehension is improving.|ความเข้าใจในการอ่านดีขึ้น
+articulate|พูดได้ชัดเจน|อาร์-ทิค-คิว-เลท|She is very articulate.|เธอพูดได้ชัดเจนคล่องแคล่ว
+eloquent|พูดเก่ง / มีวาทศิลป์|เอล-โล-เควินท์|He gave an eloquent speech.|เขากล่าวสุนทรพจน์ได้ไพเราะ
+speech|สุนทรพจน์ / คำพูด|สปีช|Give a short speech.|กล่าวสุนทรพจน์สั้นๆ
+public speaking|การพูดในที่สาธารณะ|พับ-บลิค-สปี-คิ่ง|Public speaking takes practice.|การพูดในที่สาธารณะต้องฝึก
+intonation|ทำนองเสียง|อิน-โท-เน-{ชั่น}|Pay attention to intonation.|ใส่ใจทำนองเสียง
+stress pattern|การเน้นเสียงในคำ|สเตรส-แพท-เทิร์น|Learn the word stress pattern.|เรียนรู้การเน้นเสียงในคำ
+idiom|สำนวน|อิด-ดี-เอิ่ม|Learn one idiom every day.|เรียนสำนวนวันละหนึ่งสำนวน
+synonym|คำพ้องความหมาย|ซิน-โน-นิม|"Big" is a synonym of "large".|"big" เป็นคำพ้องความหมายของ "large"
+antonym|คำตรงข้าม|แอน-โท-นิม|"Hot" is the antonym of "cold".|"hot" เป็นคำตรงข้ามของ "cold"
+`);
+ES_ADD(4,'อาหารและการบริการอาหารขั้นสูง',`
+appetizer|อาหารเรียกน้ำย่อย|แอพ-พิ-ไท-เซอร์|We ordered an appetizer.|เราสั่งอาหารเรียกน้ำย่อย
+main course|อาหารจานหลัก|เมน-คอร์ส|What's the main course?|อาหารจานหลักคืออะไร
+buffet|บุฟเฟต์|บุฟ-เฟ่|The hotel has a breakfast buffet.|โรงแรมมีบุฟเฟต์อาหารเช้า
+catering|การจัดเลี้ยง|เค-เทอ-ริ่ง|Who does the catering?|ใครรับจัดเลี้ยง
+dietary requirement|ข้อจำกัดด้านอาหาร|ได-อะ-ทะ-รี่-รี-ไคว-เออร์-เมิ่นท์|Do you have any dietary requirements?|คุณมีข้อจำกัดด้านอาหารไหม
+gluten-free|ปราศจากกลูเตน|กลู-เทิ่น-ฟรี|Is this gluten-free?|อันนี้ไม่มีกลูเตนใช่ไหม
+seasoning|เครื่องปรุงรส|ซี-ซอ-นิ่ง|Add a little seasoning.|ใส่เครื่องปรุงเล็กน้อย
+aroma|กลิ่นหอม|อะ-โร-ม่า|I love the aroma of coffee.|ฉันชอบกลิ่นกาแฟ
+savory|รสเค็ม / รสกลมกล่อม|เซ-{วอ}-รี่|I prefer savory snacks.|ฉันชอบของว่างรสเค็ม
+mouth-watering|น่ากินมาก|เมา{ธ}-วอ-เทอ-ริ่ง|The seafood looks mouth-watering.|อาหารทะเลดูน่ากินมาก
+overcooked|สุกเกินไป|โอ-{เวอร์}-คุ๊ค{ทฺ}|The rice is overcooked.|ข้าวสุกเกินไป
+undercooked|สุกไม่พอ|อัน-เดอร์-คุ๊ค{ทฺ}|The chicken is undercooked.|ไก่สุกไม่พอ
+food poisoning|อาหารเป็นพิษ|ฟู{ดฺ}-พอย-ซอ-นิ่ง|He got food poisoning.|เขาอาหารเป็นพิษ
+food safety|ความปลอดภัยของอาหาร|ฟู{ดฺ}-เซฟ-ตี้|Food safety is important.|ความปลอดภัยของอาหารสำคัญ
+`);
+ES_ADD(4,'คำคุณศัพท์ขั้นสูง 3',`
+astonishing|น่าประหลาดใจมาก|อัส-ทอน-นิ-ชิ่ง|The results were astonishing.|ผลลัพธ์น่าทึ่งมาก
+bizarre|แปลกประหลาด|บิ-ซาร์|That's a bizarre fault.|เป็นความผิดปกติที่แปลกมาก
+compelling|น่าเชื่อ / ดึงดูด|เคิ่ม-เพล-ลิ่ง|He made a compelling case.|เขาให้เหตุผลที่น่าเชื่อ
+coherent|สอดคล้อง / ชัดเจน|โค-เฮีย-เรินท์|Give a coherent answer.|ตอบให้ชัดเจนเป็นเหตุเป็นผล
+crucially|ที่สำคัญยิ่ง|ครู-{ชัล}-ลี่|Crucially, nobody was hurt.|ที่สำคัญยิ่งคือไม่มีใครบาดเจ็บ
+diplomatic|มีชั้นเชิงทางการทูต|ดิพ-โพล-แมท-ทิค|Be diplomatic with complaints.|รับมือข้อร้องเรียนอย่างมีชั้นเชิง
+exceptional|ยอดเยี่ยมเป็นพิเศษ|อิก-เซ็พ-{ชั่น}-เนิ่ล|She did exceptional work.|เธอทำงานยอดเยี่ยมเป็นพิเศษ
+favorable|เป็นใจ / เป็นผลดี|เฟ-{เวอ}-ระ-เบิ้ล|The weather is favorable.|อากาศเป็นใจ
+groundbreaking|บุกเบิก|กราวน์{ดฺ}-เบร-คิ่ง|It's a groundbreaking project.|เป็นโครงการบุกเบิก
+impartial|เป็นกลาง|อิม-พาร์-{เชิ่ล}|The committee must be impartial.|คณะกรรมการต้องเป็นกลาง
+inconsistent|ไม่สม่ำเสมอ / ไม่สอดคล้อง|อิน-เคิ่น-ซิส-เทินท์|The data is inconsistent.|ข้อมูลไม่สอดคล้องกัน
+ingenious|แยบยล|อิน-จี-เนียส|What an ingenious idea!|ช่างเป็นไอเดียที่แยบยล
+lenient|ผ่อนปรน|ลี-เนียนท์|The rule is too lenient.|กฎผ่อนปรนเกินไป
+meticulous|พิถีพิถัน|เมะ-ทิค-คิว-ลัส|He is meticulous about safety.|เขาพิถีพิถันเรื่องความปลอดภัย
+noticeable|สังเกตเห็นได้|โน-ทิ-ซะ-เบิ้ล|There is a noticeable improvement.|มีการพัฒนาที่สังเกตเห็นได้
+overwhelming|ท่วมท้น|โอ-{เวอร์}-เวล์-มิ่ง|The response was overwhelming.|การตอบรับท่วมท้น
+persuasive|โน้มน้าวใจ|เพอร์-สเว-ซิ{ฟฺ}|She gave a persuasive presentation.|เธอนำเสนออย่างโน้มน้าวใจ
+pragmatic|เน้นปฏิบัติได้จริง|แพรก-แมท-ทิค|Take a pragmatic approach.|ใช้แนวทางที่ปฏิบัติได้จริง
+reputable|มีชื่อเสียงดี|เรพ-พิว-ทะ-เบิ้ล|Choose a reputable contractor.|เลือกผู้รับเหมาที่มีชื่อเสียงดี
+rigorous|เข้มงวด|ริก-กอ-รัส|The test is rigorous.|การทดสอบเข้มงวด
+seamless|ไร้รอยต่อ|ซีม-เลส|We want a seamless service.|เราต้องการบริการที่ไร้รอยต่อ
+skeptical|สงสัย / ไม่ค่อยเชื่อ|สเก็พ-ทิ-เคิ่ล|Customers were skeptical at first.|ตอนแรกลูกค้าไม่ค่อยเชื่อ
+strenuous|ต้องออกแรงมาก|สเตรน-นิว-อัส|Line work is strenuous.|งานสายต้องออกแรงมาก
+tangible|จับต้องได้|แทน-จิ-เบิ้ล|We need tangible results.|เราต้องการผลลัพธ์ที่จับต้องได้
+timely|ทันเวลา|ไทม์-ลี่|Thank you for the timely reply.|ขอบคุณที่ตอบกลับทันเวลา
+unreliable|ไม่น่าเชื่อถือ|อัน-รี-ลาย-อะ-เบิ้ล|The old relay is unreliable.|รีเลย์เก่าไม่น่าเชื่อถือ
+widespread|แพร่หลาย / เป็นวงกว้าง|ไวด์-สเปร{ดฺ}|There was a widespread outage.|มีไฟดับเป็นวงกว้าง
+`);
+ES_ADD(4,'คำนามขั้นสูง 2',`
+allowance|เบี้ยเลี้ยง / ค่าตอบแทน|อะ-ลาว-เอินซ์|We get a travel allowance.|เราได้เบี้ยเลี้ยงเดินทาง
+backlog|งานค้าง|แบ็ค-ล็อก|We have a backlog of requests.|เรามีคำร้องค้างอยู่
+blueprint|แบบพิมพ์เขียว|บลู-พรินท์|Check the blueprint.|ตรวจแบบพิมพ์เขียว
+checklist|รายการตรวจสอบ|เช็ค-ลิสท์|Use the safety checklist.|ใช้รายการตรวจความปลอดภัย
+circumstances|สถานการณ์แวดล้อม|เซอร์-คัม-สแตน-ซิ{ซฺ}|Under these circumstances, we must stop.|ในสถานการณ์นี้ เราต้องหยุด
+consultation|การปรึกษาหารือ|คอน-ซัล-เท-{ชั่น}|We held a public consultation.|เราจัดการรับฟังความคิดเห็น
+correspondence|การติดต่อทางจดหมาย|คอ-เรส-ปอน-เดินซ์|Keep all correspondence.|เก็บจดหมายโต้ตอบทั้งหมด
+courtesy|ความสุภาพ|เคอร์-ทิ-ซี่|Treat everyone with courtesy.|ปฏิบัติต่อทุกคนอย่างสุภาพ
+discretionary|ตามดุลยพินิจ|ดิส-เคร{ช}-ชั่น-เน-รี่|It's a discretionary budget.|เป็นงบตามดุลยพินิจ
+disruption|การหยุดชะงัก|ดิส-รัพ-{ชั่น}|Sorry for the disruption.|ขออภัยที่ทำให้หยุดชะงัก
+duplicate|สำเนา / ซ้ำ|ดิว-พลิ-เค็ท|Delete duplicate records.|ลบรายการที่ซ้ำ
+endeavor|ความพยายาม|อิน-เดฟ-เวอร์|We wish you success in your endeavors.|ขอให้ประสบความสำเร็จในสิ่งที่พยายาม
+excerpt|ข้อความที่ตัดตอนมา|เอ็ก-เซิร์พท์|Read this excerpt.|อ่านข้อความที่ตัดตอนนี้
+fluency|ความคล่องแคล่ว|ฟลู-เอิ่น-ซี่|Practice builds fluency.|การฝึกสร้างความคล่อง
+forum|เวทีอภิปราย|ฟอ-รั่ม|We held a customer forum.|เราจัดเวทีพบปะลูกค้า
+handbook|คู่มือ|แฮน{ดฺ}-บุ๊ค|Read the staff handbook.|อ่านคู่มือพนักงาน
+liaison|ผู้ประสานงาน|ลี-เอ-ซอน|She is our liaison officer.|เธอเป็นเจ้าหน้าที่ประสานงานของเรา
+logbook|สมุดบันทึก|ล็อก-บุ๊ค|Write it in the logbook.|เขียนลงสมุดบันทึก
+mainstream|กระแสหลัก|เมน-สตรีม|Solar is now mainstream.|โซลาร์กลายเป็นกระแสหลักแล้ว
+memorandum|บันทึกความเข้าใจ (MOU)|เมม-โม-แรน-ดั่ม|We signed a memorandum of understanding.|เราลงนามบันทึกความเข้าใจ
+nuisance|สิ่งรบกวน|นิว-เซินซ์|The noise is a nuisance.|เสียงดังเป็นสิ่งรบกวน
+overview|ภาพรวม|โอ-{เวอร์}-{วิว}|Give me an overview.|สรุปภาพรวมให้ฟัง
+premises|สถานที่ (อาคารและที่ดิน)|เพรม-มิ-ซิ{ซฺ}|No smoking on the premises.|ห้ามสูบบุหรี่ในบริเวณนี้
+questionnaire|แบบสอบถาม|เควส-{ชั่น}-แนร์|Please complete the questionnaire.|กรุณาตอบแบบสอบถาม
+quota|โควตา|โคว-ต้า|Each team has a quota.|แต่ละทีมมีโควตา
+remedy|วิธีแก้ / การเยียวยา|เรม-เม-ดี้|Is there a remedy?|มีวิธีแก้ไหม
+shift handover|การส่งมอบเวร|{ชิฟท์}-แฮน{ดฺ}-โอ-{เวอร์}|Write notes for the shift handover.|เขียนบันทึกสำหรับส่งเวร
+signage|ป้ายสัญลักษณ์|ไซ-นิจ|Install warning signage.|ติดตั้งป้ายเตือน
+testimonial|คำรับรอง (จากลูกค้า)|เทส-ทิ-โม-เนียล|We received a customer testimonial.|เราได้รับคำชื่นชมจากลูกค้า
+threshold|เกณฑ์ / ธรณีประตู|{เธร็ช}-โฮล{ดฺ}|The load exceeded the threshold.|โหลดเกินเกณฑ์
+trademark|เครื่องหมายการค้า|เทรด-มาร์ค|This is a registered trademark.|นี่คือเครื่องหมายการค้าจดทะเบียน
+utility|สาธารณูปโภค|ยู-ทิล-ลิ-ตี้|PEA is a utility company.|กฟภ. เป็นหน่วยงานสาธารณูปโภค
+verification|การตรวจยืนยัน|เว-ริ-ฟิ-เค-{ชั่น}|Verification takes one day.|การตรวจยืนยันใช้เวลาหนึ่งวัน
+`);
+ES_ADD(4,'คำกริยาขั้นสูง 5',`
+abolish|ยกเลิก (กฎ)|อะ-บอล-ลิ{ช}|The fee was abolished.|ค่าธรรมเนียมถูกยกเลิก
+acclimatize|ปรับตัวเข้ากับสภาพแวดล้อม|อะ-ไคล-มะ-ไทซ์|New staff need time to acclimatize.|พนักงานใหม่ต้องใช้เวลาปรับตัว
+amplify|ขยาย (เสียง/ผล)|แอม-พลิ-ฟาย|Social media amplifies the message.|โซเชียลมีเดียขยายสารให้กว้างขึ้น
+archive|จัดเก็บเข้าคลัง|อาร์-ไคฟ์|Archive old documents.|จัดเก็บเอกสารเก่าเข้าคลัง
+circulate|เวียน / แจกจ่าย|เซอร์-คิว-เลท|Circulate the memo to all staff.|เวียนบันทึกให้พนักงานทุกคน
+deem|ถือว่า|ดีม|The area was deemed unsafe.|พื้นที่ถูกถือว่าไม่ปลอดภัย
+devise|คิดค้น|ดิ-ไว{ซฺ}|We devised a new method.|เราคิดค้นวิธีใหม่
+disperse|กระจาย / สลาย|ดิส-เพิร์ส|The crowd dispersed.|ฝูงชนสลายตัว
+elevate|ยกระดับ|เอล-เล-เวท|Elevate the meter above flood level.|ยกมิเตอร์ให้สูงกว่าระดับน้ำท่วม
+expedite|เร่งรัด|เอ็กซ์-เพ-ไดท์|Please expedite the approval.|กรุณาเร่งรัดการอนุมัติ
+outperform|ทำได้ดีกว่า|เอาท์-เพอร์-ฟอร์ม|We outperformed other branches.|เราทำได้ดีกว่าสาขาอื่น
+overhaul|ยกเครื่อง|โอ-{เวอร์}-ฮอล|We overhauled the transformer.|เรายกเครื่องหม้อแปลง
+reallocate|จัดสรรใหม่|รี-แอล-โล-เคท|We reallocated the budget.|เราจัดสรรงบใหม่
+rehearse|ซ้อม|รี-เฮิร์ส|Rehearse your presentation.|ซ้อมการนำเสนอ
+revamp|ปรับปรุงใหม่|รี-แวมพ์|We revamped the website.|เราปรับปรุงเว็บไซต์ใหม่
+unveil|เปิดตัว|อัน-เวล|The company unveiled a new app.|บริษัทเปิดตัวแอปใหม่
+`);
+ES_ADD(4,'สำนวนเวลาและความถี่ทางการ',`
+on a daily basis|เป็นประจำทุกวัน|ออน-อะ-เด-ลี่-เบ-ซิส|We check the load on a daily basis.|เราตรวจโหลดทุกวัน
+on a regular basis|อย่างสม่ำเสมอ|ออน-อะ-เรก-กิว-ล่าร์-เบ-ซิส|Inspect poles on a regular basis.|ตรวจเสาอย่างสม่ำเสมอ
+in advance|ล่วงหน้า|อิน-แอ็ด-{วานซ์}|Notify customers in advance.|แจ้งลูกค้าล่วงหน้า
+at the moment|ในขณะนี้|แอ็ท-{เดอะ}-โม-เมิ่นท์|He is busy at the moment.|ขณะนี้เขาไม่ว่าง
+for the time being|ในระหว่างนี้|ฟอร์-{เดอะ}-ไทม์-บี-อิ้ง|Use the old system for the time being.|ระหว่างนี้ใช้ระบบเก่าไปก่อน
+in due course|ในเวลาอันควร|อิน-ดิว-คอร์ส|You will be informed in due course.|ท่านจะได้รับแจ้งในเวลาอันควร
+until further notice|จนกว่าจะมีประกาศเพิ่มเติม|อัน-ทิล-เฟอร์-{เธอร์}-โน-ทิส|The office is closed until further notice.|สำนักงานปิดจนกว่าจะมีประกาศเพิ่มเติม
+with immediate effect|มีผลทันที|วิ{ธ}-อิ-มี-เดียท-อิ-เฟ็คท์|The rule applies with immediate effect.|กฎมีผลบังคับใช้ทันที
+round the clock|ตลอด 24 ชั่วโมง|ราวน์{ดฺ}-{เดอะ}-คล็อค|Our crews work round the clock.|ทีมช่างทำงานตลอด 24 ชั่วโมง
+in the meantime|ในระหว่างนี้|อิน-{เดอะ}-มีน-ไทม์|In the meantime, please wait.|ในระหว่างนี้กรุณารอ
+at short notice|กะทันหัน|แอ็ท-{ชอร์ท}-โน-ทิส|The meeting was called at short notice.|เรียกประชุมกะทันหัน
+in the near future|ในอนาคตอันใกล้|อิน-{เดอะ}-เนียร์-ฟิว-เชอร์|We will expand in the near future.|เราจะขยายในอนาคตอันใกล้
+over the past year|ตลอดปีที่ผ่านมา|โอ-{เวอร์}-{เดอะ}-พาสท์-เยียร์|Outages fell over the past year.|ไฟดับลดลงตลอดปีที่ผ่านมา
+from time to time|เป็นครั้งคราว|ฟรอม-ไทม์-ทู-ไทม์|We visit customers from time to time.|เราเยี่ยมลูกค้าเป็นครั้งคราว
+`);
+ES_ADD(4,'กีฬาและสุขภาวะขั้นสูง',`
+endurance|ความอดทน|อิน-ดิว-เรินซ์|Running builds endurance.|การวิ่งสร้างความอดทน
+marathon|มาราธอน|แม-ระ-{ธอน}|He ran a marathon.|เขาวิ่งมาราธอน
+tournament|การแข่งขัน (รายการ)|ทัวร์-นะ-เมิ่นท์|We joined the PEA football tournament.|เราร่วมการแข่งขันฟุตบอล กฟภ.
+sportsmanship|น้ำใจนักกีฬา|สปอร์ทส์-แมน-{ชิพ}|Show good sportsmanship.|แสดงน้ำใจนักกีฬา
+spectator|ผู้ชม (กีฬา)|สเป็ค-เท-เตอร์|There were many spectators.|มีผู้ชมมากมาย
+warm-up|การอบอุ่นร่างกาย|วอร์ม-อัพ|Do a warm-up first.|อบอุ่นร่างกายก่อน
+physical fitness|สมรรถภาพทางกาย|ฟิซ-ซิ-เคิ่ล-ฟิท-เนส|Linemen need good physical fitness.|ช่างสายต้องมีสมรรถภาพทางกายที่ดี
+sedentary|นั่งอยู่กับที่มาก|เซด-เดิ่น-เท-รี่|Office work is sedentary.|งานออฟฟิศนั่งนาน
+`);
+ES_ADD(4,'คำศัพท์ทั่วไปขั้นสูง',`
+accessibility|การเข้าถึงได้|แอ็ค-เซส-ซิ-บิล-ลิ-ตี้|We improved accessibility for the disabled.|เราปรับปรุงการเข้าถึงสำหรับผู้พิการ
+acknowledgment|การตอบรับ / กิตติกรรมประกาศ|แอ็ค-นอล-ลิจ-เมิ่นท์|We sent an acknowledgment.|เราส่งหนังสือตอบรับแล้ว
+admission|การรับเข้า / ค่าเข้า|แอ็ด-มิ{ช}-ชั่น|Admission is free.|เข้าชมฟรี
+affiliation|การสังกัด|อะ-ฟิล-ลิ-เอ-{ชั่น}|What is your affiliation?|คุณสังกัดหน่วยงานใด
+ambition|ความทะเยอทะยาน|แอม-บิ{ช}-ชั่น|Her ambition is to be a director.|ความทะเยอทะยานของเธอคือเป็นผู้อำนวยการ
+anomaly|ความผิดปกติ|อะ-นอม-มะ-ลี่|The system detected an anomaly.|ระบบตรวจพบความผิดปกติ
+aptitude|ความถนัด|แอพ-ทิ-ทิว{ดฺ}|He has an aptitude for technology.|เขามีความถนัดด้านเทคโนโลยี
+bias|อคติ|ไบ-อัส|Avoid bias in evaluation.|หลีกเลี่ยงอคติในการประเมิน
+catalyst|ตัวเร่ง|แคท-ทะ-ลิสท์|The project was a catalyst for change.|โครงการเป็นตัวเร่งการเปลี่ยนแปลง
+cohesion|ความเป็นน้ำหนึ่งใจเดียว|โค-ฮี-{ฌั่น}|Team cohesion is strong.|ทีมเป็นน้ำหนึ่งใจเดียวกัน
+contingency|เหตุฉุกเฉิน / สำรอง|เคิ่น-ทิน-เจิ่น-ซี่|Keep a contingency budget.|เก็บงบสำรองไว้
+deterioration|การเสื่อมสภาพ|ดิ-เทีย-เรีย-เร-{ชั่น}|We found deterioration in the cable.|เราพบการเสื่อมสภาพของสายเคเบิล
+discontinue|ยุติ / เลิกผลิต|ดิส-เคิ่น-ทิน-นิว|This model was discontinued.|รุ่นนี้เลิกผลิตแล้ว
+feasibility|ความเป็นไปได้|ฟี-ซิ-บิล-ลิ-ตี้|We studied the feasibility.|เราศึกษาความเป็นไปได้
+ground rules|กติกาพื้นฐาน|กราวน์{ดฺ}-รูลส์|Let's set some ground rules.|มาตั้งกติกาพื้นฐานกัน
+hands-free|ไม่ต้องใช้มือ|แฮน{ดฺ}{ซฺ}-ฟรี|Use a hands-free phone while driving.|ใช้โทรศัพท์แบบไม่ใช้มือขณะขับรถ
+impetus|แรงผลักดัน|อิม-เพ-ทัส|The storm gave impetus to the project.|พายุเป็นแรงผลักดันให้เกิดโครงการ
+jargon|ศัพท์เฉพาะ|จาร์-เกิ่น|Avoid technical jargon with customers.|หลีกเลี่ยงศัพท์เทคนิคกับลูกค้า
+leeway|ความยืดหยุ่น (ให้ทำได้)|ลี-เวย์|We have some leeway on the deadline.|เรามีความยืดหยุ่นเรื่องกำหนดส่งอยู่บ้าง
+liaise|ประสานงาน|ลี-เอ{ซฺ}|Liaise with the district office.|ประสานงานกับที่ว่าการอำเภอ
+momentum|แรงส่ง|โม-เมน-ทั่ม|Keep the momentum going.|รักษาแรงส่งไว้
+novice|มือใหม่|นอฟ-วิส|He is a novice lineman.|เขาเป็นช่างสายมือใหม่
+paradigm|กระบวนทัศน์|แพ-ระ-ไดม์|It's a paradigm shift.|เป็นการเปลี่ยนกระบวนทัศน์
+pitfall|หลุมพราง|พิท-ฟอล|Avoid common pitfalls.|หลีกเลี่ยงหลุมพรางทั่วไป
+prerequisite|เงื่อนไขเบื้องต้น|พรี-เรค-ควิ-ซิท|Training is a prerequisite.|การอบรมเป็นเงื่อนไขเบื้องต้น
+rapport|ความสัมพันธ์อันดี|แร-พอร์|Build rapport with customers.|สร้างความสัมพันธ์อันดีกับลูกค้า
+red tape|ขั้นตอนราชการยุ่งยาก|เร{ดฺ}-เทพ|We cut the red tape.|เราลดขั้นตอนที่ยุ่งยาก
+synergy|การผนึกกำลัง|ซิน-เนอร์-จี้|Teamwork creates synergy.|การทำงานเป็นทีมสร้างพลังร่วม
+upkeep|การดูแลรักษา|อัพ-คีพ|The upkeep of the building is expensive.|ค่าดูแลอาคารแพง
+`);
+ES_ADD(4,'กริยาวิเศษณ์และวลีขยายเพิ่มเติม',`
+admittedly|ต้องยอมรับว่า|แอ็ด-มิท-ทิด-ลี่|Admittedly, we made mistakes.|ต้องยอมรับว่าเราทำผิดพลาด
+arguably|อาจกล่าวได้ว่า|อาร์-กิว-อะ-บลี่|It is arguably the best plan.|อาจกล่าวได้ว่าเป็นแผนที่ดีที่สุด
+conversely|ในทางกลับกัน|คอน-เวิร์ส-ลี่|Conversely, rural use is lower.|ในทางกลับกัน การใช้ในชนบทต่ำกว่า
+deliberately|อย่างจงใจ|ดิ-ลิบ-เบอ-เร็ท-ลี่|He deliberately broke the rule.|เขาจงใจฝ่าฝืนกฎ
+evidently|เห็นได้ชัดว่า|เอฟ-วิ-เดิ้นท์-ลี่|Evidently, the plan worked.|เห็นได้ชัดว่าแผนได้ผล
+fairly|ค่อนข้าง / อย่างยุติธรรม|แฟร์-ลี่|The test was fairly easy.|การทดสอบค่อนข้างง่าย
+increasingly|มากขึ้นเรื่อยๆ|อิน-ครี-ซิ่ง-ลี่|Solar is increasingly popular.|โซลาร์เป็นที่นิยมมากขึ้นเรื่อยๆ
+notably|โดยเฉพาะอย่างยิ่ง|โน-ทะ-บลี่|Costs fell, notably fuel costs.|ค่าใช้จ่ายลดลง โดยเฉพาะค่าน้ำมัน
+occasionally|เป็นครั้งคราว|โอ-เค-{ฌั่น}-นัล-ลี่|The fault occurs occasionally.|ความผิดปกติเกิดขึ้นเป็นครั้งคราว
+presumably|น่าจะ / คาดว่า|พรี-ซู-มะ-บลี่|Presumably, a tree hit the line.|น่าจะมีต้นไม้ล้มทับสาย
+promptly|อย่างรวดเร็ว|พรอมพ์ท์-ลี่|Please reply promptly.|กรุณาตอบกลับโดยเร็ว
+readily|อย่างง่ายดาย / เต็มใจ|เรด-ดิ-ลี่|Spare parts are readily available.|อะไหล่หาได้ง่าย
+reportedly|มีรายงานว่า|รี-พอร์-ทิด-ลี่|The road is reportedly closed.|มีรายงานว่าถนนปิด
+respectfully|ด้วยความเคารพ|รีส-เป็คท์-ฟุล-ลี่|I respectfully disagree.|ด้วยความเคารพ ผมไม่เห็นด้วย
+steadily|อย่างต่อเนื่อง|สเต-ดิ-ลี่|Demand grows steadily.|ความต้องการเพิ่มขึ้นอย่างต่อเนื่อง
+strictly|อย่างเคร่งครัด|สตริคท์-ลี่|Smoking is strictly prohibited.|ห้ามสูบบุหรี่โดยเด็ดขาด
+supposedly|ว่ากันว่า|ซัพ-โพ-ซิด-ลี่|It was supposedly fixed.|ว่ากันว่าซ่อมแล้ว
+tentatively|อย่างไม่แน่นอน / ชั่วคราว|เทน-ทะ-ที{ฟฺ}-ลี่|The meeting is tentatively set for Monday.|ประชุมกำหนดคร่าวๆ ไว้วันจันทร์
+undoubtedly|อย่างไม่ต้องสงสัย|อัน-เดา-ทิด-ลี่|It is undoubtedly a success.|เป็นความสำเร็จอย่างไม่ต้องสงสัย
+wholeheartedly|อย่างเต็มใจ / สุดหัวใจ|โฮล-ฮาร์-ทิด-ลี่|We wholeheartedly support it.|เราสนับสนุนอย่างเต็มที่
+`);
+ES_ADD(4,'ศัพท์ทำงานเพิ่มเติม',`
+accomplishment|ความสำเร็จ|อะ-คอม-พลิ{ช}-เมิ่นท์|It's a great accomplishment.|เป็นความสำเร็จที่ยิ่งใหญ่
+agile|คล่องตัว|แอจ-จายล์|We need an agile team.|เราต้องการทีมที่คล่องตัว
+alignment|ความสอดคล้อง|อะ-ไลน์-เมิ่นท์|Check the alignment with the strategy.|ตรวจความสอดคล้องกับยุทธศาสตร์
+benchmarking|การเทียบเคียง|เบนช์-มาร์-คิ่ง|We did benchmarking with other regions.|เราเทียบเคียงกับเขตอื่น
+briefing|การบรรยายสรุป|บรีฟ-ฟิ่ง|There is a briefing at 8.|มีการบรรยายสรุปแปดโมง
+bulletin|ประกาศ / จดหมายข่าว|บุล-เล-ทิน|Read the monthly bulletin.|อ่านจดหมายข่าวประจำเดือน
+corporate|องค์กร|คอร์-พอ-เร็ท|We follow corporate policy.|เราปฏิบัติตามนโยบายองค์กร
+cross-functional|ข้ามสายงาน|ครอส-ฟังค์-{ชั่น}-เนิ่ล|It's a cross-functional team.|เป็นทีมข้ามสายงาน
+downtime|เวลาที่ระบบหยุด|ดาวน์-ไทม์|We reduced system downtime.|เราลดเวลาที่ระบบหยุดทำงาน
+empower|ให้อำนาจ|อิม-พาว-เวอร์|Empower your staff.|ให้อำนาจพนักงานของคุณ
+escalation|การส่งเรื่องขึ้นไป|เอส-คะ-เล-{ชั่น}|Follow the escalation process.|ทำตามขั้นตอนการส่งเรื่อง
+headcount|จำนวนพนักงาน|เฮ{ดฺ}-เคาท์|Our headcount is 45.|จำนวนพนักงานของเรา 45 คน
+incumbent|ผู้ดำรงตำแหน่งปัจจุบัน|อิน-คัม-เบินท์|The incumbent manager will retire.|ผู้จัดการคนปัจจุบันจะเกษียณ
+interim|ชั่วคราว / ระหว่างกาล|อิน-เทอ-ริม|He is the interim manager.|เขาเป็นผู้จัดการรักษาการ
+acting|รักษาการ|แอ็ค-ทิ่ง|She is the acting director.|เธอเป็นรักษาการผู้อำนวยการ
+multitask|ทำหลายอย่างพร้อมกัน|มัล-ติ-ทาสก์|I can multitask.|ฉันทำหลายอย่างพร้อมกันได้
+onboarding|การรับพนักงานใหม่เข้าทำงาน|ออน-บอร์-ดิ้ง|Onboarding takes one week.|การรับพนักงานใหม่ใช้เวลาหนึ่งสัปดาห์
+outreach|การเข้าถึงชุมชน|เอาท์-รีช|We do community outreach.|เราลงพื้นที่เข้าถึงชุมชน
+paperwork|งานเอกสาร|เพ-เพอร์-เวิร์ค|There is too much paperwork.|งานเอกสารเยอะเกินไป
+paperless|ไร้กระดาษ|เพ-เพอร์-เลส|We are moving to a paperless office.|เรากำลังเปลี่ยนเป็นสำนักงานไร้กระดาษ
+productivity|ผลิตภาพ|โพร-ดัค-ทิฟ-วิ-ตี้|The app increased productivity.|แอปเพิ่มผลิตภาพ
+protocol|ระเบียบปฏิบัติ|โพร-โท-คอล|Follow the emergency protocol.|ปฏิบัติตามระเบียบเหตุฉุกเฉิน
+remuneration|ค่าตอบแทน|รี-มิว-เนอ-เร-{ชั่น}|The remuneration is fair.|ค่าตอบแทนเป็นธรรม
+rotation|การหมุนเวียน|โร-เท-{ชั่น}|We have a duty rotation.|เรามีการหมุนเวียนเวร
+shift supervisor|หัวหน้ากะ|{ชิฟท์}-ซู-เปอร์-ไว-เซอร์|Report to the shift supervisor.|รายงานหัวหน้ากะ
+skill gap|ช่องว่างทักษะ|สกิล-แกป|Training closes the skill gap.|การอบรมช่วยปิดช่องว่างทักษะ
+standby|การเตรียมพร้อม / สำรอง|สแตน{ดฺ}-บาย|The generator is on standby.|เครื่องปั่นไฟพร้อมสำรอง
+subordinate|ผู้ใต้บังคับบัญชา|ซับ-บอร์-ดิ-เน็ท|Support your subordinates.|สนับสนุนผู้ใต้บังคับบัญชาของคุณ
+superior|ผู้บังคับบัญชา / เหนือกว่า|ซู-เพีย-เรีย|Report to your superior.|รายงานต่อผู้บังคับบัญชา
+task force|คณะทำงานเฉพาะกิจ|ทาสก์-ฟอร์ส|We set up a task force.|เราตั้งคณะทำงานเฉพาะกิจ
+teleconference|การประชุมทางไกล|เทล-เล-คอน-เฟอ-เรินซ์|Join the teleconference.|เข้าร่วมประชุมทางไกล
+trainee|ผู้ฝึกงาน|เทรน-นี|The trainee is learning fast.|ผู้ฝึกงานเรียนรู้เร็ว
+upcoming|ที่กำลังจะมาถึง|อัพ-คัม-มิ่ง|Prepare for the upcoming audit.|เตรียมพร้อมสำหรับการตรวจที่จะมาถึง
+viability|ความอยู่รอด / ความเป็นไปได้|ไว-อะ-บิล-ลิ-ตี้|Check the viability of the project.|ตรวจความเป็นไปได้ของโครงการ
+work schedule|ตารางงาน|เวิร์ค-สเก็จ-จูล|Check your work schedule.|ดูตารางงานของคุณ
+working hours|เวลาทำงาน|เวิร์-คิ่ง-อาว-เวอร์{ซฺ}|Our working hours are 8 to 4.|เวลาทำงานของเรา 8 โมงถึง 4 โมงเย็น
+workstation|โต๊ะทำงาน / สถานีงาน|เวิร์ค-สเต-{ชั่น}|Keep your workstation clean.|รักษาโต๊ะทำงานให้สะอาด
+zero tolerance|ไม่ยอมให้เกิดขึ้นเลย|ซี-โร่-ทอล-เลอ-เรินซ์|We have zero tolerance for corruption.|เราไม่ยอมรับการทุจริตทุกกรณี
+achievable|ทำได้จริง|อะ-ชี-{วะ}-เบิ้ล|Set achievable goals.|ตั้งเป้าหมายที่ทำได้จริง
+breakdown|การแจกแจง / การเสีย|เบรค-ดาวน์|Give me a cost breakdown.|แจกแจงค่าใช้จ่ายให้ดู
+checkpoint|จุดตรวจ|เช็ค-พอยน์ท์|There is a checkpoint ahead.|ข้างหน้ามีจุดตรวจ
+follow-through|การทำต่อจนสำเร็จ|ฟอล-โล่ว-{ธรู}|Good follow-through builds trust.|การติดตามงานจนจบสร้างความเชื่อมั่น
+goal-oriented|มุ่งเป้าหมาย|โกล-ออ-เรียน-ทิ{ดฺ}|She is goal-oriented.|เธอเป็นคนมุ่งเป้าหมาย
+groundwork|การวางรากฐาน|กราวน์{ดฺ}-เวิร์ค|We laid the groundwork for the project.|เราวางรากฐานให้โครงการแล้ว
+in-house|ภายในองค์กร|อิน-เฮาส์|We built the app in-house.|เราพัฒนาแอปเองภายในองค์กร
+overtime pay|ค่าล่วงเวลา|โอ-{เวอร์}-ไทม์-เพย์|Overtime pay is calculated hourly.|ค่าล่วงเวลาคิดเป็นรายชั่วโมง
+feedback session|การประชุมให้ข้อคิดเห็น|ฟีด-แบ็ค-เซ{ช}-ชั่น|We have a feedback session on Friday.|เรามีประชุมให้ข้อคิดเห็นวันศุกร์
+milestone payment|การจ่ายเงินตามงวดงาน|ไมล์-สโตน-เพย์-เมิ่นท์|The contract uses milestone payments.|สัญญาจ่ายเงินตามงวดงาน
+performance review|การทบทวนผลงาน|เพอร์-ฟอร์-เมินซ์-รี-{วิว}|My performance review is next week.|การทบทวนผลงานของฉันสัปดาห์หน้า
+process owner|เจ้าของกระบวนการ|โพร-เซส-โอ-เนอร์|Who is the process owner?|ใครเป็นเจ้าของกระบวนการ
+root cause analysis|การวิเคราะห์หาสาเหตุราก|รูท-คอ{ซฺ}-อะ-แนล-ลิ-ซิส|Do a root cause analysis.|วิเคราะห์หาสาเหตุที่แท้จริง
+service excellence|ความเป็นเลิศด้านบริการ|เซอร์-{วิส}-เอ็ก-เซล-เลินซ์|We aim for service excellence.|เรามุ่งสู่ความเป็นเลิศด้านบริการ
+upskilling|การยกระดับทักษะ|อัพ-สกิล-ลิ่ง|Upskilling is part of our plan.|การยกระดับทักษะเป็นส่วนหนึ่งของแผน
+`);
