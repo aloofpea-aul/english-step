@@ -7,6 +7,9 @@ const SS = SpreadsheetApp.openById('1p0V5hjxcO3gtchqGx5NdNPMhMLVdWPe4GUp6iV7PgOo
 const SESSION_DAYS = 30;
 const MAX_FAIL = 5;          // ใส่รหัสผิดได้กี่ครั้ง
 const LOCK_MIN = 15;         // ล็อกกี่นาทีเมื่อผิดเกิน
+// ใช้บัญชีศูนย์รวมงาน กฟส.อ่าวลึก — ตรวจตัวตนและสิทธิ์โปรแกรม 'english' กับหลังบ้านศูนย์รวมงาน
+const HUB_URL = 'https://script.google.com/macros/s/AKfycbzqsOqJJQlF4SS1UX_YM6hmhd3lUXCVocAJiK7l28Tzddms9SQ9Z7p-iYgrrgd2B2meWw/exec';
+const HUB_APP = 'english';
 
 function sheet_(name, head) {
   let s = SS.getSheetByName(name);
@@ -16,6 +19,29 @@ function sheet_(name, head) {
 const users_ = () => sheet_('users', ['username', 'name', 'salt', 'hash', 'created', 'role', 'lastLogin']);
 const sessions_ = () => sheet_('sessions', ['token', 'username', 'expires']);
 const progress_ = () => sheet_('progress', ['username', 'data', 'updated']);
+
+/** เข้าสู่ระบบด้วยบัญชีศูนย์รวมงาน: ถามหลังบ้านศูนย์รวมงาน (whoAmI) ว่าชื่อ/รหัสถูกและมีสิทธิ์ english หรือไม่
+ *  ไม่เก็บรหัสผ่านไว้ที่นี่ — ผลการเรียนผูกกับชื่อผู้ใช้ศูนย์รวมงาน (username = 'hub:' + ชื่อ) */
+function hubAuth_(b) {
+  const name = String(b.name || '').trim(), pass = String(b.pass || '');
+  if (!name || !pass) return { ok: false, auth: false, msg: 'ยังไม่ได้เข้าสู่ระบบศูนย์รวมงาน' };
+  let r;
+  try {
+    const res = UrlFetchApp.fetch(HUB_URL, { method: 'post', contentType: 'text/plain', muteHttpExceptions: true,
+      payload: JSON.stringify({ action: 'whoAmI', changedBy: name, changedByPassword: pass }) });
+    r = JSON.parse(res.getContentText());
+  } catch (e) { return { ok: false, msg: 'ตรวจสอบกับศูนย์รวมงานไม่ได้ ลองใหม่อีกครั้ง' }; }
+  if (!r || !r.role) return { ok: false, auth: false, msg: 'ชื่อหรือรหัสผ่านศูนย์รวมงานใช้ไม่ได้ กรุณาเข้าสู่ระบบศูนย์รวมงานใหม่' };
+  if (r.role !== 'admin' && (r.apps || []).indexOf(HUB_APP) < 0) return { ok: false, perm: false, msg: 'บัญชีนี้ยังไม่ได้รับสิทธิ์ใช้ English Step กรุณาขอสิทธิ์จากผู้ดูแลระบบในศูนย์รวมงาน' };
+  const u = 'hub:' + name.toLowerCase(), sh = users_(), f = find_(sh, u);
+  if (!f) sh.appendRow([u, safe_(name), '', '', new Date(), r.role, new Date()]);
+  else sh.getRange(f.row, 6, 1, 2).setValues([[r.role, new Date()]]);
+  const p = find_(progress_(), u);
+  return { ok: true, token: newSession_(u), user: { username: u, name: name, role: r.role }, data: p ? JSON.parse(p.vals[1]) : null };
+}
+
+/** กดรันครั้งเดียวเพื่อขอสิทธิ์เชื่อมต่อภายนอก (UrlFetchApp) */
+function authorizeHub() { UrlFetchApp.fetch(HUB_URL, { method: 'post', contentType: 'text/plain', payload: JSON.stringify({ action: 'whoAmI' }), muteHttpExceptions: true }); }
 
 /** รันครั้งแรกครั้งเดียว เพื่อสร้างชีตทั้งหมด */
 function setup() { users_(); sessions_(); progress_(); }
@@ -41,8 +67,9 @@ function out_(o) {
 
 function route_(b) {
   switch (b.action) {
-    case 'register': return register_(b);
-    case 'login': return login_(b);
+    case 'hubAuth': return hubAuth_(b);
+    case 'register':
+    case 'login': return { ok: false, msg: 'กรุณาเข้าสู่ระบบด้วยบัญชีศูนย์รวมงาน' };
     case 'load': return load_(b);
     case 'save': return save_(b);
     case 'logout': return logout_(b);
