@@ -40,6 +40,8 @@ label{font-size:14px;font-weight:600}
 .stage svg{width:100%;height:auto;display:block}
 .step{padding:6px 10px;border-radius:10px;transition:background .3s}.step.on{background:#FFF1C7}
 .yt{display:flex;align-items:center;gap:8px;justify-content:center;min-height:44px;border-radius:12px;border:1px solid #E3B4B4;background:#FFF5F5;color:#8A1C1C;font-weight:600;text-decoration:none}
+.rd{display:block;font-size:13px;font-weight:400;color:#993C1D;line-height:1.35}.rx{border-bottom:2px dotted #D85A30}
+.tip2{font-size:13px;background:#FAECE7;color:#712B13;border-radius:10px;padding:8px 10px}
 .tr{display:block;font-size:12px;font-weight:400;color:#3D63C9;line-height:1.3;margin-top:1px}
 .trs{font-size:13px;color:var(--mut);margin-top:2px}
 .soft.w2,.opt.w2{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 10px}
@@ -53,9 +55,9 @@ label{font-size:14px;font-weight:600}
 <button data-go="home">หน้าหลัก</button><button data-go="sounds">ออกเสียง</button><button data-go="vocab">คำศัพท์</button><button data-go="tips">เทคนิคจำ</button>
 </nav>
 <script src="mouth.js"></script>
-<script src="data.js?v=20261126"></script>
+<script src="data.js?v=20261127"></script>
 <script>
-const {SOUNDS,DEMO,VOCAB,TH,VTH,TIPS}=window.ES_DATA;
+const {SOUNDS,DEMO,VOCAB,TH,VTH,TIPS,RD,SRD,SNOTE}=window.ES_DATA;
 /* ================= ล็อกอิน + เก็บข้อมูล ================= */
 const API='https://script.google.com/macros/s/AKfycby-QfNUJFz0vCVtD4K0Fk3_k4d-U6pkkdjxjCgk69eRbdohQJPRJjU7zkllpJ2FS9ky/exec';
 const AKEY='engstep_auth';let mem={};
@@ -63,7 +65,7 @@ function lget(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return 
 function lset(k,v){mem[k]=v;try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
 function ldel(k){delete mem[k];try{localStorage.removeItem(k)}catch(e){}}
 let AUTH=lget(AKEY);
-const blank=()=>({cards:{},sounds:{},streak:0,last:'',newToday:0,newDay:'',showTH:true});
+const blank=()=>({cards:{},sounds:{},streak:0,last:'',newToday:0,newDay:'',showTH:true,showRD:true});
 const dkey=()=>'engstep_l0_'+(AUTH?AUTH.user.username:'guest');
 let D=blank();
 function useData(x){D=Object.assign(blank(),x||{})}
@@ -99,6 +101,10 @@ function judge(alts,target,wrong){target=target.toLowerCase();const w=s=>s.repla
 
 /* ================= หน้าจอ ================= */
 const $=s=>document.querySelector(s),app=$('#app');
+const rdHTML=t=>esc(t).replace(/\{([^}]*)\}/g,'<span class="rx">$1</span>');
+const rdPlain=t=>String(t||'').replace(/[{}]/g,'');
+const rdw=w=>(D.showRD&&RD[w])?`<span class="rd">${rdHTML(RD[w])}</span>`:'';
+const soundOf=w=>{let i=SOUNDS.findIndex(x=>x.ex.includes(w));if(i<0)i=SOUNDS.findIndex(x=>x.pairs.some(p=>p[0]===w));if(i<0)i=SOUNDS.findIndex(x=>x.pairs.some(p=>p.includes(w)));return i};
 const trw=w=>(D.showTH&&TH[w])?`<span class="tr">${esc(TH[w])}</span>`:'';
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const MIC='<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg>';
@@ -118,10 +124,11 @@ function home(){const s=stats();const pct=Math.round(((s.learned/VOCAB.length)+(
  <div style="font-size:14px">ผ่านเกณฑ์ Level 0: ออกเสียงได้ ≥70% ครบ ${SOUNDS.length} เสียง และจำศัพท์ได้ครบ ${VOCAB.length} คำ</div></div>
  <div class="g2"><div class="card"><div class="mut">เสียงที่ผ่านแล้ว</div><div class="big">${s.snd}<span class="mut"> / ${SOUNDS.length}</span></div><button class="btn org" id="gS">ฝึกออกเสียง</button></div>
  <div class="card"><div class="mut">คำที่จำได้</div><div class="big">${s.learned}<span class="mut"> / ${VOCAB.length}</span></div><button class="btn" id="gV">ทบทวนศัพท์${s.due?' ('+s.due+')':''}</button></div></div>
+ <label class="card sw" for="rdsw"><span><b>แสดงคำอ่านภาษาพูด</b><br><span class="mut">อ่านแบบที่เจ้าของภาษาพูดจริง · <span class="rx">เส้นจุด</span> = เสียงที่ภาษาไทยไม่มี</span></span><input type="checkbox" id="rdsw" ${D.showRD?"checked":""}></label>
  <label class="card sw" for="thsw"><span><b>แสดงคำแปลภาษาไทย</b><br><span class="mut">คำแปลตัวเล็กใต้คำอังกฤษ · บัตรคำทบทวนยังซ่อนไว้เสมอ</span></span><input type="checkbox" id="thsw" ${D.showTH?"checked":""}></label>
  <div class="card"><h2>แผนวันนี้ (ประมาณ 15–20 นาที)</h2><div>1. ฝึกออกเสียง 1 เสียง: ฟัง → ทายคู่เสียง → พูด</div><div>2. ทบทวนคำที่ครบรอบ และเรียนคำใหม่ 8 คำ</div><div>3. อ่านเทคนิคจำ 1 เรื่อง แล้วลองใช้จริง</div></div>
  <div class="row" style="justify-content:space-between;align-items:center"><span class="mut">ผลการเรียนบันทึกขึ้นระบบอัตโนมัติ</span><a class="soft" href="/index.html" style="display:flex;align-items:center;text-decoration:none;border-radius:12px">ศูนย์รวมงาน</a></div>`;
- $('#thsw').onchange=e=>{D.showTH=e.target.checked;save(D)};
+ $('#thsw').onchange=e=>{D.showTH=e.target.checked;save(D)};$('#rdsw').onchange=e=>{D.showRD=e.target.checked;save(D)};
  $('#gS').onclick=()=>go('sounds');$('#gV').onclick=()=>go('review')}
 
 function sounds(){app.innerHTML=`<h1>ห้องออกเสียง</h1><div class="mut">${SOUNDS.length} เสียงที่คนไทยมักออกผิด เรียงจากง่ายไปยาก</div>`+
@@ -140,16 +147,16 @@ function sound(i){const s=SOUNDS[i],dm=DEMO[s.id];let q=null,rec=null;
  <div class="mut" style="font-size:13px">ภาพซ้าย = มองด้านข้าง · ภาพขวา = มองด้านหน้า · วงเขียว = จุดที่แตะ · ลูกศรน้ำเงิน = ลมออก · คลื่นส้มที่คอ = เสียงก้อง</div></div>
  <div class="card"><h2>วิธีวางปาก</h2>${s.steps.map((t,k)=>`<div class="step" id="st${k}"><b>${k+1}.</b> ${esc(t)}</div>`).join('')}
  <a class="yt" href="https://www.youtube.com/results?search_query=${encodeURIComponent(dm.yt)}" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg>ดูวิดีโอสอนจากครูบน YouTube</a></div>
- <div class="card"><h2>ฟังตัวอย่าง</h2><div class="g2">${s.ex.map(w=>`<button class="soft w2" data-say="${w}"><span>${w}</span>${trw(w)}</button>`).join('')}</div><div class="mut">แตะคำเพื่อฟัง แตะค้างฟังช้า</div></div>
+ <div class="card"><h2>ฟังตัวอย่าง</h2><div class="g2">${s.ex.map(w=>`<button class="soft w2" data-say="${w}"><span>${w}</span>${rdw(w)}${trw(w)}</button>`).join('')}</div><div class="mut">แตะคำเพื่อฟัง แตะค้างฟังช้า</div></div>
  <div class="card"><h2>ทายคู่เสียง</h2><div class="mut">กดฟัง แล้วเลือกคำที่ได้ยิน</div><button class="soft" id="play">ฟังคำปริศนา</button><div class="g2" id="opts"></div><div id="qres"></div></div>
- <div class="card"><h2>พูดให้ระบบฟัง</h2><div class="mut">พูดคำนี้:</div><div><div class="big" id="tw"></div><div class="trs" id="twt"></div></div><div class="row"><button class="soft" id="hear">ฟังต้นแบบ</button><button class="soft" id="slow">ฟังช้า</button><button class="soft" id="nx">คำถัดไป</button></div>
+ <div class="card"><h2>พูดให้ระบบฟัง</h2><div class="mut">พูดคำนี้:</div><div><div class="big" id="tw"></div><div class="rd" id="twr" style="font-size:15px"></div><div class="trs" id="twt"></div></div><div class="row"><button class="soft" id="hear">ฟังต้นแบบ</button><button class="soft" id="slow">ฟังช้า</button><button class="soft" id="nx">คำถัดไป</button></div>
  <button class="mic" id="mic" aria-label="กดแล้วพูด">${MIC}</button><div id="sres"></div></div>`;
  $('#bk').onclick=()=>{run++;go('sounds')};
  const MO=window.MOUTH;let cur=MO.REST,run=0;
  const draw=p=>{if(!$('#sv')){run++;return}$('#sv').innerHTML=MO.side(p);$('#fv').innerHTML=MO.front(p.f)};draw(cur);
  const wait=ms=>new Promise(r=>setTimeout(r,ms));
  const hi=k=>s.steps.forEach((_,n)=>{const e=$('#st'+n);if(e)e.classList.toggle('on',n===k)});
- const cap=(t,w)=>{$('#cap').textContent=t;$('#capw').textContent=w?(w+(D.showTH&&TH[w]?' · '+TH[w]:'')):''};
+ const cap=(t,w)=>{$('#cap').textContent=t;$('#capw').textContent=w?(w+(D.showRD&&RD[w]?' · '+rdPlain(RD[w]):'')+(D.showTH&&TH[w]?' · '+TH[w]:'')):''};
  function move(to,ms,id){const from=cur;return new Promise(res=>{const t0=performance.now();
   const f=now=>{if(id!==run)return res(false);let t=Math.min(1,(now-t0)/ms);const e=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;draw(MO.lerp(from,to,e));
    if(t<1)requestAnimationFrame(f);else{cur=to;res(true)}};requestAnimationFrame(f)})}
@@ -167,13 +174,13 @@ function sound(i){const s=SOUNDS[i],dm=DEMO[s.id];let q=null,rec=null;
  if($('#pc'))$('#pc').onclick=playCmp;if($('#pq'))$('#pq').onclick=playSeq;
  app.querySelectorAll('[data-say]').forEach(b=>{let t;b.onpointerdown=()=>{t=setTimeout(()=>{t=0;say(b.dataset.say,0.55)},450)};b.onpointerup=()=>{if(t){clearTimeout(t);say(b.dataset.say)}}});
  function newQ(){const p=s.pairs[Math.floor(Math.random()*s.pairs.length)];const a=Math.random()<.5?0:1;q={p,a};
-  $('#opts').innerHTML=p.map((w,k)=>`<button class="opt w2" data-k="${k}"><span>${w}</span>${trw(w)}</button>`).join('');$('#qres').innerHTML='';
+  $('#opts').innerHTML=p.map((w,k)=>`<button class="opt w2" data-k="${k}"><span>${w}</span>${rdw(w)}${trw(w)}</button>`).join('');$('#qres').innerHTML='';
   $('#opts').querySelectorAll('button').forEach(b=>b.onclick=()=>{const ok=+b.dataset.k===q.a;b.classList.add(ok?'ok':'bad');if(!ok)$('#opts').children[q.a].classList.add('ok');
    $('#qres').innerHTML=`<div class="${ok?'okn':'note'}">${ok?'ถูกต้อง':'คำที่ได้ยินคือ '+q.p[q.a]}</div><button class="soft" id="again">ข้อต่อไป</button>`;$('#again').onclick=()=>{newQ();say(q.p[q.a])}})}
  newQ();$('#play').onclick=()=>say(q.p[q.a]);
  const words=[...s.ex,...s.pairs.map(p=>p[0])].filter((w,k,a)=>a.indexOf(w)===k);let wi=0;
  const pairOf=w=>{const p=s.pairs.find(p=>p.includes(w));return p?p.find(x=>x!==w):null};
- const setW=()=>{$('#tw').textContent=words[wi];$('#twt').textContent=D.showTH?(TH[words[wi]]||''):'';$('#sres').innerHTML=''};setW();
+ const setW=()=>{$('#tw').textContent=words[wi];$('#twt').textContent=D.showTH?(TH[words[wi]]||''):'';$('#twr').innerHTML=D.showRD&&RD[words[wi]]?rdHTML(RD[words[wi]]):'';$('#sres').innerHTML=''};setW();
  $('#hear').onclick=()=>say(words[wi]);$('#slow').onclick=()=>say(words[wi],0.55);$('#nx').onclick=()=>{wi=(wi+1)%words.length;setW()};
  $('#mic').onclick=()=>{if(rec){rec.stop();return}const m=$('#mic');m.classList.add('on');
   rec=listen(alts=>{m.classList.remove('on');rec=null;const w=words[wi],r=judge(alts,w,pairOf(w));
@@ -184,7 +191,7 @@ function sound(i){const s=SOUNDS[i],dm=DEMO[s.id];let q=null,rec=null;
 function vocab(){const s=stats();const cats=[...new Set(VOCAB.map(v=>v[0]))];
  app.innerHTML=`<h1>คลังศัพท์ Level 0</h1><div class="card"><div class="row" style="justify-content:space-between"><span>จำได้แล้ว <b>${s.learned}</b> / ${VOCAB.length}</span><span class="mut">ครบรอบทบทวน ${s.due} คำ</span></div><div class="bar"><i style="width:${s.learned/VOCAB.length*100}%"></i></div><button class="btn" id="st">เริ่มทบทวน + คำใหม่</button></div>`+
  cats.map(c=>{const ws=VOCAB.filter(v=>v[0]===c);const n=ws.filter(v=>(D.cards[v[1]]||{}).box>=2).length;
-  return `<div class="card"><div class="row" style="justify-content:space-between"><h2>${c}</h2><span class="mut">${n}/${ws.length}</span></div><div class="row">${ws.map(v=>{const b=(D.cards[v[1]]||{}).box;const col=b>=2?'#D2F0EA':b!==undefined?'#FCE3CC':'#EEF0F5';return `<button class="soft w2" style="background:${col};border:none;color:#16213E" data-say="${v[1]}"><span style="font-weight:600">${v[1]}</span>${D.showTH?`<span class="tr">${esc(v[2])}</span>`:''}</button>`}).join('')}</div></div>`}).join('')+
+  return `<div class="card"><div class="row" style="justify-content:space-between"><h2>${c}</h2><span class="mut">${n}/${ws.length}</span></div><div class="row">${ws.map(v=>{const b=(D.cards[v[1]]||{}).box;const col=b>=2?'#D2F0EA':b!==undefined?'#FCE3CC':'#EEF0F5';return `<button class="soft w2" style="background:${col};border:none;color:#16213E" data-say="${v[1]}"><span style="font-weight:600">${v[1]}</span>${rdw(v[1])}${D.showTH?`<span class="tr">${esc(v[2])}</span>`:''}</button>`}).join('')}</div></div>`}).join('')+
  `<div class="mut">สีเขียว = จำได้แล้ว · สีส้ม = กำลังจำ · สีเทา = ยังไม่เรียน · แตะคำเพื่อฟัง</div>`;
  $('#st').onclick=()=>go('review');app.querySelectorAll('[data-say]').forEach(b=>b.onclick=()=>say(b.dataset.say))}
 
@@ -200,7 +207,7 @@ function review(){const t=today();if(D.newDay!==t){D.newDay=t;D.newToday=0}
   <div class="row"><button class="soft" id="hear">ฟังเสียง</button><button class="soft" id="slow">ฟังช้า</button><button class="soft" id="spk">ลองพูด</button></div><div id="sres"></div>
   <div class="g3" id="rate" style="visibility:hidden"><button style="border:none;background:#F7D6D6;color:#7A1F1F;font-weight:700" data-r="0">ลืม<br><small>ทวนอีกรอบ</small></button><button style="border:none;background:#FCE3CC;color:#5E2C05;font-weight:700" data-r="1">พอจำได้</button><button style="border:none;background:#D2F0EA;color:#0B5E54;font-weight:700" data-r="2">จำได้ดี</button></div>`;
   say(v[1]);$('#bk').onclick=()=>go('vocab');$('#hear').onclick=()=>say(v[1]);$('#slow').onclick=()=>say(v[1],0.55);
-  $('#fc').onclick=()=>{if(flipped)return;flipped=true;$('#bk2').outerHTML=`<div style="font-size:22px;font-weight:700">${esc(v[2])}</div><div style="font-weight:600">${esc(v[3])}</div><div class="trs">${esc(VTH[VOCAB.indexOf(v)]||'')}</div>`;$('#rate').style.visibility='visible';say(v[3],0.85)};
+  $('#fc').onclick=()=>{if(flipped)return;flipped=true;{const k=VOCAB.indexOf(v),si=soundOf(v[1]);$('#bk2').outerHTML=`${D.showRD&&RD[v[1]]?`<div class="rd" style="font-size:16px">${rdHTML(RD[v[1]])}</div>`:''}<div style="font-size:22px;font-weight:700">${esc(v[2])}</div><div style="font-weight:600">${esc(v[3])}</div>${D.showRD&&SRD[k]?`<div class="rd" style="font-size:15px">${rdHTML(SRD[k])}</div>`:''}<div class="trs">${esc(VTH[k]||'')}</div>${D.showRD&&SNOTE[k]?`<div class="tip2">ภาษาพูด: ${esc(SNOTE[k])}</div>`:''}${si>=0?`<span class="soft" id="toSnd" role="button" tabindex="0" style="display:inline-flex;align-items:center;align-self:flex-start;margin-top:4px">ดูภาพปากเสียงนี้</span>`:''}`;const ts=$('#toSnd');if(ts)ts.onclick=e=>{e.stopPropagation();go('sound',si)}}$('#rate').style.visibility='visible';say(v[3],0.85)};
   $('#spk').onclick=()=>{if(rec)return;$('#sres').innerHTML='<div class="mut">กำลังฟัง… พูดได้เลย</div>';rec=listen(a=>{rec=null;const r=judge(a,v[1]);$('#sres').innerHTML=`<div class="${r.ok?'okn':'note'}">${r.ok?'พูดถูก':'ระบบได้ยินว่า “'+esc(r.heard||'-')+'” ลองใหม่'}</div>`},e=>{rec=null;$('#sres').innerHTML=`<div class="note">${esc(e)}</div>`})};
   app.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{const r=+b.dataset.r,c=D.cards[v[1]]||{box:0};if(isNew)D.newToday++;
    if(r===0){c.box=0;c.due=Date.now();queue.push(queue.shift());D.cards[v[1]]=c;save(D);show();return}
