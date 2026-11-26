@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>English Step · Level 0</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#16213E;--mut:#4A5470;--bg:#F7F8FC;--line:#E3E7F1;--blue:#2F5BEA;--blue2:#1E3FB0;--org:#B85A12;--teal:#0E7C6E;--pur:#6B3FC9}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'IBM Plex Sans Thai',system-ui,sans-serif;font-size:16px;line-height:1.55}
+.wrap{max-width:480px;margin:0 auto;padding:20px 16px 90px;display:flex;flex-direction:column;gap:14px}
+h1{font-size:22px;margin:0}h2{font-size:18px;margin:0}
+.mut{color:var(--mut);font-size:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.hero{background:var(--blue);color:#fff;border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:8px}
+button{font:inherit;cursor:pointer;min-height:44px;border-radius:12px}
+.btn{border:none;background:var(--ink);color:#fff;font-weight:700;padding:0 16px}
+.btn.org{background:var(--org)}.btn.pur{background:var(--pur)}.btn.white{background:#fff;color:var(--blue2)}
+.soft{border:1px solid #C9D3F2;background:#F1F4FF;color:var(--blue2);font-weight:600;padding:0 14px}
+.opt{border:1px solid #C9D3F2;background:#fff;color:var(--ink);font-size:17px}
+.opt.ok{border:2px solid var(--teal);background:#D2F0EA;color:#0B5E54;font-weight:700}
+.opt.bad{border:2px solid #B42318;background:#F7D6D6;color:#7A1F1F}
+.row{display:flex;gap:8px;flex-wrap:wrap}.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:left;color:var(--ink)}
+.tag{font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px;white-space:nowrap}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden}.bar>i{display:block;height:100%;background:var(--blue)}
+.big{font-size:32px;font-weight:700;line-height:1.2}
+.note{background:#FCE3CC;color:#5E2C05;border-radius:12px;padding:10px 12px;font-size:14px}
+.okn{background:#D2F0EA;color:#0B5E54;border-radius:12px;padding:10px 12px;font-size:14px}
+.mic{width:80px;height:80px;border-radius:40px;border:none;background:var(--org);color:#fff;display:flex;align-items:center;justify-content:center;align-self:center}
+.mic.on{background:#B42318;animation:p 1s infinite}@keyframes p{50%{opacity:.6}}
+nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding:4px 0 10px}
+nav button{border:none;background:none;color:var(--mut);font-size:13px}nav button.on{color:var(--blue2);font-weight:700}
+.inp{min-height:48px;border:1px solid #C9D3F2;border-radius:12px;padding:0 12px;font:inherit;font-size:16px;color:var(--ink)}
+.inp:focus,button:focus-visible{outline:3px solid #9DB3FF;outline-offset:1px}
+label{font-size:14px;font-weight:600}
+.stage{display:flex;align-items:center;gap:8px;background:#FBF7F3;border-radius:14px;padding:8px}
+.stage svg{width:100%;height:auto;display:block}
+.step{padding:6px 10px;border-radius:10px;transition:background .3s}.step.on{background:#FFF1C7}
+.yt{display:flex;align-items:center;gap:8px;justify-content:center;min-height:44px;border-radius:12px;border:1px solid #E3B4B4;background:#FFF5F5;color:#8A1C1C;font-weight:600;text-decoration:none}
+.back{border:none;background:none;width:44px;color:var(--ink);padding:0}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<nav id="nav">
+<button data-go="home">หน้าหลัก</button><button data-go="sounds">ออกเสียง</button><button data-go="vocab">คำศัพท์</button><button data-go="tips">เทคนิคจำ</button>
+</nav>
+<script src="mouth.js"></script>
+<script>
+/* ================= ข้อมูลบทเรียน Level 0 ================= */
+const SOUNDS=[
+{id:'th1',name:'th ไม่ก้อง /θ/',ex:['think','three','thank','bath'],
+ steps:['แลบปลายลิ้นออกมาวางระหว่างฟันบนกับฟันล่างเล็กน้อย','เป่าลมผ่านปลายลิ้นเบาๆ เสียงคล้ายลมรั่ว','ไม่ใช่ “ท” และไม่ใช่ “ซ” แบบไทย'],
+ pairs:[['think','sink'],['three','tree'],['thank','tank'],['path','pass']]},
+{id:'th2',name:'th ก้อง /ð/',ex:['this','that','mother','they'],
+ steps:['ปลายลิ้นวางระหว่างฟันเหมือน th ไม่ก้อง','เปล่งเสียงจากคอไปด้วย จับคอจะรู้สึกสั่น','ไม่ใช่ “ด” แบบไทย'],
+ pairs:[['they','day'],['then','den'],['those','doze'],['breathe','breed']]},
+{id:'v',name:'v /v/',ex:['very','five','love','van'],
+ steps:['ฟันบนแตะริมฝีปากล่างเบาๆ','เปล่งเสียงให้ริมฝีปากล่างสั่นเล็กน้อย','ไม่ใช่ “ว” ที่ห่อปาก'],
+ pairs:[['vest','west'],['vine','wine'],['vet','wet'],['very','wary']]},
+{id:'lr',name:'l และ r',ex:['light','right','glass','grass'],
+ steps:['l: ปลายลิ้นแตะปุ่มเหงือกหลังฟันบน','r: ม้วนปลายลิ้นขึ้นเล็กน้อย แต่ไม่แตะเพดาน ห่อปากนิดหนึ่ง','r ภาษาอังกฤษไม่รัวลิ้นแบบ ร ไทย'],
+ pairs:[['light','right'],['lice','rice'],['lead','read'],['glass','grass']]},
+{id:'sh',name:'sh /ʃ/ กับ s',ex:['she','ship','shoe','fish'],
+ steps:['sh: ห่อปากยื่นออกเล็กน้อย ลิ้นถอยหลังนิดหนึ่ง แล้วปล่อยลม “ชฺ”','s: ยิ้มกว้าง ลิ้นใกล้ฟัน เสียง “ซ” ใสๆ','ฟังให้ออกว่า sh เสียงทุ้มกว่า s'],
+ pairs:[['she','see'],['ship','sip'],['shoe','sue'],['sheet','seat']]},
+{id:'ch',name:'ch /tʃ/ กับ sh',ex:['chair','cheap','watch','chicken'],
+ steps:['ch: เริ่มด้วยลิ้นแตะเพดานแล้วปล่อยออกทันที เสียงสั้นแบบ “ช” ที่กระแทก','sh: ไม่แตะเพดาน ลมไหลยาวต่อเนื่อง','ลองพูด chip กับ ship สลับกัน'],
+ pairs:[['chip','ship'],['chair','share'],['cheap','sheep'],['watch','wash']]},
+{id:'z',name:'z /z/ กับ s',ex:['zoo','zero','eyes','is'],
+ steps:['ตำแหน่งลิ้นเหมือน s','เปล่งเสียงจากคอไปด้วย ได้เสียงหึ่งแบบผึ้ง','ภาษาไทยไม่มีเสียงนี้ ฝึกลากเสียง zzzz ก่อน'],
+ pairs:[['zoo','sue'],['zip','sip'],['eyes','ice'],['buzz','bus']]},
+{id:'ii',name:'อี ยาว /iː/ กับ อิ สั้น /ɪ/',ex:['sheep','ship','leave','live'],
+ steps:['/iː/ ยาว: ยิ้มกว้าง ลากเสียง “อี”','/ɪ/ สั้น: ปากผ่อนลง เสียงอยู่ระหว่าง “อิ” กับ “เอะ”','ความยาวเสียงเปลี่ยนความหมายของคำ'],
+ pairs:[['sheep','ship'],['leave','live'],['seat','sit'],['feet','fit']]},
+{id:'ae',name:'แอ /æ/ กับ เอ /e/',ex:['bad','man','cat','apple'],
+ steps:['/æ/: อ้าปากกว้าง ลดคางลง เสียง “แอ”','/e/: อ้าปากน้อยกว่า เสียง “เอะ”','ส่องกระจก ดูว่าคางลดลงตอน /æ/'],
+ pairs:[['bad','bed'],['man','men'],['sad','said'],['pan','pen']]},
+{id:'fs',name:'เสียงท้าย -s',ex:['cats','dogs','books','buses'],
+ steps:['คนไทยมักทิ้งเสียงท้าย ให้ลากเสียง “ซฺ” สั้นๆ ตอนจบคำ','ถ้าเป็นหลายชิ้น ต้องได้ยินเสียง s ท้ายคำ','buses ท้ายคำออกเสียงเป็น “-ซิซ”'],
+ pairs:[['cat','cats'],['book','books'],['car','cars'],['bus','buses']]},
+{id:'fd',name:'เสียงท้าย -t / -d',ex:['bad','bat','need','neat'],
+ steps:['ท้ายคำต้องแตะลิ้นที่ปุ่มเหงือกเบาๆ','-d: สระก่อนหน้ายาวขึ้นเล็กน้อย','-t: สระสั้นและหยุดเสียงเร็ว'],
+ pairs:[['bad','bat'],['bed','bet'],['need','neat'],['card','cart']]},
+{id:'cl',name:'เสียงควบกล้ำ (ไม่เติมสระ)',ex:['street','school','spring','stop'],
+ steps:['คนไทยมักเติมสระแทรก เช่น “ซะ-ตอป”','พูดพยัญชนะติดกันโดยไม่มีสระคั่น: s-t-o-p','ฝึกช้าๆ แล้วค่อยเร็วขึ้น'],
+ pairs:[['sport','support'],['blow','below'],['plight','polite'],['prayed','parade']]}
+];
+const DEMO={
+th1:{m:'θ',w:'think',cmp:[['θ','think'],['s','sink']],yt:'how to pronounce th sound think'},
+th2:{m:'ð',w:'this',cmp:[['ð','they'],['d','day']],yt:'how to pronounce voiced th sound this'},
+v:{m:'v',w:'very',cmp:[['v','vest'],['w','west']],yt:'how to pronounce v and w sound'},
+lr:{m:'l',w:'light',cmp:[['l','light'],['r','right']],yt:'how to pronounce l and r sound'},
+sh:{m:'ʃ',w:'she',cmp:[['ʃ','she'],['s','see']],yt:'how to pronounce sh and s sound'},
+ch:{m:'tʃ',w:'chair',cmp:[['tʃ','chip'],['ʃ','ship']],yt:'how to pronounce ch and sh sound'},
+z:{m:'z',w:'zoo',cmp:[['z','zoo'],['s','sue']],yt:'how to pronounce z sound'},
+ii:{m:'iː',w:'sheep',cmp:[['iː','sheep'],['ɪ','ship']],yt:'long ee vs short i sheep ship pronunciation'},
+ae:{m:'æ',w:'bad',cmp:[['æ','bad'],['e','bed']],yt:'how to pronounce ae vs e bad bed'},
+fs:{m:'s',w:'cats',seq:['æ','t','s'],yt:'how to pronounce final s sound'},
+fd:{m:'d',w:'bad',seq:['æ','d'],cmp:[['d','bad'],['t','bat']],yt:'how to pronounce final t and d sounds'},
+cl:{m:'s',w:'stop',seq:['s','t','ɒ','p'],yt:'consonant clusters pronunciation st sp'}
+};
+const VOCAB=[
+['ทักทาย','hello','สวัสดี','Hello, my name is Mali.'],['ทักทาย','goodbye','ลาก่อน','Goodbye, see you tomorrow.'],['ทักทาย','please','กรุณา / ได้โปรด','Water, please.'],['ทักทาย','thank you','ขอบคุณ','Thank you very much.'],['ทักทาย','sorry','ขอโทษ (ทำผิด)','Sorry, I am late.'],['ทักทาย','excuse me','ขอโทษนะ (เรียก/ขอทาง)','Excuse me, where is the bank?'],['ทักทาย','yes','ใช่','Yes, I do.'],['ทักทาย','no','ไม่','No, thank you.'],
+['ตัวเลข','one','หนึ่ง','I have one bag.'],['ตัวเลข','two','สอง','I have two cats.'],['ตัวเลข','three','สาม','Three eggs, please.'],['ตัวเลข','four','สี่','We are four people.'],['ตัวเลข','five','ห้า','It is five o’clock.'],['ตัวเลข','six','หก','I wake up at six.'],['ตัวเลข','seven','เจ็ด','There are seven days in a week.'],['ตัวเลข','eight','แปด','He is eight years old.'],['ตัวเลข','nine','เก้า','The shop opens at nine.'],['ตัวเลข','ten','สิบ','It costs ten baht.'],
+['สี','red','สีแดง','I like the red car.'],['สี','blue','สีน้ำเงิน / ฟ้า','The sky is blue.'],['สี','green','สีเขียว','The tree is green.'],['สี','yellow','สีเหลือง','A banana is yellow.'],['สี','black','สีดำ','My bag is black.'],['สี','white','สีขาว','I have a white shirt.'],
+['ครอบครัว','mother','แม่','My mother is a teacher.'],['ครอบครัว','father','พ่อ','My father drives a car.'],['ครอบครัว','brother','พี่ชาย / น้องชาย','My brother is tall.'],['ครอบครัว','sister','พี่สาว / น้องสาว','My sister likes music.'],['ครอบครัว','son','ลูกชาย','Their son is nine.'],['ครอบครัว','daughter','ลูกสาว','Their daughter is ten.'],['ครอบครัว','baby','ทารก','The baby is sleeping.'],['ครอบครัว','family','ครอบครัว','I love my family.'],
+['อาหาร','rice','ข้าว','I eat rice every day.'],['อาหาร','water','น้ำ','Can I have some water?'],['อาหาร','egg','ไข่','I want two eggs.'],['อาหาร','fish','ปลา','We eat fish on Friday.'],['อาหาร','chicken','ไก่','Chicken rice, please.'],['อาหาร','fruit','ผลไม้','I buy fruit at the market.'],['อาหาร','coffee','กาแฟ','I drink coffee in the morning.'],['อาหาร','milk','นม','The baby drinks milk.'],
+['ของใช้','phone','โทรศัพท์','Where is my phone?'],['ของใช้','bag','กระเป๋า','This bag is new.'],['ของใช้','book','หนังสือ','I read a book.'],['ของใช้','pen','ปากกา','Can I use your pen?'],['ของใช้','car','รถยนต์','The car is red.'],['ของใช้','house','บ้าน','My house is big.'],['ของใช้','door','ประตู','Please close the door.'],['ของใช้','table','โต๊ะ','The book is on the table.']
+];
+const TIPS=[
+['จำเป็นกลุ่มสถานการณ์','อย่าจำคำเดี่ยวๆ แบบสุ่ม ให้จำเป็นชุดที่ใช้ด้วยกัน เช่น ชุด “ร้านอาหาร” rice, water, chicken, please สมองจะดึงทั้งชุดออกมาพร้อมกันเมื่ออยู่ในสถานการณ์จริง'],
+['ได้ยิน → พูด → เห็น → เขียน','ทุกคำใหม่ให้ฟังเสียงก่อน พูดตามดังๆ 3 ครั้ง แล้วดูตัวสะกด และพิมพ์หรือเขียน 1 ครั้ง ใช้หลายประสาทพร้อมกันจะจำได้นานกว่าการอ่านอย่างเดียว'],
+['ทบทวนก่อนลืม (Spaced Repetition)','คนเราลืมคำใหม่เร็วมากในวันแรก การทบทวนในวันที่ 1, 3, 7, 14, 30 ทำให้จำได้ระยะยาว ระบบคลังศัพท์ในแอปนี้จัดรอบให้อัตโนมัติ แค่เข้ามาทบทวนทุกวัน'],
+['ผูกกับภาพและเรื่องเล่า','นึกภาพให้ชัดและแปลกๆ เช่น “egg” นึกถึงไข่ใบยักษ์ตกใส่หัว ภาพที่ตลกหรือแปลกจะจำง่ายกว่าภาพธรรมดา'],
+['ใช้ในประโยคของตัวเอง','หลังเรียนคำใหม่ แต่งประโยคเกี่ยวกับชีวิตตัวเอง 1 ประโยค เช่น “My daughter likes fruit.” คำที่เกี่ยวกับตัวเราจะติดอยู่ในความจำนานกว่า'],
+['พูดกับตัวเองทุกวัน','เห็นของรอบตัวให้พูดชื่อเป็นภาษาอังกฤษในใจหรือออกเสียง เช่น เห็นประตูพูดว่า “door” ใช้เวลาวันละไม่กี่นาทีแต่ได้ฝึกทั้งวัน']
+];
+
+/* ================= ล็อกอิน + เก็บข้อมูล ================= */
+const API='https://script.google.com/macros/s/AKfycby-QfNUJFz0vCVtD4K0Fk3_k4d-U6pkkdjxjCgk69eRbdohQJPRJjU7zkllpJ2FS9ky/exec';
+const AKEY='engstep_auth';let mem={};
+function lget(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return mem[k]||null}}
+function lset(k,v){mem[k]=v;try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function ldel(k){delete mem[k];try{localStorage.removeItem(k)}catch(e){}}
+let AUTH=lget(AKEY);
+const blank=()=>({cards:{},sounds:{},streak:0,last:'',newToday:0,newDay:''});
+const dkey=()=>'engstep_l0_'+(AUTH?AUTH.user.username:'guest');
+let D=blank();
+function useData(x){D=Object.assign(blank(),x||{})}
+async function api(action,body){
+ const r=await fetch(API,{method:'POST',body:JSON.stringify(Object.assign({action},body||{}))});
+ return r.json()}
+let syncT=null;
+function save(d){lset(dkey(),d);if(!AUTH)return;clearTimeout(syncT);syncT=setTimeout(push,2500)}
+async function push(){if(!AUTH)return;clearTimeout(syncT);syncT=null;
+ try{const r=await api('save',{token:AUTH.token,data:D});if(r&&r.auth===false)logout(true)}catch(e){}}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'&&syncT)push()});
+const DAY=864e5,INT=[1,3,7,14,30];
+const today=()=>new Date().toISOString().slice(0,10);
+function touch(){const t=today();if(D.last!==t){const y=new Date(Date.now()-DAY).toISOString().slice(0,10);D.streak=D.last===y?D.streak+1:1;D.last=t}save(D)}
+function logout(expired){if(AUTH){const t=AUTH.token;if(!expired)api('logout',{token:t}).catch(()=>{})}
+ AUTH=null;ldel(AKEY);D=blank();login(expired?'หมดเวลาเข้าสู่ระบบ กรุณาเข้าใหม่':'')}
+
+/* ================= เสียง ================= */
+let voice=null;
+function pickVoice(){const v=speechSynthesis.getVoices();voice=v.find(x=>/en-US/i.test(x.lang)&&/Google|Samantha|Microsoft/i.test(x.name))||v.find(x=>/^en/i.test(x.lang))||null}
+if('speechSynthesis' in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice}
+function say(t,rate){if(!('speechSynthesis' in window))return alertBox('เครื่องนี้ไม่รองรับเสียงอ่าน');speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-US';if(voice)u.voice=voice;u.rate=rate||0.9;speechSynthesis.speak(u)}
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+function listen(onDone,onErr){if(!SR){onErr('เครื่องหรือเบราว์เซอร์นี้ยังไม่รองรับการฟังเสียงพูด แนะนำให้เปิดด้วย Chrome');return null}
+ const r=new SR();r.lang='en-US';r.interimResults=false;r.maxAlternatives=5;
+ r.onresult=e=>{const alts=[...e.results[0]].map(a=>({t:a.transcript.toLowerCase().trim(),c:a.confidence}));onDone(alts)};
+ r.onerror=e=>onErr(e.error==='not-allowed'?'ใช้ไมโครโฟนไม่ได้: ถ้าเปิดจากหน้าตัวอย่างใน Claude ไมค์จะถูกปิดไว้ ต้องเปิดจากเว็บจริง (GitHub Pages) หรือถ้าเปิดจากเว็บจริงแล้ว ให้กดอนุญาตไมค์ที่เบราว์เซอร์':e.error==='no-speech'?'ไม่ได้ยินเสียง ลองพูดดังขึ้นอีกนิด':'ฟังเสียงไม่สำเร็จ ('+e.error+')');
+ try{r.start()}catch(e){onErr('เริ่มไมค์ไม่ได้')}return r}
+function judge(alts,target,wrong){target=target.toLowerCase();const w=s=>s.replace(/[^a-z ]/g,'').split(' ');
+ const hit=alts.find(a=>w(a.t).join(' ')===target||w(a.t).includes(target));
+ if(hit){const sc=Math.round(60+40*(hit===alts[0]?(alts[0].c||0.8):0.5));return{ok:true,score:Math.min(sc,100),heard:alts[0].t}}
+ const conf=wrong&&alts.find(a=>w(a.t).includes(wrong.toLowerCase()));return{ok:false,score:conf?30:20,heard:alts[0]?alts[0].t:'',conf:!!conf}}
+
+/* ================= หน้าจอ ================= */
+const $=s=>document.querySelector(s),app=$('#app');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const MIC='<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg>';
+const BACK='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>';
+function alertBox(m){const n=document.createElement('div');n.className='note';n.textContent=m;app.prepend(n);setTimeout(()=>n.remove(),4000)}
+function nav(v){document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.go===v))}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>go(b.dataset.go));
+function go(v,arg){window.scrollTo(0,0);nav(v==='sound'?'sounds':v==='review'?'vocab':v);({home,sounds,sound,vocab,review,tips}[v])(arg)}
+
+function stats(){const cs=Object.values(D.cards);const learned=cs.filter(c=>c.box>=2).length;const seen=cs.length;
+ const due=VOCAB.filter(v=>D.cards[v[1]]&&D.cards[v[1]].due<=Date.now()).length;
+ const snd=Object.values(D.sounds).filter(s=>s.best>=70).length;return{learned,seen,due,snd}}
+
+function home(){const s=stats();const pct=Math.round(((s.learned/VOCAB.length)+(s.snd/SOUNDS.length))*50);
+ app.innerHTML=`<div class="row" style="justify-content:space-between;align-items:center"><div><div class="mut">สวัสดี ${esc(AUTH?AUTH.user.name:'')}</div><h1>Level 0 · ปูพื้นเสียง</h1></div><span class="tag" style="background:#FCE3CC;color:#7A3A08">เรียนต่อเนื่อง ${D.streak||0} วัน</span></div>
+ <div class="hero"><div style="font-size:14px">ความคืบหน้า Level 0</div><div class="big">${pct}%</div><div class="bar" style="background:rgba(255,255,255,.3)"><i style="width:${pct}%;background:#fff"></i></div>
+ <div style="font-size:14px">ผ่านเกณฑ์ Level 0: ออกเสียงได้ ≥70% ครบ ${SOUNDS.length} เสียง และจำศัพท์ได้ครบ ${VOCAB.length} คำ</div></div>
+ <div class="g2"><div class="card"><div class="mut">เสียงที่ผ่านแล้ว</div><div class="big">${s.snd}<span class="mut"> / ${SOUNDS.length}</span></div><button class="btn org" id="gS">ฝึกออกเสียง</button></div>
+ <div class="card"><div class="mut">คำที่จำได้</div><div class="big">${s.learned}<span class="mut"> / ${VOCAB.length}</span></div><button class="btn" id="gV">ทบทวนศัพท์${s.due?' ('+s.due+')':''}</button></div></div>
+ <div class="card"><h2>แผนวันนี้ (ประมาณ 15–20 นาที)</h2><div>1. ฝึกออกเสียง 1 เสียง: ฟัง → ทายคู่เสียง → พูด</div><div>2. ทบทวนคำที่ครบรอบ และเรียนคำใหม่ 8 คำ</div><div>3. อ่านเทคนิคจำ 1 เรื่อง แล้วลองใช้จริง</div></div>
+ <div class="row" style="justify-content:space-between;align-items:center"><span class="mut">ผลการเรียนบันทึกขึ้นระบบอัตโนมัติ</span><button class="soft" id="lo">ออกจากระบบ</button></div>`;
+ $('#lo').onclick=()=>{push();logout()};
+ $('#gS').onclick=()=>go('sounds');$('#gV').onclick=()=>go('review')}
+
+function sounds(){app.innerHTML=`<h1>ห้องออกเสียง</h1><div class="mut">${SOUNDS.length} เสียงที่คนไทยมักออกผิด เรียงจากง่ายไปยาก</div>`+
+ SOUNDS.map((s,i)=>{const b=(D.sounds[s.id]||{}).best;const t=b>=70?`<span class="tag" style="background:#D2F0EA;color:#0B5E54">ผ่าน ${b}</span>`:b?`<span class="tag" style="background:#FCE3CC;color:#7A3A08">${b}</span>`:'<span class="tag" style="background:#EEF0F5;color:#4A5470">ยังไม่ฝึก</span>';
+ return `<button class="item" data-i="${i}"><span><b>${i+1}. ${esc(s.name)}</b><br><span class="mut">${s.ex.join(' · ')}</span></span>${t}</button>`}).join('');
+ app.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>go('sound',+b.dataset.i))}
+
+function sound(i){const s=SOUNDS[i],dm=DEMO[s.id];let q=null,rec=null;
+ app.innerHTML=`<div class="row" style="align-items:center"><button class="back" id="bk" aria-label="กลับ">${BACK}</button><div><div class="mut">เสียงที่ ${i+1} จาก ${SOUNDS.length}</div><h1>${esc(s.name)}</h1></div></div>
+ <div class="card"><h2>ดูปากขยับ</h2>
+ <div class="stage"><div style="flex:3" id="sv"></div><div style="flex:2" id="fv"></div></div>
+ <div class="row" style="justify-content:space-between;align-items:center"><span class="tag" id="cap" style="background:#EEF0F5;color:#16213E">ท่าปกติ</span><span class="mut" id="capw"></span></div>
+ <div class="g2"><button class="btn org" id="pl">เล่นพร้อมเสียง</button><button class="soft" id="ps">เล่นช้า</button></div>
+ ${dm.cmp?`<button class="soft" id="pc">เทียบ ${esc(dm.cmp[0][1])} กับ ${esc(dm.cmp[1][1])}</button>`:''}
+ ${dm.seq?`<button class="soft" id="pq">ดูทีละเสียงในคำ “${esc(dm.w)}”</button>`:''}
+ <div class="mut" style="font-size:13px">ภาพซ้าย = มองด้านข้าง · ภาพขวา = มองด้านหน้า · วงเขียว = จุดที่แตะ · ลูกศรน้ำเงิน = ลมออก · คลื่นส้มที่คอ = เสียงก้อง</div></div>
+ <div class="card"><h2>วิธีวางปาก</h2>${s.steps.map((t,k)=>`<div class="step" id="st${k}"><b>${k+1}.</b> ${esc(t)}</div>`).join('')}
+ <a class="yt" href="https://www.youtube.com/results?search_query=${encodeURIComponent(dm.yt)}" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg>ดูวิดีโอสอนจากครูบน YouTube</a></div>
+ <div class="card"><h2>ฟังตัวอย่าง</h2><div class="g2">${s.ex.map(w=>`<button class="soft" data-say="${w}">${w}</button>`).join('')}</div><div class="mut">แตะคำเพื่อฟัง แตะค้างฟังช้า</div></div>
+ <div class="card"><h2>ทายคู่เสียง</h2><div class="mut">กดฟัง แล้วเลือกคำที่ได้ยิน</div><button class="soft" id="play">ฟังคำปริศนา</button><div class="g2" id="opts"></div><div id="qres"></div></div>
+ <div class="card"><h2>พูดให้ระบบฟัง</h2><div class="mut">พูดคำนี้:</div><div class="big" id="tw"></div><div class="row"><button class="soft" id="hear">ฟังต้นแบบ</button><button class="soft" id="slow">ฟังช้า</button><button class="soft" id="nx">คำถัดไป</button></div>
+ <button class="mic" id="mic" aria-label="กดแล้วพูด">${MIC}</button><div id="sres"></div></div>`;
+ $('#bk').onclick=()=>{run++;go('sounds')};
+ const MO=window.MOUTH;let cur=MO.REST,run=0;
+ const draw=p=>{if(!$('#sv')){run++;return}$('#sv').innerHTML=MO.side(p);$('#fv').innerHTML=MO.front(p.f)};draw(cur);
+ const wait=ms=>new Promise(r=>setTimeout(r,ms));
+ const hi=k=>s.steps.forEach((_,n)=>{const e=$('#st'+n);if(e)e.classList.toggle('on',n===k)});
+ const cap=(t,w)=>{$('#cap').textContent=t;$('#capw').textContent=w||''};
+ function move(to,ms,id){const from=cur;return new Promise(res=>{const t0=performance.now();
+  const f=now=>{if(id!==run)return res(false);let t=Math.min(1,(now-t0)/ms);const e=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;draw(MO.lerp(from,to,e));
+   if(t<1)requestAnimationFrame(f);else{cur=to;res(true)}};requestAnimationFrame(f)})}
+ async function playMain(slow){const id=++run,k=slow?1.8:1,P=MO.M[dm.m];
+  cap('ท่าปกติ');hi(0);draw(cur=MO.REST);await wait(300*k);
+  if(!await move(P,800*k,id))return;cap(P.label,dm.w);hi(1);say(dm.w,slow?0.55:0.85);await wait(1400*k);if(id!==run)return;
+  hi(2);await wait(1200*k);if(id!==run)return;if(!await move(MO.REST,600*k,id))return;cap('ท่าปกติ');hi(-1)}
+ async function playCmp(){const id=++run;hi(-1);for(const [kk,w] of dm.cmp){const P=MO.M[kk];
+  if(!await move(P,700,id))return;cap(P.label,w);say(w,0.8);await wait(1600);if(id!==run)return;
+  if(!await move(MO.REST,450,id))return;cap('ท่าปกติ');await wait(350)}}
+ async function playSeq(){const id=++run;hi(-1);say(dm.w,0.6);for(const kk of dm.seq){const P=MO.M[kk];
+  if(!await move(P,550,id))return;cap(P.label,dm.w);await wait(650);if(id!==run)return}
+  await wait(400);if(!await move(MO.REST,500,id))return;cap('ท่าปกติ');say(dm.w,0.85)}
+ $('#pl').onclick=()=>playMain(false);$('#ps').onclick=()=>playMain(true);
+ if($('#pc'))$('#pc').onclick=playCmp;if($('#pq'))$('#pq').onclick=playSeq;
+ app.querySelectorAll('[data-say]').forEach(b=>{let t;b.onpointerdown=()=>{t=setTimeout(()=>{t=0;say(b.dataset.say,0.55)},450)};b.onpointerup=()=>{if(t){clearTimeout(t);say(b.dataset.say)}}});
+ function newQ(){const p=s.pairs[Math.floor(Math.random()*s.pairs.length)];const a=Math.random()<.5?0:1;q={p,a};
+  $('#opts').innerHTML=p.map((w,k)=>`<button class="opt" data-k="${k}">${w}</button>`).join('');$('#qres').innerHTML='';
+  $('#opts').querySelectorAll('button').forEach(b=>b.onclick=()=>{const ok=+b.dataset.k===q.a;b.classList.add(ok?'ok':'bad');if(!ok)$('#opts').children[q.a].classList.add('ok');
+   $('#qres').innerHTML=`<div class="${ok?'okn':'note'}">${ok?'ถูกต้อง':'คำที่ได้ยินคือ '+q.p[q.a]}</div><button class="soft" id="again">ข้อต่อไป</button>`;$('#again').onclick=()=>{newQ();say(q.p[q.a])}})}
+ newQ();$('#play').onclick=()=>say(q.p[q.a]);
+ const words=[...s.ex,...s.pairs.map(p=>p[0])].filter((w,k,a)=>a.indexOf(w)===k);let wi=0;
+ const pairOf=w=>{const p=s.pairs.find(p=>p.includes(w));return p?p.find(x=>x!==w):null};
+ const setW=()=>{$('#tw').textContent=words[wi];$('#sres').innerHTML=''};setW();
+ $('#hear').onclick=()=>say(words[wi]);$('#slow').onclick=()=>say(words[wi],0.55);$('#nx').onclick=()=>{wi=(wi+1)%words.length;setW()};
+ $('#mic').onclick=()=>{if(rec){rec.stop();return}const m=$('#mic');m.classList.add('on');
+  rec=listen(alts=>{m.classList.remove('on');rec=null;const w=words[wi],r=judge(alts,w,pairOf(w));
+   const st=D.sounds[s.id]||{best:0,tries:0};st.tries++;st.best=Math.max(st.best,r.score);D.sounds[s.id]=st;touch();
+   $('#sres').innerHTML=`<div class="${r.ok?'okn':'note'}"><b>${r.score} คะแนน</b> · ระบบได้ยินว่า “${esc(r.heard||'-')}”<br>${r.ok?'ออกเสียงได้ดี ลองคำถัดไป':r.conf?'ระบบได้ยินเป็นคำคู่เสียง ('+pairOf(w)+') ลองดูวิธีวางปากด้านบนอีกครั้ง':'ยังไม่ตรง ฟังต้นแบบแล้วลองใหม่'}</div>`},
+   e=>{m.classList.remove('on');rec=null;$('#sres').innerHTML=`<div class="note">${esc(e)}</div>`})}}
+
+function vocab(){const s=stats();const cats=[...new Set(VOCAB.map(v=>v[0]))];
+ app.innerHTML=`<h1>คลังศัพท์ Level 0</h1><div class="card"><div class="row" style="justify-content:space-between"><span>จำได้แล้ว <b>${s.learned}</b> / ${VOCAB.length}</span><span class="mut">ครบรอบทบทวน ${s.due} คำ</span></div><div class="bar"><i style="width:${s.learned/VOCAB.length*100}%"></i></div><button class="btn" id="st">เริ่มทบทวน + คำใหม่</button></div>`+
+ cats.map(c=>{const ws=VOCAB.filter(v=>v[0]===c);const n=ws.filter(v=>(D.cards[v[1]]||{}).box>=2).length;
+  return `<div class="card"><div class="row" style="justify-content:space-between"><h2>${c}</h2><span class="mut">${n}/${ws.length}</span></div><div class="row">${ws.map(v=>{const b=(D.cards[v[1]]||{}).box;const col=b>=2?'#D2F0EA':b!==undefined?'#FCE3CC':'#EEF0F5';return `<button class="soft" style="background:${col};border:none;color:#16213E;font-weight:400" data-say="${v[1]}">${v[1]}</button>`}).join('')}</div></div>`}).join('')+
+ `<div class="mut">สีเขียว = จำได้แล้ว · สีส้ม = กำลังจำ · สีเทา = ยังไม่เรียน · แตะคำเพื่อฟัง</div>`;
+ $('#st').onclick=()=>go('review');app.querySelectorAll('[data-say]').forEach(b=>b.onclick=()=>say(b.dataset.say))}
+
+function review(){const t=today();if(D.newDay!==t){D.newDay=t;D.newToday=0}
+ const due=VOCAB.filter(v=>D.cards[v[1]]&&D.cards[v[1]].due<=Date.now());
+ const fresh=VOCAB.filter(v=>!D.cards[v[1]]).slice(0,Math.max(0,8-D.newToday));
+ let queue=[...due,...fresh],done=0,total=queue.length;
+ if(!total){app.innerHTML=`<h1>ทบทวนครบแล้ว</h1><div class="okn">วันนี้ไม่มีคำค้างทบทวน และเรียนคำใหม่ครบ 8 คำแล้ว กลับมาพรุ่งนี้นะครับ</div><button class="btn" id="h">กลับหน้าหลัก</button>`;$('#h').onclick=()=>go('home');return}
+ function show(){if(!queue.length){touch();app.innerHTML=`<h1>เสร็จแล้ว</h1><div class="okn">ทบทวนครบ ${total} คำ</div><button class="btn" id="h">กลับหน้าหลัก</button>`;$('#h').onclick=()=>go('home');return}
+  const v=queue[0],isNew=!D.cards[v[1]];let flipped=false,rec=null;
+  app.innerHTML=`<div class="row" style="align-items:center"><button class="back" id="bk" aria-label="กลับ">${BACK}</button><div style="flex:1"><div class="mut">${done}/${total} ${isNew?'· คำใหม่':'· ทบทวน'} · หมวด${v[0]}</div><div class="bar"><i style="width:${done/total*100}%"></i></div></div></div>
+  <button class="card" id="fc" style="min-height:230px;text-align:left;font:inherit;color:inherit;cursor:pointer"><div class="big">${esc(v[1])}</div><div id="bk2" class="mut">แตะเพื่อดูความหมาย</div></button>
+  <div class="row"><button class="soft" id="hear">ฟังเสียง</button><button class="soft" id="slow">ฟังช้า</button><button class="soft" id="spk">ลองพูด</button></div><div id="sres"></div>
+  <div class="g3" id="rate" style="visibility:hidden"><button style="border:none;background:#F7D6D6;color:#7A1F1F;font-weight:700" data-r="0">ลืม<br><small>ทวนอีกรอบ</small></button><button style="border:none;background:#FCE3CC;color:#5E2C05;font-weight:700" data-r="1">พอจำได้</button><button style="border:none;background:#D2F0EA;color:#0B5E54;font-weight:700" data-r="2">จำได้ดี</button></div>`;
+  say(v[1]);$('#bk').onclick=()=>go('vocab');$('#hear').onclick=()=>say(v[1]);$('#slow').onclick=()=>say(v[1],0.55);
+  $('#fc').onclick=()=>{if(flipped)return;flipped=true;$('#bk2').outerHTML=`<div style="font-size:22px;font-weight:700">${esc(v[2])}</div><div>${esc(v[3])}</div>`;$('#rate').style.visibility='visible';say(v[3],0.85)};
+  $('#spk').onclick=()=>{if(rec)return;$('#sres').innerHTML='<div class="mut">กำลังฟัง… พูดได้เลย</div>';rec=listen(a=>{rec=null;const r=judge(a,v[1]);$('#sres').innerHTML=`<div class="${r.ok?'okn':'note'}">${r.ok?'พูดถูก':'ระบบได้ยินว่า “'+esc(r.heard||'-')+'” ลองใหม่'}</div>`},e=>{rec=null;$('#sres').innerHTML=`<div class="note">${esc(e)}</div>`})};
+  app.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{const r=+b.dataset.r,c=D.cards[v[1]]||{box:0};if(isNew)D.newToday++;
+   if(r===0){c.box=0;c.due=Date.now();queue.push(queue.shift());D.cards[v[1]]=c;save(D);show();return}
+   c.box=Math.min(r===2?c.box+1:Math.max(c.box,1),INT.length);c.due=Date.now()+INT[Math.max(c.box-1,0)]*DAY;D.cards[v[1]]=c;queue.shift();done++;save(D);show()})}
+ show()}
+
+function tips(){app.innerHTML=`<h1>เทคนิคจำศัพท์</h1><div class="mut">อ่านวันละ 1 เรื่อง แล้วลองใช้กับคำศัพท์วันนั้น</div>`+
+ TIPS.map((t,i)=>`<div class="card"><h2>${i+1}. ${esc(t[0])}</h2><div>${esc(t[1])}</div></div>`).join('')}
+
+function login(msg,reg){$('#nav').style.display='none';window.scrollTo(0,0);
+ app.innerHTML=`<div style="padding-top:24px"><div class="mut">English Step</div><h1 style="font-size:28px">${reg?'สมัครสมาชิก':'เข้าสู่ระบบ'}</h1><div class="mut">เรียนภาษาอังกฤษทีละระดับ ฟัง พูด อ่าน เขียน</div></div>
+ <form class="card" id="lf" autocomplete="on">
+ ${reg?'<label for="nm">ชื่อที่ใช้แสดง</label><input id="nm" class="inp" maxlength="40" required autocomplete="nickname">':''}
+ <label for="us">ชื่อผู้ใช้ (a-z, 0-9)</label><input id="us" class="inp" required autocapitalize="none" autocomplete="username" maxlength="20">
+ <label for="pw">รหัสผ่าน${reg?' (อย่างน้อย 6 ตัว)':''}</label><input id="pw" class="inp" type="password" required autocomplete="${reg?'new-password':'current-password'}">
+ <div id="lm">${msg?`<div class="note">${esc(msg)}</div>`:''}</div>
+ <button class="btn" id="lb" type="submit">${reg?'สมัครและเริ่มเรียน':'เข้าสู่ระบบ'}</button></form>
+ <button class="soft" id="sw">${reg?'มีบัญชีแล้ว? เข้าสู่ระบบ':'ยังไม่มีบัญชี? สมัครสมาชิก'}</button>`;
+ $('#sw').onclick=()=>login('',!reg);
+ $('#lf').onsubmit=async e=>{e.preventDefault();const b=$('#lb');b.disabled=true;b.textContent='กำลังตรวจสอบ…';
+  try{const r=await api(reg?'register':'login',{username:$('#us').value,password:$('#pw').value,name:reg?$('#nm').value:''});
+   if(!r.ok){$('#lm').innerHTML=`<div class="note">${esc(r.msg||'ไม่สำเร็จ')}</div>`;b.disabled=false;b.textContent=reg?'สมัครและเริ่มเรียน':'เข้าสู่ระบบ';return}
+   AUTH={token:r.token,user:r.user};lset(AKEY,AUTH);
+   const local=lget(dkey());if(r.data)useData(r.data);else{useData(local);push()}
+   lset(dkey(),D);start()}
+  catch(err){$('#lm').innerHTML='<div class="note">เชื่อมต่อระบบไม่ได้ ตรวจอินเทอร์เน็ตแล้วลองใหม่</div>';b.disabled=false;b.textContent=reg?'สมัครและเริ่มเรียน':'เข้าสู่ระบบ'}}}
+function start(){$('#nav').style.display='';go('home')}
+if(AUTH){useData(lget(dkey()));start();
+ api('load',{token:AUTH.token}).then(r=>{if(r.auth===false)return logout(true);if(r.ok){AUTH.user=r.user;lset(AKEY,AUTH);if(r.data){useData(r.data);lset(dkey(),D)}else push();if(!$('#fc'))go('home')}}).catch(()=>{})}
+else login('');
+</script>
+</body>
+</html>
