@@ -65,7 +65,7 @@ function addE(e){const w=e.w.toLowerCase();if(BYW[w])return;e.w=w;BYW[w]=e;ALL.p
 VOCAB.forEach((v,k)=>addE({lv:0,cat:v[0],w:v[1],th:v[2],rd:RD[v[1]]||'',ex:v[3],exth:VTH[k]||'',srd:SRD[k]||'',note:SNOTE[k]||''}));
 window.ES_ADD=(lv,cat,txt)=>txt.split('\n').map(s=>s.trim()).filter(Boolean).forEach(line=>{const f=line.split('|').map(x=>x.trim());if(f.length>=5)addE({lv,cat,w:f[0],th:f[1],rd:f[2],ex:f[3],exth:f[4],srd:'',note:f[5]||''})});
 const LV_FILES=[0,1,2,3,4],lvLoaded={};let allLoaded=null;
-function loadLevel(lv){return lvLoaded[lv]||(lvLoaded[lv]=new Promise(res=>{const s=document.createElement('script');s.src='vocab/l'+lv+'.js?v=20261127';s.onload=res;s.onerror=()=>{lvLoaded[lv]=null;res()};document.head.append(s)}))}
+function loadLevel(lv){return lvLoaded[lv]||(lvLoaded[lv]=new Promise(res=>{const s=document.createElement('script');s.src='vocab/l'+lv+'.js?v=20261127b';s.onload=res;s.onerror=()=>{lvLoaded[lv]=null;res()};document.head.append(s)}))}
 function loadAll(){return allLoaded||(allLoaded=LV_FILES.reduce((p,lv)=>p.then(()=>loadLevel(lv)),Promise.resolve()))}
 const inLv=lv=>ALL.filter(e=>e.lv===lv);
 const autoRead=ex=>String(ex||'').replace(/[A-Za-z][A-Za-z']*/g,m=>{const k=m.toLowerCase();const r=RDALL[k]||RDALL[k.replace(/'s$|s$|es$|ed$|ing$/,'')];return r?r:m});
