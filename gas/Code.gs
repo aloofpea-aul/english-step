@@ -37,13 +37,13 @@ function hubAuth_(b) {
   if (!f) sh.appendRow([u, safe_(name), '', '', new Date(), r.role, new Date()]);
   else sh.getRange(f.row, 6, 1, 2).setValues([[r.role, new Date()]]);
   const p = find_(progress_(), u);
-  return { ok: true, token: newSession_(u), user: { username: u, name: name, role: r.role }, data: p ? JSON.parse(p.vals[1]) : null };
+  return { ok: true, token: newSession_(u), user: { username: u, name: name, role: r.role }, data: p ? progData_(p.vals) : null };
 }
 
 /* ---------- ช่องสำหรับน้องมีไฟ ----------
  * น้องมีไฟส่งชื่อ/รหัสศูนย์รวมงานที่ตั้งไว้ในเครื่อง (hubUser/hubPass) มาด้วยทุกครั้ง
  * ตรวจกับศูนย์รวมงานแล้วจำผลไว้ 10 นาที */
-const TOTAL_WORDS = 48, TOTAL_SOUNDS = 12;
+const TOTAL_WORDS = 4000, TOTAL_SOUNDS = 12;
 function hubRole_(name, pass) {
   name = String(name || '').trim(); pass = String(pass || '');
   if (!name || !pass) return '';
@@ -61,11 +61,11 @@ function hubRole_(name, pass) {
 }
 const bkkDay_ = (d) => Utilities.formatDate(d || new Date(), 'UTC', 'yyyy-MM-dd');   // ให้ตรงกับแอป (toISOString)
 function summarize_(username, name, data, updated) {
-  const d = data || {}, cards = d.cards || {}, sounds = d.sounds || {};
+  const d = data || {}, cards = cardsOf_(d), sounds = d.sounds || {};
   const ks = Object.keys(cards), now = Date.now();
   const snd = Object.keys(sounds);
   return {
-    ชื่อ: name, คำที่จำได้แล้ว: ks.filter((k) => cards[k].box >= 2).length, คำที่เคยเรียน: ks.length, คำทั้งหมดใน_Level0: TOTAL_WORDS,
+    ชื่อ: name, คำที่จำได้แล้ว: ks.filter((k) => cards[k].box >= 2).length, คำที่เคยเรียน: ks.length, คำศัพท์ทั้งหมดในแอป_ประมาณ: TOTAL_WORDS,
     คำที่ครบรอบทบทวน: ks.filter((k) => cards[k].due <= now).length,
     คำที่ลืมบ่อย: ks.filter((k) => cards[k].box === 0).slice(0, 8),
     เสียงที่ผ่านแล้ว: snd.filter((k) => sounds[k].best >= 70).length, เสียงทั้งหมด: TOTAL_SOUNDS,
@@ -92,7 +92,7 @@ function robotUser_(b) {
   const who = findLearner_(b.name);
   if (!who) return { ok: true, found: false, msg: 'ยังไม่พบผู้เรียนชื่อนี้ใน English Step (ต้องเข้าแอปจากศูนย์รวมงานอย่างน้อย 1 ครั้ง)' };
   const p = find_(progress_(), who.username);
-  return { ok: true, found: true, learner: summarize_(who.username, who.name, p ? JSON.parse(p.vals[1]) : null, p ? p.vals[2] : null) };
+  return { ok: true, found: true, learner: summarize_(who.username, who.name, p ? progData_(p.vals) : null, p ? p.vals[2] : null) };
 }
 function robotSummary_(b) {
   if (hubRole_(b.hubUser, b.hubPass) !== 'admin') return { ok: false, msg: 'ภาพรวมผู้เรียนดูได้เฉพาะบัญชีผู้ดูแลระบบ' };
@@ -102,7 +102,7 @@ function robotSummary_(b) {
   for (let i = 1; i < v.length; i++) {
     const u = String(v[i][0]); if (u.indexOf('hub:') !== 0) continue;
     const p = pm[u];
-    out.push(summarize_(u, String(v[i][1]), p ? JSON.parse(p[1]) : null, p ? p[2] : null));
+    out.push(summarize_(u, String(v[i][1]), p ? progData_(p) : null, p ? p[2] : null));
   }
   out.sort((a, c) => String(c.เรียนล่าสุด).localeCompare(String(a.เรียนล่าสุด)));
   return { ok: true, ผู้เรียนทั้งหมด: out.length, รายชื่อ: out };
@@ -114,12 +114,11 @@ function robotLog_(b) {
   if (!who) return { ok: false, found: false, msg: 'ยังไม่พบผู้เรียนชื่อนี้ใน English Step' };
   const sound = String(b.sound || '').slice(0, 10), score = Math.max(0, Math.min(100, Number(b.score) || 0));
   const sh = progress_(), f = find_(sh, who.username);
-  const d = f ? JSON.parse(f.vals[1]) : { cards: {}, sounds: {}, streak: 0, last: '', newToday: 0, newDay: '', showTH: true };
+  const d = (f && progData_(f.vals)) || { cards: {}, sounds: {}, streak: 0, last: '', newToday: 0, newDay: '', showTH: true };
   d.sounds = d.sounds || {};
   if (sound) { const st = d.sounds[sound] || { best: 0, tries: 0 }; st.tries++; st.best = Math.max(st.best, score); d.sounds[sound] = st; }
   const t = bkkDay_(); if (d.last !== t) { d.streak = d.last === bkkDay_(new Date(Date.now() - 864e5)) ? (d.streak || 0) + 1 : 1; d.last = t; }
-  const json = JSON.stringify(d);
-  if (f) sh.getRange(f.row, 2, 1, 2).setValues([[json, new Date()]]); else sh.appendRow([who.username, json, new Date()]);
+  writeProg_(sh, f, who.username, JSON.stringify(d));
   return { ok: true, name: who.name };
 }
 
@@ -165,6 +164,22 @@ function route_(b) {
 
 const clean_ = u => String(u || '').trim().toLowerCase();
 const safe_ = v => { v = String(v || '').trim(); return /^[=+\-@]/.test(v) ? "'" + v : v; };
+
+/* ผลการเรียนยาวได้ถึง ~360,000 ตัวอักษร: แบ่งเก็บ ช่อง B (ส่วนแรก) + ช่อง D เป็นต้นไป (ส่วนต่อ) เพราะ 1 ช่องเก็บได้ไม่เกิน 50,000 */
+const PART = 45000, MAX_PARTS = 8, PROG_COLS = 2 + MAX_PARTS;
+function progJson_(vals) { return String(vals[1] || '') + vals.slice(3).map(String).join(''); }
+function progData_(vals) { const t = progJson_(vals); return t ? JSON.parse(t) : null; }
+function writeProg_(sh, f, username, json) {
+  const parts = []; for (let i = 0; i < json.length; i += PART) parts.push(json.slice(i, i + PART));
+  if (!parts.length) parts.push('{}');
+  const row = [username, parts[0], new Date()].concat(parts.slice(1));
+  while (row.length < PROG_COLS + 1) row.push('');
+  if (f) sh.getRange(f.row, 1, 1, row.length).setValues([row]); else sh.appendRow(row);
+}
+function cardsOf_(d) {
+  if (d && d.cz != null) { const c = {}; String(d.cz).split('\n').forEach((l) => { const x = l.split('\t'); if (x.length === 3) c[x[0]] = { box: +x[1], due: +x[2] * 864e5 }; }); return c; }
+  return (d && d.cards) || {};
+}
 
 function hash_(salt, pw) {
   let h = salt + ':' + pw;
@@ -229,24 +244,23 @@ function login_(b) {
   cache.remove(ck);
   sh.getRange(f.row, 7).setValue(new Date());
   const p = find_(progress_(), u);
-  return { ok: true, token: newSession_(u), user: profile_(u), data: p ? JSON.parse(p.vals[1]) : null, updated: p ? p.vals[2] : null };
+  return { ok: true, token: newSession_(u), user: profile_(u), data: p ? progData_(p.vals) : null, updated: p ? p.vals[2] : null };
 }
 
 function load_(b) {
   const u = auth_(b.token);
   if (!u) return { ok: false, auth: false, msg: 'กรุณาเข้าสู่ระบบใหม่' };
   const p = find_(progress_(), u);
-  return { ok: true, user: profile_(u), data: p ? JSON.parse(p.vals[1]) : null };
+  return { ok: true, user: profile_(u), data: p ? progData_(p.vals) : null };
 }
 
 function save_(b) {
   const u = auth_(b.token);
   if (!u) return { ok: false, auth: false, msg: 'กรุณาเข้าสู่ระบบใหม่' };
   const json = JSON.stringify(b.data || {});
-  if (json.length > 45000) return { ok: false, msg: 'ข้อมูลใหญ่เกินไป' };
-  const sh = progress_(), f = find_(sh, u);
-  if (f) sh.getRange(f.row, 2, 1, 2).setValues([[json, new Date()]]);
-  else sh.appendRow([u, json, new Date()]);
+  if (json.length > PART * MAX_PARTS) return { ok: false, msg: 'ข้อมูลใหญ่เกินไป' };
+  const sh = progress_();
+  writeProg_(sh, find_(sh, u), u, json);
   return { ok: true };
 }
 
