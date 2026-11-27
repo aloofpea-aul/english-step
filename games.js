@@ -24,18 +24,26 @@ function head(title,sub){return `<div class="row" style="align-items:center"><bu
 function needWords(cb){if(!allReady){app.innerHTML='<div class="mut">กำลังโหลดคำศัพท์…</div>';loadAll().then(()=>{allReady=true;cb()});return false}return true}
 let RUN=0;// กันตัวจับเวลาของเกมเก่าทำงานต่อเมื่อเปลี่ยนหน้า
 const stars=(n)=>'★★★'.slice(0,n)+'☆☆☆'.slice(0,3-n);
-function finish(id,pts,detail,again){const nb=addPts(id,pts);const g=G();
- app.innerHTML=head(GN[id])+`<div class="hero" style="align-items:center;text-align:center"><div style="font-size:15px;opacity:.9">ได้แต้ม</div><div style="font-size:48px;font-weight:700;line-height:1">${pts}</div>${nb?'<div class="tag" style="background:#FFF1C7;color:#5E2C05">สถิติใหม่ของเกมนี้</div>':''}<div style="opacity:.9">${detail}</div></div>
+function finish(id,pts,detail,again){const nb=addPts(id,pts);const g=G();const xp=Math.round(pts/10)+5;FX.quest('gpts',pts);FX.addXP(xp,true);save(D);
+ const st=pts>=100?3:pts>=50?2:pts>0?1:0,c=FX.GCOL[id]||['#E6F1FB','#0C447C','#185FA5'];
+ const star=(on,d)=>`<svg class="fx-pop" style="animation-delay:${d}s" width="44" height="44" viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.4 7L12 17.5 5.8 21l1.4-7L2 9.3l7-.8z" fill="${on?'#EF9F27':'#D3D1C7'}"/></svg>`;
+ app.innerHTML=head(GN[id])+`<div class="hero" id="fin" style="align-items:center;text-align:center;background:${c[0]};color:${c[1]}">
+ <div class="row" style="justify-content:center;gap:2px">${star(st>=1,.1)}${star(st>=2,.25)}${star(st>=3,.4)}</div>
+ ${FX.mascot(80,st>=2?'cheer':st?'happy':'think')}
+ <div style="font-size:20px;font-weight:700" class="fx-pop">${st>=3?'สุดยอด!':st>=2?'เก่งมาก!':st?'ดีแล้ว ลองอีกนะ':'ไม่เป็นไร ลองใหม่นะ'}</div>
+ <div style="font-size:44px;font-weight:700;line-height:1;color:${c[2]}" class="fx-pop">+${pts}</div><div>${detail}</div>
+ <div class="row" style="justify-content:center;gap:6px">${nb?'<span class="fx-pill" style="background:#EEEDFE;color:#3C3489">สถิติใหม่</span>':''}<span class="fx-pill" style="background:#EAF3DE;color:#27500A">+${xp} XP</span><span class="fx-pill" style="background:#FAEEDA;color:#633806">ภารกิจ ${FX.questsDone()}/3</span></div></div>
  <div class="card"><div class="row" style="justify-content:space-between"><span>แต้มสัปดาห์นี้ (${esc(LP.thName)})</span><b>${g.wpts}</b></div><div class="row" style="justify-content:space-between"><span class="mut">สถิติดีสุดเกมนี้</span><span>${g.best[id]||0}</span></div></div>
  <div class="g2"><button class="btn org" id="gag">เล่นอีกรอบ</button><button class="soft" id="gls">เลือกเกมอื่น</button></div><button class="soft" id="gbd">ดูตารางแต้ม</button>`;
+ if(st)FX.confetti($('#fin'));FX.sfx[st?'win':'bad']();
  $('#gbk').onclick=()=>go('games');$('#gag').onclick=again;$('#gls').onclick=()=>go('games');$('#gbd').onclick=()=>game('board')}
 
 /* ---------- หน้ารวมเกม ---------- */
 window.games=function(){RUN++;if(!needWords(window.games))return;const g=G(),n=pool().length;
  app.innerHTML=`<h1>เกมภาษา${CJK?' · '+esc(LP.thName):''}</h1>${langRow()}
- <div class="hero"><div class="row" style="justify-content:space-between;align-items:center"><div><div style="opacity:.9;font-size:14px">แต้มสัปดาห์นี้</div><div style="font-size:34px;font-weight:700;line-height:1.1">${g.wpts}</div></div><button class="btn white" id="gboard">🏆 ตารางแต้ม</button></div>
- <div style="font-size:13px;opacity:.9">ใช้คำจาก Level ${P().lv||0} และคำที่เคยเรียนแล้ว · ${n} คำ · แต้มรีเซ็ตทุกวันจันทร์</div></div>`+
- GAMES.map(x=>`<button class="item" data-g="${x.id}"><span style="font-size:30px">${x.icon}</span><span style="flex:1"><b>${x.name}</b><br><span class="mut">${x.desc}</span></span><span class="tag" style="background:#EEF0F5;color:#16213E">ดีสุด ${g.best[x.id]||0}</span></button>`).join('')+
+ <div class="hero" style="flex-direction:row;align-items:center;gap:10px">${FX.mascot(70)}<div style="flex:1"><div style="opacity:.9;font-size:14px">แต้มสัปดาห์นี้</div><div style="font-size:34px;font-weight:700;line-height:1.1">${g.wpts}</div><button class="btn white" id="gboard" style="margin-top:6px;min-height:38px">ตารางแต้ม</button></div></div><div class="mut" style="margin-top:-6px">
+ ใช้คำจาก Level ${P().lv||0} และคำที่เคยเรียนแล้ว · ${n} คำ · แต้มรีเซ็ตทุกวันจันทร์</div>`+
+ GAMES.map(x=>{const c=FX.GCOL[x.id];return `<button class="fx-gc" data-g="${x.id}" style="background:${c[0]};flex-direction:row;align-items:center;gap:12px;min-height:84px">${FX.ICON[x.id]}<span style="flex:1"><b style="color:${c[1]};font-size:17px">${x.name}</b><br><span style="font-size:13px;color:${c[2]}">${x.desc}</span></span><span class="fx-pill" style="background:#fff;color:${c[1]}">${g.best[x.id]?'ดีสุด '+g.best[x.id]:'ใหม่'}</span></button>`}).join('')+
  `<div class="mut">เปลี่ยนระดับคำได้ที่หน้า "คำศัพท์" · เปิดเสียงลำโพงก่อนเล่นเกมฟังและเกมพูด</div>`;
  app.querySelectorAll('[data-lang]').forEach(b=>b.onclick=()=>switchLang(b.dataset.lang));
  app.querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>game(b.dataset.g));$('#gboard').onclick=()=>game('board')};
@@ -55,8 +63,8 @@ function match(){if(!needWords(match))return;const my=RUN;const ws=sh(pool()).sl
   if(!sel){sel={b,t};b.style.background='#FFF1C7';return}
   if(sel.b===b){b.style.background='';sel=null;return}
   const a=sel;sel=null;
-  if(a.t.k===t.k&&a.t.side!==t.side){[a.b,b].forEach(x=>{x.classList.add('ok');x.disabled=true;x.style.background=''});left--;$('#ml').textContent='เหลือ '+left+' คู่';if(!left)setTimeout(end,500)}
-  else{miss++;lock=true;[a.b,b].forEach(x=>{x.classList.add('bad');x.style.background=''});setTimeout(()=>{[a.b,b].forEach(x=>x.classList.remove('bad'));lock=false},650)}})}
+  if(a.t.k===t.k&&a.t.side!==t.side){[a.b,b].forEach(x=>{x.classList.add('ok');x.disabled=true;x.style.background=''});FX.sfx.ok();left--;$('#ml').textContent='เหลือ '+left+' คู่';if(!left)setTimeout(end,500)}
+  else{miss++;lock=true;FX.sfx.bad();[a.b,b].forEach(x=>{x.classList.add('bad');x.style.background=''});setTimeout(()=>{[a.b,b].forEach(x=>x.classList.remove('bad'));lock=false},650)}})}
 
 /* ---------- 2) ฟังแล้วเลือก ---------- */
 function listenG(){if(!needWords(listenG))return;const my=RUN;const P0=pool();const qs=sh(P0).slice(0,10);let qi=0,pts=0,ok=0,streak=0;
@@ -70,7 +78,7 @@ function listenG(){if(!needWords(listenG))return;const my=RUN;const P0=pool();co
   <div class="g2" id="lo">${opts.map((o,i)=>`<button class="opt w2" data-i="${i}" style="min-height:76px">${wordHTML(o)}</button>`).join('')}</div><div id="lr"></div>`;
   $('#gbk').onclick=()=>go('games');$('#lp').onclick=()=>say(e.w);$('#ls').onclick=()=>say(e.w,0.55);setTimeout(()=>{if(my===RUN)say(e.w)},250);
   app.querySelectorAll('#lo [data-i]').forEach(b=>b.onclick=()=>{if(done)return;done=true;const o=opts[+b.dataset.i],right=o===e;
-   if(right){ok++;streak++;pts+=10+(streak>=3?5:0);b.classList.add('ok')}else{streak=0;b.classList.add('bad');app.querySelectorAll('#lo [data-i]')[opts.indexOf(e)].classList.add('ok')}
+   if(right){ok++;streak++;pts+=10+(streak>=3?5:0);b.classList.add('ok');FX.sfx.ok();if(streak>=3)FX.toast('ติดกัน '+streak+' ข้อ! +5','#0F6E56')}else{streak=0;FX.sfx.bad();b.classList.add('bad');app.querySelectorAll('#lo [data-i]')[opts.indexOf(e)].classList.add('ok')}
    $('#lr').innerHTML=`<div class="${right?'okn':'note'}">${right?'ถูกต้อง':'คำที่ได้ยินคือ'} <b>${esc(e.w)}</b> = ${esc(e.th)}</div><button class="btn" id="ln">${qi<9?'ข้อต่อไป':'ดูผล'}</button>`;
    $('#ln').onclick=()=>{qi++;q()}})}
  q()}
@@ -93,7 +101,7 @@ function speak(){if(!needWords(speak))return;const my=RUN;
  $('#shear').onclick=()=>{begin();pts=Math.max(0,pts-5);$('#sp').textContent=pts+' แต้ม';say(cur().w)};
  $('#smic').onclick=()=>{if(rec){try{rec.stop()}catch(e){}return}begin();const m=$('#smic');m.classList.add('on');$('#shint').textContent='กำลังฟัง… พูดได้เลย';
   rec=listen(alts=>{m.classList.remove('on');rec=null;if(my!==RUN)return;const e=cur(),r=judge(alts,e.w);
-   if(r.ok){ok++;pts+=15;$('#sp').textContent=pts+' แต้ม';$('#sres').innerHTML=`<div class="okn">ถูกต้อง “${esc(r.heard)}” +15</div>`;next()}
+   if(r.ok){ok++;pts+=15;FX.sfx.ok();$('#sp').textContent=pts+' แต้ม';$('#sres').innerHTML=`<div class="okn">ถูกต้อง “${esc(r.heard)}” +15</div>`;next()}
    else $('#sres').innerHTML=`<div class="note">ระบบได้ยินว่า “${esc(r.heard||'-')}” ลองอีกครั้ง หรือกดข้าม</div>`;
    $('#shint').textContent='กดไมค์แล้วพูดคำถัดไป'},
    err=>{m.classList.remove('on');rec=null;$('#sres').innerHTML=`<div class="note">${esc(err)}</div>`})}}
@@ -121,12 +129,12 @@ function order(){if(!needWords(order))return;const my=RUN;
    app.querySelectorAll('[data-a]').forEach(x=>x.onclick=()=>{ans.splice(+x.dataset.a,1);draw()});
    $('#oc').onclick=()=>{ans=[];draw()};$('#oh').onclick=()=>{if(!hint){hint=true;pts=Math.max(0,pts-5)}say(e.ex,0.8)}};
   function check(){if(ans.length!==t.length)return;const right=ans.map(b=>b.x).join('|')===t.join('|');tries++;
-   if(right){ok++;const g=tries===1?20:10;pts+=g;say(e.ex,0.85);
+   if(right){ok++;const g=tries===1?20:10;pts+=g;FX.sfx.ok();setTimeout(()=>say(e.ex,0.85),250);
     $('#or').innerHTML=`<div class="okn">ถูกต้อง +${g}<br><b>${esc(e.ex)}</b>${CJK&&e.expy?`<br><span class="py">${esc(e.expy)}</span>`:''}${D.showRD&&e.srd?`<br><span class="rd">${rdHTML(e.srd)}</span>`:''}</div><button class="btn" id="on">${qi<cand.length-1?'ข้อต่อไป':'ดูผล'}</button>`;
     app.querySelectorAll('[data-a],[data-b],#oc').forEach(x=>x.disabled=true);$('#on').onclick=()=>{qi++;q()}}
    else if(tries>=2){$('#or').innerHTML=`<div class="note">ประโยคที่ถูกคือ<br><b>${esc(t.join(LANG==='en'?' ':' · '))}</b></div><button class="btn" id="on">${qi<cand.length-1?'ข้อต่อไป':'ดูผล'}</button>`;say(e.ex,0.85);
     app.querySelectorAll('[data-a],[data-b],#oc').forEach(x=>x.disabled=true);$('#on').onclick=()=>{qi++;q()}}
-   else $('#or').innerHTML='<div class="note">ยังไม่ถูก แตะคำในกรอบเพื่อเอาออก แล้วลองอีกครั้ง (เหลือ 1 ครั้ง)</div>'}
+   else{FX.sfx.bad();const oa=$('#oa');if(oa){oa.classList.remove('fx-shake');void oa.offsetWidth;oa.classList.add('fx-shake')}}if(!right&&tries<2)$('#or').innerHTML='<div class="note">ยังไม่ถูก แตะคำในกรอบเพื่อเอาออก แล้วลองอีกครั้ง (เหลือ 1 ครั้ง)</div>'}
   draw()}
  q()}
 

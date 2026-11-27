@@ -58,7 +58,8 @@ label{font-size:14px;font-weight:600}
 <button data-go="home">หน้าหลัก</button><button data-go="sounds">ออกเสียง</button><button data-go="vocab">คำศัพท์</button><button data-go="games">เกม</button><button data-go="tips">เทคนิคจำ</button>
 </nav>
 <script src="mouth.js"></script>
-<script src="games.js?v=20261127e"></script>
+<script src="fx.js?v=20261127f"></script>
+<script src="games.js?v=20261127f"></script>
 <script>
 (function(){var L='en';try{L=new URLSearchParams(location.search).get('lang')||localStorage.getItem('langstep_lang')||'en'}catch(e){}
 if(!/^(en|zh|ja)$/.test(L))L='en';try{var A=JSON.parse(localStorage.getItem('pea_hub_auth')||'null');if(L!=='en'&&A&&A.role!=='admin'&&Array.isArray(A.apps)&&A.apps.indexOf('lang_'+L)<0){window.LANG_DENIED=L;L='en'}}catch(e){}window.LANG=L;try{localStorage.setItem('langstep_lang',L)}catch(e){}
@@ -177,19 +178,21 @@ function switchLang(c){if(c===LANG)return;if(syncT)push();try{localStorage.setIt
 
 function home(){const s=stats(0),sa=stats();const n0=Math.max(inLv(0).length,1);const pct=Math.round(((s.learned/n0)+(s.snd/SOUNDS.length))*50);if(!allReady)loadAll().then(()=>{if(!allReady){allReady=true;if($('#gS'))home()}});
  const L0=LEVELS[0];
- app.innerHTML=`${window.LANG_DENIED?`<div class="note">บัญชีนี้ยังไม่ได้รับสิทธิ์${window.LANG_DENIED==='zh'?'ภาษาจีน':'ภาษาญี่ปุ่น'} — ขอสิทธิ์จากผู้ดูแลระบบในศูนย์รวมงาน</div>`:''}${langRow()}<div class="row" style="justify-content:space-between;align-items:center"><div><div class="mut">สวัสดี ${esc(AUTH?AUTH.user.name:'')} · ${esc(LP.thName)}</div><h1>Level 0 · ${esc(L0.name)}</h1></div><span class="tag" style="background:#FCE3CC;color:#7A3A08">เรียนต่อเนื่อง ${D.streak||0} วัน</span></div>
+ app.innerHTML=`${window.LANG_DENIED?`<div class="note">บัญชีนี้ยังไม่ได้รับสิทธิ์${window.LANG_DENIED==='zh'?'ภาษาจีน':'ภาษาญี่ปุ่น'} — ขอสิทธิ์จากผู้ดูแลระบบในศูนย์รวมงาน</div>`:''}${langRow()}<div class="row" style="justify-content:space-between;align-items:center"><div class="mut">สวัสดี ${esc(AUTH?AUTH.user.name:'')} · ${esc(LP.thName)}</div>${FX.pillsHTML()}</div>
+ ${FX.heroHTML()}
+ ${FX.questsHTML()}
+ <h2 style="margin-top:4px">เกมภาษา</h2>${FX.gamesHTML()}
+ <h2 style="margin-top:4px">Level 0 · ${esc(L0.name)}</h2>
  <div class="hero"><div style="font-size:14px">ความคืบหน้า Level 0</div><div class="big">${pct}%</div><div class="bar" style="background:rgba(255,255,255,.3)"><i style="width:${pct}%;background:#fff"></i></div>
  <div style="font-size:14px">ผ่านเกณฑ์ Level 0: ออกเสียงได้ ≥70% ครบ ${SOUNDS.length} บท และจำศัพท์ได้ครบ ${n0} คำ</div></div>
  <div class="g2"><div class="card"><div class="mut">บทเสียงที่ผ่านแล้ว</div><div class="big">${s.snd}<span class="mut"> / ${SOUNDS.length}</span></div><button class="btn org" id="gS">ฝึกออกเสียง</button></div>
  <div class="card"><div class="mut">คำที่จำได้ (ทุกระดับ)</div><div class="big">${sa.learned}<span class="mut"> / ${ALL.length}</span></div><button class="btn" id="gV">ทบทวนศัพท์${s.due?' ('+s.due+')':''}</button></div></div>
- <button class="item" id="gG"><span style="font-size:30px">🎮</span><span style="flex:1"><b>เกมภาษา</b><br><span class="mut">จับคู่คำ · ฟังแล้วเลือก · พูดให้ทัน · เรียงประโยค</span></span><span class="tag" style="background:#FFF1C7;color:#5E2C05">${((P().game||{}).wk===window.weekKeyNow?.()?(P().game.wpts||0):0)} แต้ม</span></button>
  <label class="card sw" for="rdsw"><span><b>แสดงคำอ่านภาษาพูด</b><br><span class="mut">${CJK?(LANG==='ja'?'คำอ่านไทยจากคานะ (สระยาว っ ん ตามเสียงจริง)':'คำอ่านไทยตามเสียงจริง (เปลี่ยนวรรณยุกต์ให้แล้ว)'):'อ่านแบบที่เจ้าของภาษาพูดจริง'} · <span class="rx">เส้นจุด</span> = เสียงที่ภาษาไทยไม่มี</span></span><input type="checkbox" id="rdsw" ${D.showRD?"checked":""}></label>
  <label class="card sw" for="thsw"><span><b>แสดงคำแปลภาษาไทย</b><br><span class="mut">คำแปลตัวเล็กใต้คำ · บัตรคำทบทวนยังซ่อนไว้เสมอ</span></span><input type="checkbox" id="thsw" ${D.showTH?"checked":""}></label>
- <div class="card"><h2>แผนวันนี้ (ประมาณ 15–20 นาที)</h2><div>1. ฝึกออกเสียง 1 บท: ฟัง → ทายคู่เสียง → พูด</div><div>2. ทบทวนคำที่ครบรอบ และเรียนคำใหม่ ${P().perDay||10} คำ</div><div>3. อ่านเทคนิคจำ 1 เรื่อง แล้วลองใช้จริง</div></div>
  <div class="row" style="justify-content:space-between;align-items:center"><span class="mut">ผลการเรียนบันทึกขึ้นระบบอัตโนมัติ</span><a class="soft" href="/index.html" style="display:flex;align-items:center;text-decoration:none;border-radius:12px">ศูนย์รวมงาน</a></div>`;
  $('#thsw').onchange=e=>{D.showTH=e.target.checked;save(D)};$('#rdsw').onchange=e=>{D.showRD=e.target.checked;save(D)};
  app.querySelectorAll('[data-lang]').forEach(b=>b.onclick=()=>switchLang(b.dataset.lang));
- $('#gS').onclick=()=>go('sounds');$('#gV').onclick=()=>go('review');$('#gG').onclick=()=>go('games')}
+ $('#gS').onclick=()=>go('sounds');$('#gV').onclick=()=>go('review');FX.bindHome()}
 
 function sounds(){app.innerHTML=`<h1>ห้องออกเสียง${CJK?' · '+esc(LP.thName):''}</h1><div class="mut">${SOUNDS.length} บทที่คนไทยมักพลาด เรียงจากง่ายไปยาก</div>`+
  SOUNDS.map((s,i)=>{const b=(P().sounds[s.id]||{}).best;const t=b>=70?`<span class="tag" style="background:#D2F0EA;color:#0B5E54">ผ่าน ${b}</span>`:b?`<span class="tag" style="background:#FCE3CC;color:#7A3A08">${b}</span>`:'<span class="tag" style="background:#EEF0F5;color:#4A5470">ยังไม่ฝึก</span>';
@@ -269,7 +272,7 @@ function sound(i){const s=SOUNDS[i],dm=DEMO[s.id]||{};let q=null,rec=null;const 
  $('#hear').onclick=()=>say(words[wi]);$('#slow').onclick=()=>say(words[wi],0.55);$('#nx').onclick=()=>{wi=(wi+1)%words.length;setW()};
  $('#mic').onclick=()=>{if(rec){rec.stop();return}const m=$('#mic');m.classList.add('on');
   rec=listen(alts=>{m.classList.remove('on');rec=null;const w=words[wi],r=judge(alts,w,pairOf(w));
-   const S=P().sounds,st=S[s.id]||{best:0,tries:0};st.tries++;st.best=Math.max(st.best,r.score);S[s.id]=st;touch();
+   const S=P().sounds,st=S[s.id]||{best:0,tries:0};const prev=st.best;st.tries++;st.best=Math.max(st.best,r.score);S[s.id]=st;if(r.score>=70){FX.quest('snd',1);FX.addXP(prev<70?20:3)}if(r.ok)FX.sfx.ok();else FX.sfx.bad();touch();
    $('#sres').innerHTML=`<div class="${r.ok?'okn':'note'}"><b>${r.score} คะแนน</b> · ระบบได้ยินว่า “${esc(r.heard||'-')}”<br>${r.ok?'ออกเสียงได้ดี ลองคำถัดไป':r.conf?'ระบบได้ยินเป็นคำคู่เสียง ('+esc(pairOf(w))+') ลองดูวิธีออกเสียงด้านบนอีกครั้ง':'ยังไม่ตรง ฟังต้นแบบแล้วลองใหม่'}</div>`},
    e=>{m.classList.remove('on');rec=null;$('#sres').innerHTML=`<div class="note">${esc(e)}</div>`})}}
 
@@ -298,9 +301,9 @@ function review(){const Pr=P(),C=Pr.cards,t=today();if(Pr.newDay!==t){Pr.newDay=
  const lv=Pr.lv||0,per=Pr.perDay||10;
  const due=Object.keys(C).filter(w=>C[w].due<=Date.now()&&BYW[w]).map(w=>BYW[w]);
  const fresh=inLv(lv).filter(e=>!C[e.w]).slice(0,Math.max(0,per-Pr.newToday));
- let queue=[...due,...fresh],done=0,total=queue.length;
+ let queue=[...due,...fresh],done=0,total=queue.length,gained=0;
  if(!total){const left=inLv(lv).filter(e=>!C[e.w]).length;app.innerHTML=`<h1>ทบทวนครบแล้ว</h1><div class="okn">${left?`วันนี้ไม่มีคำค้างทบทวน และเรียนคำใหม่ครบ ${per} คำแล้ว กลับมาพรุ่งนี้นะครับ`:`เรียนคำใน Level ${lv} ครบทุกคำแล้ว ไปที่คลังศัพท์แล้วเลือก Level ถัดไปได้เลย`}</div><button class="btn" id="h">กลับหน้าหลัก</button>`;$('#h').onclick=()=>go('home');return}
- function show(){if(!queue.length){touch();app.innerHTML=`<h1>เสร็จแล้ว</h1><div class="okn">ทบทวนครบ ${total} คำ</div><button class="btn" id="h">กลับหน้าหลัก</button>`;$('#h').onclick=()=>go('home');return}
+ function show(){if(!queue.length){touch();app.innerHTML=`<div class="hero" style="align-items:center;text-align:center;background:#1D9E75">${FX.mascot(96,'cheer')}<div style="font-size:22px;font-weight:700" class="fx-pop">ทบทวนครบ ${total} คำ!</div><div style="font-size:34px;font-weight:700;line-height:1" class="fx-pop">+${gained} XP</div><div style="opacity:.9">ภารกิจวันนี้ ${FX.questsDone()}/3</div></div><div class="g2"><button class="btn org" id="gm">ไปเล่นเกม</button><button class="soft" id="h">กลับหน้าหลัก</button></div>`;FX.confetti(app.querySelector('.hero'));FX.sfx.win();$('#h').onclick=()=>go('home');$('#gm').onclick=()=>go('games');return}
   const v=queue[0],isNew=!C[v.w];let flipped=false,rec=null;
   app.innerHTML=`<div class="row" style="align-items:center"><button class="back" id="bk" aria-label="กลับ">${BACK}</button><div style="flex:1"><div class="mut">${done}/${total} ${isNew?'· คำใหม่':'· ทบทวน'} · Level ${v.lv} · ${esc(v.cat)}</div><div class="bar"><i style="width:${done/total*100}%"></i></div></div></div>
   <button class="card" id="fc" style="min-height:230px;text-align:left;font:inherit;color:inherit;cursor:pointer">${bigW(v.w)}<div id="bk2" class="mut">แตะเพื่อดู${CJK?'คำอ่านและ':''}ความหมาย</div></button>
@@ -313,7 +316,7 @@ function review(){const Pr=P(),C=Pr.cards,t=today();if(Pr.newDay!==t){Pr.newDay=
    $('#bk2').outerHTML=`${ruby}${D.showRD&&v.rd?`<div class="rd" style="font-size:16px">${rdHTML(v.rd)}</div>`:''}<div style="font-size:22px;font-weight:700">${esc(v.th)}</div><div style="font-weight:600${CJK?';font-size:19px':''}">${esc(v.ex)}</div>${exr}${D.showRD&&sr?`<div class="rd" style="font-size:15px">${rdHTML(sr)}</div>`:''}<div class="trs">${esc(v.exth)}</div>${D.showRD&&v.note?`<div class="tip2">${CJK?'หมายเหตุ':'ภาษาพูด'}: ${esc(v.note)}</div>`:''}${si>=0?`<span class="soft" id="toSnd" role="button" tabindex="0" style="display:inline-flex;align-items:center;align-self:flex-start;margin-top:4px">${CJK?'ฝึกบทเสียงนี้':'ดูภาพปากเสียงนี้'}</span>`:''}`;
    const ts=$('#toSnd');if(ts)ts.onclick=e=>{e.stopPropagation();go('sound',si)};$('#rate').style.visibility='visible';say(v.ex,0.85)};
   $('#spk').onclick=()=>{if(rec)return;$('#sres').innerHTML='<div class="mut">กำลังฟัง… พูดได้เลย</div>';rec=listen(a=>{rec=null;const r=judge(a,v.w);$('#sres').innerHTML=`<div class="${r.ok?'okn':'note'}">${r.ok?'พูดถูก':'ระบบได้ยินว่า “'+esc(r.heard||'-')+'” ลองใหม่'}</div>`},e=>{rec=null;$('#sres').innerHTML=`<div class="note">${esc(e)}</div>`})};
-  app.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{const r=+b.dataset.r,c=C[v.w]||{box:0};if(isNew)Pr.newToday++;
+  app.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{const r=+b.dataset.r,c=C[v.w]||{box:0};if(isNew)Pr.newToday++;FX.quest('rev',1);FX.addXP(r===2?3:2,true);gained+=r===2?3:2;
    if(r===0){c.box=0;c.due=Date.now();queue.push(queue.shift());C[v.w]=c;save(D);show();return}
    c.box=Math.min(r===2?c.box+1:Math.max(c.box,1),INT.length);c.due=Date.now()+INT[Math.max(c.box-1,0)]*DAY;C[v.w]=c;queue.shift();done++;save(D);show()})}
  show()}
