@@ -57,6 +57,17 @@ const M={
  't':{label:'เสียง t / d ท้ายคำ',jaw:3,tip:[139,59],body:92,touch:[139,57],f:{spread:.4,open:.25}},
  'ɒ':{label:'ออ (stop)',jaw:12,tip:[134,98],body:104,lipX:4,voice:1,f:{round:.6,open:.8}},
  'd':{label:'เสียง d ท้ายคำ',jaw:3,tip:[139,59],body:92,touch:[139,57],voice:1,f:{spread:.4,open:.25}},
+ 'ʂ':{label:'ม้วนลิ้น zh ch sh',jaw:4,tip:[122,58],body:84,lipX:3,air:74,f:{round:.4,open:.3}},
+ 'tɕ':{label:'ลิ้นแบน j q x',jaw:2,tip:[141,92],body:62,air:76,f:{spread:1,open:.2}},
+ 'y':{label:'อวี ü ปากจู๋',jaw:2,tip:[136,84],body:66,lipX:7,voice:1,f:{round:1,open:.18,teethTop:false}},
+ 'n':{label:'-n ปลายลิ้นแตะเหงือก',jaw:4,tip:[139,59],body:94,touch:[139,57],voice:1,f:{spread:.4,open:.3}},
+ 'ŋ':{label:'-ng โคนลิ้นยก',jaw:5,tip:[132,94],body:58,touch:[96,56],voice:1,f:{spread:.4,open:.35}},
+ 'ɤ':{label:'เออ ลึกในคอ',jaw:8,tip:[132,94],body:78,voice:1,f:{spread:.5,open:.45}},
+ 'ɯ':{label:'อุ ไม่ห่อปาก',jaw:4,tip:[132,92],body:70,voice:1,f:{spread:.6,open:.25}},
+ 'ɾ':{label:'ร ญี่ปุ่น (แตะครั้งเดียว)',jaw:5,tip:[139,60],body:94,touch:[139,58],voice:1,f:{spread:.4,open:.35}},
+ 'ɸ':{label:'ฟุ เป่าลมผ่านริมฝีปาก',jaw:2,tip:[132,90],body:80,lipX:3,lipLowY:74,air:74,f:{round:.5,open:.1,teethTop:false}},
+ 'ts':{label:'ts ปลายลิ้นแตะฟัน',jaw:2,tip:[140,62],body:86,touch:[140,60],air:76,f:{spread:.8,open:.18}},
+ 'Q':{label:'หยุดลม (っ)',jaw:2,tip:[139,59],body:92,touch:[139,57],f:{spread:.4,open:.1}},
  'p':{label:'ปากปิด (p/b)',jaw:0,tip:[132,88],body:94,lipLowY:76,f:{spread:.4,open:0,teethTop:false}}
 };
 
