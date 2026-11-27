@@ -60,7 +60,7 @@ label{font-size:14px;font-weight:600}
 <script src="mouth.js"></script>
 <script>
 (function(){var L='en';try{L=new URLSearchParams(location.search).get('lang')||localStorage.getItem('langstep_lang')||'en'}catch(e){}
-if(!/^(en|zh|ja)$/.test(L))L='en';window.LANG=L;try{localStorage.setItem('langstep_lang',L)}catch(e){}
+if(!/^(en|zh|ja)$/.test(L))L='en';try{var A=JSON.parse(localStorage.getItem('pea_hub_auth')||'null');if(L!=='en'&&A&&A.role!=='admin'&&Array.isArray(A.apps)&&A.apps.indexOf('lang_'+L)<0){window.LANG_DENIED=L;L='en'}}catch(e){}window.LANG=L;try{localStorage.setItem('langstep_lang',L)}catch(e){}
 document.write('<script src="'+(L==='en'?'data.js?v=20261127':L+'/pack.js?v=20261127')+'"><\/script>')})();
 </script>
 <script>
@@ -164,7 +164,8 @@ const bigW=w=>CJK?`<div class="cjk">${esc(w)}</div>`:`<div class="big">${esc(w)}
 function stats(lv){const C=P().cards;const ws=lv==null?ALL:inLv(lv);const learned=ws.filter(e=>(C[e.w]||{}).box>=2).length;const seen=ws.filter(e=>C[e.w]).length;
  const due=Object.keys(C).filter(w=>C[w].due<=Date.now()).length;
  const snd=Object.values(P().sounds).filter(s=>s.best>=70).length;return{learned,seen,due,snd}}
-let LANG_OK=null; // รายการภาษาที่บัญชีนี้ใช้ได้ (มาจากศูนย์รวมงาน)
+let LANG_OK=null; // รายการภาษาที่บัญชีนี้ใช้ได้ (มาจากศูนย์รวมงาน: แอดมินได้ทุกภาษา · สมาชิกต้องได้สิทธิ์ lang_zh / lang_ja)
+try{const A=JSON.parse(localStorage.getItem('pea_hub_auth')||'null');if(A&&A.role!=='admin'&&Array.isArray(A.apps))LANG_OK=['en'].concat(A.apps.filter(x=>/^lang_/.test(x)).map(x=>x.slice(5)))}catch(e){}
 const langAllowed=c=>c==='en'||!LANG_OK||LANG_OK.includes(c);
 function langRow(){const ls=LANGS.filter(x=>langAllowed(x.code));if(ls.length<2)return '';
  return `<div class="row" role="group" aria-label="เลือกภาษา">${ls.map(x=>`<button class="lg ${x.code===LANG?'on':''}" data-lang="${x.code}">${esc(x.label)}</button>`).join('')}</div>`}
@@ -172,7 +173,7 @@ function switchLang(c){if(c===LANG)return;if(syncT)push();try{localStorage.setIt
 
 function home(){const s=stats(0),sa=stats();const n0=Math.max(inLv(0).length,1);const pct=Math.round(((s.learned/n0)+(s.snd/SOUNDS.length))*50);if(!allReady)loadAll().then(()=>{if(!allReady){allReady=true;if($('#gS'))home()}});
  const L0=LEVELS[0];
- app.innerHTML=`${langRow()}<div class="row" style="justify-content:space-between;align-items:center"><div><div class="mut">สวัสดี ${esc(AUTH?AUTH.user.name:'')} · ${esc(LP.thName)}</div><h1>Level 0 · ${esc(L0.name)}</h1></div><span class="tag" style="background:#FCE3CC;color:#7A3A08">เรียนต่อเนื่อง ${D.streak||0} วัน</span></div>
+ app.innerHTML=`${window.LANG_DENIED?`<div class="note">บัญชีนี้ยังไม่ได้รับสิทธิ์${window.LANG_DENIED==='zh'?'ภาษาจีน':'ภาษาญี่ปุ่น'} — ขอสิทธิ์จากผู้ดูแลระบบในศูนย์รวมงาน</div>`:''}${langRow()}<div class="row" style="justify-content:space-between;align-items:center"><div><div class="mut">สวัสดี ${esc(AUTH?AUTH.user.name:'')} · ${esc(LP.thName)}</div><h1>Level 0 · ${esc(L0.name)}</h1></div><span class="tag" style="background:#FCE3CC;color:#7A3A08">เรียนต่อเนื่อง ${D.streak||0} วัน</span></div>
  <div class="hero"><div style="font-size:14px">ความคืบหน้า Level 0</div><div class="big">${pct}%</div><div class="bar" style="background:rgba(255,255,255,.3)"><i style="width:${pct}%;background:#fff"></i></div>
  <div style="font-size:14px">ผ่านเกณฑ์ Level 0: ออกเสียงได้ ≥70% ครบ ${SOUNDS.length} บท และจำศัพท์ได้ครบ ${n0} คำ</div></div>
  <div class="g2"><div class="card"><div class="mut">บทเสียงที่ผ่านแล้ว</div><div class="big">${s.snd}<span class="mut"> / ${SOUNDS.length}</span></div><button class="btn org" id="gS">ฝึกออกเสียง</button></div>
