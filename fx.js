@@ -82,8 +82,9 @@ function questsHTML(){const q=DAYQ(),done=questsDone();
  return `<div class="card" style="gap:8px"><div class="row" style="justify-content:space-between;align-items:center"><h2>ภารกิจวันนี้</h2><span class="mut">${done}/3</span></div>`+
  QUESTS.map(x=>{const v=Math.min(q[x.k]||0,x.goal),ok=v>=x.goal;return `<div class="fx-q ${ok?'done':''}"><i class="ti ${ok?'ti-check':x.icon}" style="font-size:20px" aria-hidden="true"></i><span style="flex:1">${esc(x.t(x.goal))}</span><span style="font-size:13px">${ok?'+15 XP':v+'/'+x.goal}</span></div>`}).join('')+
  `<button class="fx-q" id="fxChest" style="border:1.5px dashed #EF9F27;background:${done===3&&!q.chest?'#FAEEDA':'transparent'};width:100%;font:inherit;text-align:left;color:#633806;cursor:pointer"><span class="${done===3&&!q.chest?'fx-bob':''}" style="display:flex">${CHEST}</span><span style="flex:1">${q.chest?'เปิดหีบวันนี้แล้ว':'ครบ 3 ภารกิจ เปิดหีบสมบัติ'}</span><span style="font-size:13px">${q.chest?'✓':done+'/3'}</span></button></div>`}
-function gamesHTML(){const g=(P().game||{}),best=g.best||{};const names={match:'จับคู่คำ',listen:'ฟังแล้วเลือก',speak:'พูดให้ทัน',order:'เรียงประโยค'};
+function gamesHTML(){const g=(P().game||{}),best=g.best||{};const GN=(window.GAPI&&GAPI.GN)||{match:'จับคู่คำ',listen:'ฟังแล้วเลือก',speak:'พูดให้ทัน',order:'เรียงประโยค'};const pick=['adv','match','rain','listen','dialog','tf'].filter(k=>GN[k]&&GCOL[k]&&ICON[k]);const names={};(pick.length>=4?pick:Object.keys(GN).slice(0,4)).forEach(k=>names[k]=GN[k]);
  return `<div class="g2">${Object.keys(names).map(k=>{const c=GCOL[k];return `<button class="fx-gc" data-fxg="${k}" style="background:${c[0]}">${ICON[k]}<span style="font-weight:700;color:${c[1]}">${names[k]}</span><span style="font-size:12px;color:${c[2]}">${best[k]?'ดีสุด '+best[k]:'ยังไม่เคยเล่น'}</span></button>`}).join('')}</div>
+ <button class="soft" id="fxAllG" style="width:100%">ดูเกมทั้งหมด ${Object.keys(GN).filter(k=>k!=='board').length} เกม</button>
  <button class="fx-q" id="fxBoard" style="background:#FAEEDA;border:none;width:100%;font:inherit;text-align:left;cursor:pointer">${ICON.trophy}<span style="flex:1"><span style="display:block;font-weight:700;color:#633806" id="fxRank">ตารางแต้มประจำสัปดาห์</span><span style="font-size:12px;color:#854F0B" id="fxRank2">แต้มสัปดาห์นี้ ${g.wk===window.weekKeyNow()?g.wpts||0:0}</span></span><i class="ti ti-chevron-right" style="color:#854F0B" aria-hidden="true"></i></button>`}
 function bindHome(){const lines=TALK[LANG]||TALK.en;let li=-1;
  requestAnimationFrame(()=>{const b=$('#fxBar');if(b){const r=rankOf(P().xp||0);b.style.width=Math.round(r.cur/r.need*100)+'%'}});
@@ -91,7 +92,7 @@ function bindHome(){const lines=TALK[LANG]||TALK.en;let li=-1;
   const mo=m.querySelector('.fx-mouth');mo.setAttribute('d',MOOD.cheer);mo.setAttribute('fill','#993C1D');m.classList.remove('fx-jump');void m.getBoundingClientRect();m.classList.add('fx-jump');sfx.xp();
   setTimeout(()=>{mo.setAttribute('d',MOOD.happy);mo.setAttribute('fill','none')},700)};
  app.querySelectorAll('[data-fxg]').forEach(b=>b.onclick=()=>{b.classList.add('fx-pop');setTimeout(()=>window.game(b.dataset.fxg),150)});
- const bd=$('#fxBoard');if(bd)bd.onclick=()=>window.game('board');
+ const ag=$('#fxAllG');if(ag)ag.onclick=()=>go('games');const bd=$('#fxBoard');if(bd)bd.onclick=()=>window.game('board');
  const ch=$('#fxChest');if(ch)ch.onclick=openChest;
  // อันดับของฉันสัปดาห์นี้ (ถ้าหลังบ้านพร้อม)
  if(AUTH&&window.weekKeyNow)api('board',{token:AUTH.token,lang:LANG,week:window.weekKeyNow()}).then(r=>{if(!r||!r.ok||!Array.isArray(r.list)||!$('#fxRank'))return;

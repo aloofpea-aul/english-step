@@ -3,10 +3,10 @@
  * แต้มเก็บใน P().game = {wk:'2026-W48', wpts, tot, best:{match,listen,speak,order}} แล้วซิงก์ขึ้นหลังบ้านพร้อมผลเรียน */
 (function(){
 const GAMES=[
- {id:'match',icon:'🃏',name:'จับคู่คำ',desc:'พลิกการ์ดจับคู่คำกับความหมาย 6 คู่ ให้ทันเวลา'},
- {id:'listen',icon:'🎧',name:'ฟังแล้วเลือก',desc:'ฟังเสียงแล้วเลือกคำที่ได้ยิน 10 ข้อ'},
- {id:'speak',icon:'🎤',name:'พูดให้ทัน',desc:'พูดคำที่ขึ้นมาให้ถูก ภายใน 60 วินาที'},
- {id:'order',icon:'🧩',name:'เรียงประโยค',desc:'แตะคำเรียงเป็นประโยคให้ถูก 5 ข้อ'}
+ {id:'match',cat:'mem',icon:'🃏',name:'จับคู่คำ',desc:'พลิกการ์ดจับคู่คำกับความหมาย 6 คู่ ให้ทันเวลา'},
+ {id:'listen',cat:'ear',icon:'🎧',name:'ฟังแล้วเลือก',desc:'ฟังเสียงแล้วเลือกคำที่ได้ยิน 10 ข้อ'},
+ {id:'speak',cat:'use',icon:'🎤',name:'พูดให้ทัน',desc:'พูดคำที่ขึ้นมาให้ถูก ภายใน 60 วินาที'},
+ {id:'order',cat:'use',icon:'🧩',name:'เรียงประโยค',desc:'แตะคำเรียงเป็นประโยคให้ถูก 5 ข้อ'}
 ];
 const GN=Object.fromEntries(GAMES.map(g=>[g.id,g.name]));
 const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
@@ -22,43 +22,56 @@ const shortTh=t=>String(t||'').split(/[\/,(]/)[0].trim();
 const wordHTML=(e,big)=>`<span style="font-weight:700;${CJK?'font-size:'+(big?30:22)+'px':'font-size:'+(big?24:17)+'px'}">${esc(e.w)}</span>${pyw(e.w)}${D.showRD&&e.rd?`<span class="rd">${rdHTML(e.rd)}</span>`:''}`;
 function head(title,sub){return `<div class="row" style="align-items:center"><button class="back" id="gbk" aria-label="กลับ">${BACK}</button><div style="flex:1"><h1>${esc(title)}</h1>${sub?`<div class="mut" id="gsub">${sub}</div>`:''}</div></div>`}
 function needWords(cb){if(!allReady){app.innerHTML='<div class="mut">กำลังโหลดคำศัพท์…</div>';loadAll().then(()=>{allReady=true;cb()});return false}return true}
+const CN=(id,d)=>{const c=(G().cfg||{})[id];return c||d};
+const LIVE=f=>{window.__live=f};
 let RUN=0;// กันตัวจับเวลาของเกมเก่าทำงานต่อเมื่อเปลี่ยนหน้า
 const stars=(n)=>'★★★'.slice(0,n)+'☆☆☆'.slice(0,3-n);
-function finish(id,pts,detail,again){const nb=addPts(id,pts);const g=G();const xp=Math.round(pts/10)+5;FX.quest('gpts',pts);FX.addXP(xp,true);save(D);
+function finish(id,pts,detail,again){window.__live=null;const du=window.DUEL?DUEL.end(id,pts):null;if(du&&du.win){pts+=du.bonus}const nb=addPts(id,pts);const g=G();const xp=Math.round(pts/10)+5;FX.quest('gpts',pts);FX.addXP(xp,true);save(D);
  const st=pts>=100?3:pts>=50?2:pts>0?1:0,c=FX.GCOL[id]||['#E6F1FB','#0C447C','#185FA5'];
  const star=(on,d)=>`<svg class="fx-pop" style="animation-delay:${d}s" width="44" height="44" viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.4 7L12 17.5 5.8 21l1.4-7L2 9.3l7-.8z" fill="${on?'#EF9F27':'#D3D1C7'}"/></svg>`;
  app.innerHTML=head(GN[id])+`<div class="hero" id="fin" style="align-items:center;text-align:center;background:${c[0]};color:${c[1]}">
  <div class="row" style="justify-content:center;gap:2px">${star(st>=1,.1)}${star(st>=2,.25)}${star(st>=3,.4)}</div>
  ${FX.mascot(80,st>=2?'cheer':st?'happy':'think')}
  <div style="font-size:20px;font-weight:700" class="fx-pop">${st>=3?'สุดยอด!':st>=2?'เก่งมาก!':st?'ดีแล้ว ลองอีกนะ':'ไม่เป็นไร ลองใหม่นะ'}</div>
- <div style="font-size:44px;font-weight:700;line-height:1;color:${c[2]}" class="fx-pop">+${pts}</div><div>${detail}</div>
+ <div style="font-size:44px;font-weight:700;line-height:1;color:${c[2]}" class="fx-pop">+${pts}</div><div>${detail}</div>${du?`<div class="fx-pill" style="background:${du.win?'#EAF3DE':'#FCEBEB'};color:${du.win?'#27500A':'#791F1F'}">${du.win?'ชนะน้องมีไฟ '+du.me+' : '+du.bot+' · โบนัส +'+du.bonus:'น้องมีไฟชนะ '+du.bot+' : '+du.me+' · ลองใหม่นะ'}</div>`:''}
  <div class="row" style="justify-content:center;gap:6px">${nb?'<span class="fx-pill" style="background:#EEEDFE;color:#3C3489">สถิติใหม่</span>':''}<span class="fx-pill" style="background:#EAF3DE;color:#27500A">+${xp} XP</span><span class="fx-pill" style="background:#FAEEDA;color:#633806">ภารกิจ ${FX.questsDone()}/3</span></div></div>
  <div class="card"><div class="row" style="justify-content:space-between"><span>แต้มสัปดาห์นี้ (${esc(LP.thName)})</span><b>${g.wpts}</b></div><div class="row" style="justify-content:space-between"><span class="mut">สถิติดีสุดเกมนี้</span><span>${g.best[id]||0}</span></div></div>
  <div class="g2"><button class="btn org" id="gag">เล่นอีกรอบ</button><button class="soft" id="gls">เลือกเกมอื่น</button></div><button class="soft" id="gbd">ดูตารางแต้ม</button>`;
  if(st)FX.confetti($('#fin'));FX.sfx[st?'win':'bad']();
- $('#gbk').onclick=()=>go('games');$('#gag').onclick=again;$('#gls').onclick=()=>go('games');$('#gbd').onclick=()=>game('board')}
+ $('#gbk').onclick=()=>go('games');$('#gag').onclick=()=>{if(id==='adv'||id==='dialog')again();else game(id,true)};$('#gls').onclick=()=>go('games');$('#gbd').onclick=()=>game('board')}
 
 /* ---------- หน้ารวมเกม ---------- */
 window.games=function(){RUN++;if(!needWords(window.games))return;const g=G(),n=pool().length;
  app.innerHTML=`<h1>เกมภาษา${CJK?' · '+esc(LP.thName):''}</h1>${langRow()}
  <div class="hero" style="flex-direction:row;align-items:center;gap:10px">${FX.mascot(70)}<div style="flex:1"><div style="opacity:.9;font-size:14px">แต้มสัปดาห์นี้</div><div style="font-size:34px;font-weight:700;line-height:1.1">${g.wpts}</div><button class="btn white" id="gboard" style="margin-top:6px;min-height:38px">ตารางแต้ม</button></div></div><div class="mut" style="margin-top:-6px">
  ใช้คำจาก Level ${P().lv||0} และคำที่เคยเรียนแล้ว · ${n} คำ · แต้มรีเซ็ตทุกวันจันทร์</div>`+
- GAMES.map(x=>{const c=FX.GCOL[x.id];return `<button class="fx-gc" data-g="${x.id}" style="background:${c[0]};flex-direction:row;align-items:center;gap:12px;min-height:84px">${FX.ICON[x.id]}<span style="flex:1"><b style="color:${c[1]};font-size:17px">${x.name}</b><br><span style="font-size:13px;color:${c[2]}">${x.desc}</span></span><span class="fx-pill" style="background:#fff;color:${c[1]}">${g.best[x.id]?'ดีสุด '+g.best[x.id]:'ใหม่'}</span></button>`}).join('')+
+ [['adv','ตะลุยด่าน'],['mem','ฝึกจำคำ'],['use','ฝึกใช้จริง'],['ear','ฝึกหู']].map(([ck,cn])=>{const L=GAMES.filter(x=>(x.cat||'mem')===ck);return L.length?`<h2 style="margin-top:4px">${cn}</h2>`+L.map(x=>{const c=FX.GCOL[x.id];return `<button class="fx-gc" data-g="${x.id}" style="background:${c[0]};flex-direction:row;align-items:center;gap:12px;min-height:84px">${FX.ICON[x.id]}<span style="flex:1"><b style="color:${c[1]};font-size:17px">${x.name}</b><br><span style="font-size:13px;color:${c[2]}">${x.desc}</span></span><span class="fx-pill" style="background:#fff;color:${c[1]}">${g.best[x.id]?'ดีสุด '+g.best[x.id]:'ใหม่'}</span></button>`}).join(''):''}).join('')+
  `<div class="mut">เปลี่ยนระดับคำได้ที่หน้า "คำศัพท์" · เปิดเสียงลำโพงก่อนเล่นเกมฟังและเกมพูด</div>`;
  app.querySelectorAll('[data-lang]').forEach(b=>b.onclick=()=>switchLang(b.dataset.lang));
  app.querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>game(b.dataset.g));$('#gboard').onclick=()=>game('board')};
-function game(id){RUN++;window.scrollTo(0,0);({match,listen:listenG,speak,order,board})[id]()}
+const EXTRA={};
+function game(id,skip){RUN++;window.scrollTo(0,0);if(window.DUEL)DUEL.stop();const fn=EXTRA[id]||{match,listen:listenG,speak,order,board}[id];const S=SETUP[id];
+ if(S&&!skip)return setup(id,S,()=>{RUN++;if(window.DUEL&&G().duel&&id!=='board'&&id!=='adv'&&id!=='dialog')DUEL.start(id);fn()});
+ if(window.DUEL&&G().duel&&id!=='board'&&id!=='adv'&&id!=='dialog')DUEL.start(id);fn()}
+const SETUP={match:{opts:[6,8,10,12],unit:'คู่',d:6},listen:{opts:[10,20,30,50],unit:'ข้อ',d:10},speak:{opts:[60,90,120,180],unit:'วินาที',d:60},order:{opts:[5,10,15,20],unit:'ประโยค',d:5}};
+function setup(id,S,start){const g=G();g.cfg=g.cfg||{};const cur=g.cfg[id]||S.d;const nm=GN[id];
+ app.innerHTML=head(nm,'เลือกจำนวนก่อนเริ่ม')+`<div class="card" style="align-items:center;text-align:center">${FX.mascot(80)}<div class="mut">ยิ่งเยอะ ยิ่งได้แต้มมาก</div><div class="g2" style="width:100%">${S.opts.map(n=>`<button class="${n===cur?'btn':'soft'}" data-n="${n}" style="min-height:56px;font-size:18px">${n} ${S.unit}</button>`).join('')}</div>
+ <label class="sw" for="duelsw" style="width:100%"><span><b>ดวลกับน้องมีไฟ</b><br><span class="mut">ทำแต้มให้ชนะน้องมีไฟ รับโบนัส +20%</span></span><input type="checkbox" id="duelsw" ${g.duel?'checked':''}></label></div><button class="btn org" id="gst" style="min-height:56px;font-size:18px">เริ่มเล่น ${cur} ${S.unit}</button>`;
+ let n=cur;$('#gbk').onclick=()=>go('games');$('#duelsw').onchange=e=>{g.duel=e.target.checked;save(D)};
+ app.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>{n=+b.dataset.n;app.querySelectorAll('[data-n]').forEach(x=>x.className=+x.dataset.n===n?'btn':'soft');$('#gst').textContent='เริ่มเล่น '+n+' '+S.unit});
+ $('#gst').onclick=()=>{g.cfg[id]=n;save(D);start()}}
+window.GAPI={GAMES,GN,SETUP,CN,LIVE,reg(def,fn,su){if(!GN[def.id])GAMES.push(def);GN[def.id]=def.name;EXTRA[def.id]=fn;if(su)SETUP[def.id]=su},finish,head,pool,sh,wordHTML,shortTh,needWords,G,run:()=>RUN,weekKey};
 window.game=game;window.weekKeyNow=()=>weekKey();
 
 /* ---------- 1) จับคู่คำ ---------- */
-function match(){if(!needWords(match))return;const my=RUN;const ws=sh(pool()).slice(0,6);let t0=Date.now(),left=6,miss=0,sel=null,lock=false;const LIM=90;
+function match(){if(!needWords(match))return;const my=RUN;const NP=CN('match',6);const ws=sh(pool()).slice(0,NP);let t0=Date.now(),left=ws.length,miss=0,sel=null,lock=false;const LIM=15*ws.length;LIVE(()=>(ws.length-left)*10);
  const tiles=sh([...ws.map((e,i)=>({k:i,side:'w',e})),...ws.map((e,i)=>({k:i,side:'t',e}))]);
- app.innerHTML=head('จับคู่คำ','แตะคำ แล้วแตะความหมายที่คู่กัน')+`<div class="row" style="justify-content:space-between"><span class="tag" id="mt" style="background:#EEF0F5;color:#16213E">เวลา 0 วิ</span><span class="tag" id="ml" style="background:#D2F0EA;color:#0B5E54">เหลือ 6 คู่</span></div>
+ app.innerHTML=head('จับคู่คำ','แตะคำ แล้วแตะความหมายที่คู่กัน')+`<div class="row" style="justify-content:space-between"><span class="tag" id="mt" style="background:#EEF0F5;color:#16213E">เวลา 0 วิ</span><span class="tag" id="ml" style="background:#D2F0EA;color:#0B5E54">เหลือ ${ws.length} คู่</span></div>
  <div class="g3" id="mg">${tiles.map((t,i)=>`<button class="opt w2" data-i="${i}" style="min-height:84px">${t.side==='w'?wordHTML(t.e):`<span style="font-size:15px;font-weight:600">${esc(shortTh(t.e.th))}</span>`}</button>`).join('')}</div>`;
  $('#gbk').onclick=()=>go('games');
  const tick=setInterval(()=>{if(my!==RUN||!$('#mt'))return clearInterval(tick);const s=Math.floor((Date.now()-t0)/1000);$('#mt').textContent='เวลา '+s+' วิ';if(s>=LIM){clearInterval(tick);end()}},300);
- function end(){clearInterval(tick);const s=Math.round((Date.now()-t0)/1000),got=6-left;const st=left?0:s<=30?3:s<=50?2:1;
-  const pts=got*10+(left?0:Math.max(0,LIM-s))-miss*2;finish('match',Math.max(0,pts),`${stars(st)} · จับคู่ได้ ${got}/6 คู่ · ${s} วินาที · พลาด ${miss} ครั้ง`,match)}
+ function end(){clearInterval(tick);const s=Math.round((Date.now()-t0)/1000),got=ws.length-left;const st=left?0:s<=LIM/3?3:s<=LIM*.55?2:1;
+  const pts=got*10+(left?0:Math.max(0,LIM-s))-miss*2;finish('match',Math.max(0,pts),`${stars(st)} · จับคู่ได้ ${got}/${ws.length} คู่ · ${s} วินาที · พลาด ${miss} ครั้ง`,match)}
  app.querySelectorAll('#mg [data-i]').forEach(b=>b.onclick=()=>{if(lock||b.disabled)return;const t=tiles[+b.dataset.i];if(t.side==='w')say(t.e.w);
   if(!sel){sel={b,t};b.style.background='#FFF1C7';return}
   if(sel.b===b){b.style.background='';sel=null;return}
@@ -67,26 +80,26 @@ function match(){if(!needWords(match))return;const my=RUN;const ws=sh(pool()).sl
   else{miss++;lock=true;FX.sfx.bad();[a.b,b].forEach(x=>{x.classList.add('bad');x.style.background=''});setTimeout(()=>{[a.b,b].forEach(x=>x.classList.remove('bad'));lock=false},650)}})}
 
 /* ---------- 2) ฟังแล้วเลือก ---------- */
-function listenG(){if(!needWords(listenG))return;const my=RUN;const P0=pool();const qs=sh(P0).slice(0,10);let qi=0,pts=0,ok=0,streak=0;
+function listenG(){if(!needWords(listenG))return;const my=RUN;const P0=pool();const NQ=CN('listen',10);const qs=sh(P0).slice(0,NQ);let qi=0,pts=0,ok=0,streak=0;LIVE(()=>pts);
  function distract(e){const len=[...e.w].length,sid=LP.soundFor?LP.soundFor(e):null;
   const near=sh(P0.filter(x=>x.w!==e.w&&shortTh(x.th)!==shortTh(e.th)&&Math.abs([...x.w].length-len)<=1&&(!sid||LP.soundFor(x)===sid)));
   const rest=sh(P0.filter(x=>x.w!==e.w&&!near.includes(x)));return [...near,...rest].slice(0,3)}
- function q(){if(my!==RUN)return;if(qi>=qs.length)return finish('listen',pts,`ตอบถูก ${ok}/10 ข้อ`,listenG);
+ function q(){if(my!==RUN)return;if(qi>=qs.length)return finish('listen',pts,`ตอบถูก ${ok}/${qs.length} ข้อ`,listenG);
   const e=qs[qi],opts=sh([e,...distract(e)]);let done=false;
-  app.innerHTML=head('ฟังแล้วเลือก',`ข้อ ${qi+1}/10 · ${pts} แต้ม${streak>=2?' · ติดกัน '+streak+' ข้อ':''}`)+`<div class="bar"><i style="width:${qi*10}%"></i></div>
+  app.innerHTML=head('ฟังแล้วเลือก',`ข้อ ${qi+1}/${qs.length} · ${pts} แต้ม${streak>=2?' · ติดกัน '+streak+' ข้อ':''}`)+`<div class="bar"><i style="width:${qi/qs.length*100}%"></i></div>
   <div class="card" style="align-items:center"><button class="mic" id="lp" aria-label="ฟังอีกครั้ง" style="background:var(--blue)"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 010 7M19 5a10 10 0 010 14"/></svg></button><div class="row"><button class="soft" id="ls">ฟังช้า</button></div><div class="mut">ฟังแล้วเลือกคำที่ได้ยิน</div></div>
   <div class="g2" id="lo">${opts.map((o,i)=>`<button class="opt w2" data-i="${i}" style="min-height:76px">${wordHTML(o)}</button>`).join('')}</div><div id="lr"></div>`;
   $('#gbk').onclick=()=>go('games');$('#lp').onclick=()=>say(e.w);$('#ls').onclick=()=>say(e.w,0.55);setTimeout(()=>{if(my===RUN)say(e.w)},250);
   app.querySelectorAll('#lo [data-i]').forEach(b=>b.onclick=()=>{if(done)return;done=true;const o=opts[+b.dataset.i],right=o===e;
    if(right){ok++;streak++;pts+=10+(streak>=3?5:0);b.classList.add('ok');FX.sfx.ok();if(streak>=3)FX.toast('ติดกัน '+streak+' ข้อ! +5','#0F6E56')}else{streak=0;FX.sfx.bad();b.classList.add('bad');app.querySelectorAll('#lo [data-i]')[opts.indexOf(e)].classList.add('ok')}
-   $('#lr').innerHTML=`<div class="${right?'okn':'note'}">${right?'ถูกต้อง':'คำที่ได้ยินคือ'} <b>${esc(e.w)}</b> = ${esc(e.th)}</div><button class="btn" id="ln">${qi<9?'ข้อต่อไป':'ดูผล'}</button>`;
+   $('#lr').innerHTML=`<div class="${right?'okn':'note'}">${right?'ถูกต้อง':'คำที่ได้ยินคือ'} <b>${esc(e.w)}</b> = ${esc(e.th)}</div><button class="btn" id="ln">${qi<qs.length-1?'ข้อต่อไป':'ดูผล'}</button>`;
    $('#ln').onclick=()=>{qi++;q()}})}
  q()}
 
 /* ---------- 3) พูดให้ทัน ---------- */
 function speak(){if(!needWords(speak))return;const my=RUN;
  if(!(window.SpeechRecognition||window.webkitSpeechRecognition)){app.innerHTML=head('พูดให้ทัน')+'<div class="note">เครื่องหรือเบราว์เซอร์นี้ยังไม่รองรับการฟังเสียงพูด แนะนำให้เปิดด้วย Chrome บน Android หรือคอมพิวเตอร์</div>';$('#gbk').onclick=()=>go('games');return}
- const qs=sh(pool());let qi=0,pts=0,ok=0,skip=0,rec=null,started=false,t0=0;const LIM=60;
+ const qs=sh(pool());let qi=0,pts=0,ok=0,skip=0,rec=null,started=false,t0=0;const LIM=CN('speak',60);LIVE(()=>pts);
  app.innerHTML=head('พูดให้ทัน','พูดคำที่ขึ้นมาให้ถูก ได้คำละ 15 แต้ม · ข้ามได้')+`<div class="row" style="justify-content:space-between"><span class="tag" id="st" style="background:#EEF0F5;color:#16213E">เวลา ${LIM} วิ</span><span class="tag" id="sp" style="background:#D2F0EA;color:#0B5E54">0 แต้ม</span></div>
  <div class="card" style="align-items:center;text-align:center;min-height:170px;justify-content:center" id="sw"></div>
  <button class="mic" id="smic" aria-label="กดแล้วพูด">${MIC}</button><div class="mut" style="text-align:center" id="shint">กดไมค์เพื่อเริ่ม เวลาจะเริ่มนับเมื่อกดครั้งแรก</div>
@@ -114,9 +127,9 @@ function tokens(e){const strip=s=>s.replace(/[.,!?;:。、！？，．「」"]/g
  const hz=[...String(e.ex).replace(/[^㐀-鿿]/g,'')];const ws=String(e.expy||'').split(/\s+/).map(w=>LP.parse(w).length).filter(n=>n>0);
  if(ws.reduce((a,b)=>a+b,0)!==hz.length)return [];let k=0;return ws.map(n=>{const t=hz.slice(k,k+n).join('');k+=n;return t})}
 function order(){if(!needWords(order))return;const my=RUN;
- const cand=sh(pool()).filter(e=>e.ex&&e.exth).map(e=>({e,t:tokens(e)})).filter(x=>x.t.length>=3&&x.t.length<=7&&new Set(x.t).size===x.t.length).slice(0,5);
+ const cand=sh(pool()).filter(e=>e.ex&&e.exth).map(e=>({e,t:tokens(e)})).filter(x=>x.t.length>=3&&x.t.length<=7&&new Set(x.t).size===x.t.length).slice(0,CN('order',5));
  if(cand.length<3){app.innerHTML=head('เรียงประโยค')+'<div class="note">คำในระดับนี้ยังมีประโยคตัวอย่างไม่พอ ลองเลือก Level อื่นในหน้าคำศัพท์</div>';$('#gbk').onclick=()=>go('games');return}
- let qi=0,pts=0,ok=0;
+ let qi=0,pts=0,ok=0;LIVE(()=>pts);
  function q(){if(my!==RUN)return;if(qi>=cand.length)return finish('order',pts,`เรียงถูก ${ok}/${cand.length} ประโยค`,order);
   const {e,t}=cand[qi];const bank=sh(t.map((x,i)=>({x,i})));let ans=[],tries=0,hint=false;
   const draw=()=>{app.innerHTML=head('เรียงประโยค',`ข้อ ${qi+1}/${cand.length} · ${pts} แต้ม`)+`<div class="bar"><i style="width:${qi/cand.length*100}%"></i></div>
