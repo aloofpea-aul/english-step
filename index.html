@@ -61,11 +61,11 @@ label{font-size:14px;font-weight:600}
 <script>
 (function(){var L='en';try{L=new URLSearchParams(location.search).get('lang')||localStorage.getItem('langstep_lang')||'en'}catch(e){}
 if(!/^(en|zh|ja)$/.test(L))L='en';try{var A=JSON.parse(localStorage.getItem('pea_hub_auth')||'null');if(L!=='en'&&A&&A.role!=='admin'&&Array.isArray(A.apps)&&A.apps.indexOf('lang_'+L)<0){window.LANG_DENIED=L;L='en'}}catch(e){}window.LANG=L;try{localStorage.setItem('langstep_lang',L)}catch(e){}
-document.write('<script src="'+(L==='en'?'data.js?v=20261127':L+'/pack.js?v=20261127')+'"><\/script>')})();
+document.write('<script src="'+(L==='en'?'data.js?v=20261127':L+'/pack.js?v=20261127d')+'"><\/script>')})();
 </script>
 <script>
 /* ===== ชุดภาษา ===== */
-const LANGS=[{code:'en',label:'English'},{code:'zh',label:'中文 จีน'}];
+const LANGS=[{code:'en',label:'English'},{code:'zh',label:'中文 จีน'},{code:'ja',label:'日本語 ญี่ปุ่น'}];
 const EN=window.ES_DATA||{};
 const LP=LANG==='en'?{code:'en',label:'English',thName:'ภาษาอังกฤษ',tts:'en-US',ttsRe:/en-US/i,SOUNDS:EN.SOUNDS,DEMO:EN.DEMO,TIPS:EN.TIPS,DICT:{},
  levels:[{lv:0,name:'ปูพื้นเสียง',cefr:'Pre-A1',goal:150},{lv:1,name:'เอาตัวรอด',cefr:'A1',goal:500},{lv:2,name:'สื่อสารประจำวัน',cefr:'A2',goal:1200},{lv:3,name:'คุยได้คล่อง',cefr:'B1',goal:2500},{lv:4,name:'มั่นใจในที่ทำงาน',cefr:'B2',goal:4000}],
@@ -80,15 +80,15 @@ function addE(e){const w=CJK?e.w:e.w.toLowerCase();if(BYW[w])return;e.w=w;BYW[w]
 if(!CJK)(EN.VOCAB||[]).forEach((v,k)=>addE({lv:0,cat:v[0],w:v[1],th:v[2],rd:RD[v[1]]||'',ex:v[3],exth:VTH[k]||'',srd:SRD[k]||'',note:SNOTE[k]||''}));
 window.ES_ADD=(lv,cat,txt)=>txt.split('\n').map(x=>x.trim()).filter(Boolean).forEach(line=>{const f=line.split('|').map(x=>x.trim());
  if(!CJK){if(f.length>=5)addE({lv,cat,w:f[0],th:f[1],rd:f[2],ex:f[3],exth:f[4],srd:'',note:f[5]||''});return}
- if(f.length<6)return;addE({lv,cat,w:f[0],py:f[1],th:f[2],ex:f[3],expy:f[4],exth:f[5],note:f[6]||'',rd:LP.read(f[1],f[0]),srd:LP.readSentence(f[4],f[3])})});
+ if(f.length<6)return;addE({lv,cat,w:f[0],py:f[1],kana:LP.kana?f[1]:undefined,th:f[2],ex:f[3],expy:f[4],exth:f[5],note:f[6]||'',rd:LP.read(f[1],f[0]),srd:LP.readSentence(f[4],f[3])})});
 const LV_FILES=[0,1,2,3,4],lvLoaded={};let allLoaded=null;
-function loadLevel(lv){return lvLoaded[lv]||(lvLoaded[lv]=new Promise(res=>{const s=document.createElement('script');s.src=LP.lvFile(lv)+'?v=20261127c';s.onload=res;s.onerror=()=>{lvLoaded[lv]=null;res()};document.head.append(s)}))}
+function loadLevel(lv){return lvLoaded[lv]||(lvLoaded[lv]=new Promise(res=>{const s=document.createElement('script');s.src=LP.lvFile(lv)+'?v=20261127d';s.onload=res;s.onerror=()=>{lvLoaded[lv]=null;res()};document.head.append(s)}))}
 function loadAll(){return allLoaded||(allLoaded=LV_FILES.reduce((p,lv)=>p.then(()=>loadLevel(lv)),Promise.resolve()))}
 const inLv=lv=>ALL.filter(e=>e.lv===lv);
 const autoRead=ex=>String(ex||'').replace(/[A-Za-z][A-Za-z']*/g,m=>{const k=m.toLowerCase();const r=RDALL[k]||RDALL[k.replace(/'s$|s$|es$|ed$|ing$/,'')];return r?r:m});
 // ข้อมูลของคำใดๆ (คลังศัพท์ → คำในบทเรียนเสียง)
 function info(w){const e=BYW[CJK?w:String(w).toLowerCase()];if(e)return e;
- if(CJK){const d=(LP.DICT||{})[w];return d?{w,py:d[0],th:d[1],rd:LP.read(d[0],w)}:{w}}return {w,th:TH[w],rd:RD[w]}}
+ if(CJK){const d=(LP.DICT||{})[w];return d?{w,py:d[0],kana:LP.kana?d[0]:undefined,th:d[1],rd:LP.read(d[0],w)}:{w}}return {w,th:TH[w],rd:RD[w]}}
 
 /* ================= ล็อกอิน + เก็บข้อมูล ================= */
 const API='https://script.google.com/macros/s/AKfycby-QfNUJFz0vCVtD4K0Fk3_k4d-U6pkkdjxjCgk69eRbdohQJPRJjU7zkllpJ2FS9ky/exec';
@@ -134,8 +134,11 @@ function listen(onDone,onErr){if(!SR){onErr('เครื่องหรือ�
  try{r.start()}catch(e){onErr('เริ่มไมค์ไม่ได้')}return r}
 const kata2hira=s=>String(s).replace(/[\u30a1-\u30f6]/g,c=>String.fromCharCode(c.charCodeAt(0)-0x60));
 const normC=s=>kata2hira(String(s||'').toLowerCase()).replace(/[\s\u3000.,!?;:'"、。！？，．・「」（）()\-]/g,'');
+let KJ=null;// ญี่ปุ่น: แปลงคำคันจิที่ระบบฟังได้ให้เป็นคานะ (จากคลังศัพท์) เพื่อเทียบกับคำอ่าน
+function toKana(s){if(LANG!=='ja')return s;if(!KJ)KJ=ALL.filter(e=>e.kana&&/[\u3400-\u9fff]/.test(e.w)).map(e=>[e.w,e.kana.replace(/\s/g,'')]).sort((x,y)=>y[0].length-x[0].length);
+ let o=String(s||'');for(const [w,k] of KJ)if(o.includes(w))o=o.split(w).join(k);return o}
 function judge(alts,target,wrong){
- if(CJK){const i=info(target),tg=[target,i.kana].filter(Boolean).map(normC);const m=a=>tg.some(t=>t&&normC(a.t).includes(t));
+ if(CJK){const i=info(target),tg=[target,i.kana].filter(Boolean).map(normC);const m=a=>tg.some(t=>t&&(normC(a.t).includes(t)||normC(toKana(a.t)).includes(t)));
   const hit=alts.find(m);if(hit){const sc=Math.round(60+40*(hit===alts[0]?(alts[0].c||0.8):0.5));return{ok:true,score:Math.min(sc,100),heard:alts[0].t}}
   const conf=wrong&&alts.find(a=>normC(a.t).includes(normC(wrong)));return{ok:false,score:conf?30:20,heard:alts[0]?alts[0].t:'',conf:!!conf}}
  target=target.toLowerCase();const w=s=>s.replace(/[^a-z ]/g,'').split(' ');
@@ -192,8 +195,8 @@ function sounds(){app.innerHTML=`<h1>ห้องออกเสียง${CJK?'
  app.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>go('sound',+b.dataset.i))}
 
 /* เส้นวรรณยุกต์จีน (มาตรา 1-5) */
-const TONE={1:[[0,5],[1,5]],2:[[0,3],[1,5]],3:[[0,2],[.45,1],[1,4]],4:[[0,5],[1,1]],0:[[.3,3],[.7,2.6]]};
-const TNAME={1:'เสียง 1 สูงเรียบ',2:'เสียง 2 ขึ้น',3:'เสียง 3 ต่ำ',4:'เสียง 4 ลง',0:'เสียงเบา'};
+const TONE=Object.assign({1:[[0,5],[1,5]],2:[[0,3],[1,5]],3:[[0,2],[.45,1],[1,4]],4:[[0,5],[1,1]],0:[[.3,3],[.7,2.6]]},LP.TONE||{});
+const TNAME=Object.assign({1:'เสียง 1 สูงเรียบ',2:'เสียง 2 ขึ้น',3:'เสียง 3 ต่ำ',4:'เสียง 4 ลง',0:'เสียงเบา'},LP.TNAME||{});
 function toneSVG(ts,prog){const W=300,H=130,n=ts.length,sw=(W-40)/n;let g=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="เส้นวรรณยุกต์">`;
  for(let k=1;k<=5;k++){const y=10+(5-k)*25;g+=`<line x1="30" y1="${y}" x2="${W-6}" y2="${y}" stroke="#E3E7F1" stroke-width="1"/><text x="10" y="${y+4}" font-size="11" fill="#4A5470">${k}</text>`}
  ts.forEach((t,i)=>{const pts=TONE[t]||TONE[1],x0=34+i*sw,x1=x0+sw-14;const p=Math.max(0,Math.min(1,prog*n-i));if(p<=0)return;
@@ -205,7 +208,8 @@ function toneSVG(ts,prog){const W=300,H=130,n=ts.length,sw=(W-40)/n;let g=`<svg 
   g+=`<path d="${d}" fill="none" stroke="${t===0?'#F0997B':'#D85A30'}" stroke-width="${t===0?5:6}" stroke-linecap="round" stroke-linejoin="round"/>`;if(p<1)g+=`<circle cx="${e[0]}" cy="${e[1]}" r="8" fill="#B85A12"/>`});
  return g+'</svg>'}
 
-function sound(i){const s=SOUNDS[i],dm=DEMO[s.id]||{};let q=null,rec=null;const isTone=!!dm.tone;
+let SND_ID=0;
+function sound(i){const s=SOUNDS[i],dm=DEMO[s.id]||{};let q=null,rec=null;const isTone=!!dm.tone;const SID=++SND_ID;
  const cmpLbl=dm.cmp?(isTone?`เทียบ ${TNAME[dm.cmp[0][0]]} กับ ${TNAME[dm.cmp[1][0]]}`:`เทียบ ${esc(dm.cmp[0][1])} กับ ${esc(dm.cmp[1][1])}`):'';
  app.innerHTML=`<div class="row" style="align-items:center"><button class="back" id="bk" aria-label="กลับ">${BACK}</button><div><div class="mut">บทที่ ${i+1} จาก ${SOUNDS.length}</div><h1>${esc(s.name)}</h1></div></div>
  <div class="card"><h2>${isTone?'ดูเส้นเสียงขึ้นลง':'ดูปากขยับ'}</h2>
@@ -223,19 +227,21 @@ function sound(i){const s=SOUNDS[i],dm=DEMO[s.id]||{};let q=null,rec=null;const 
  <button class="mic" id="mic" aria-label="กดแล้วพูด">${MIC}</button><div id="sres"></div></div>`;
  let run=0;$('#bk').onclick=()=>{run++;go('sounds')};
  const wait=ms=>new Promise(r=>setTimeout(r,ms));
- const hi=k=>s.steps.forEach((_,n)=>{const e=$('#st'+n);if(e)e.classList.toggle('on',n===k)});
- const cap=(t,w)=>{$('#cap').textContent=t;const i=w?info(w):null;$('#capw').textContent=w?(w+(CJK&&i.py?' · '+i.py:'')+(D.showRD&&i.rd?' · '+rdPlain(i.rd):'')+(D.showTH&&i.th?' · '+i.th:'')):''};
+
+ const live=()=>SID===SND_ID;
+ const hi=k=>live()&&s.steps.forEach((_,n)=>{const e=$('#st'+n);if(e)e.classList.toggle('on',n===k)});
+ const cap=(t,w)=>{if(!live())return;$('#cap').textContent=t;const i=w?info(w):null;$('#capw').textContent=w?(w+(CJK&&i.py&&i.py!==w?' · '+i.py:'')+(D.showRD&&i.rd?' · '+rdPlain(i.rd):'')+(D.showTH&&i.th?' · '+i.th:'')):''};
  if(isTone){
   const drawT=(ts,p)=>{const e=$('#tv');if(e)e.innerHTML=toneSVG(ts,p)};drawT(dm.tone,1);
-  const anim=(ts,ms,id)=>new Promise(res=>{const t0=performance.now();const f=now=>{if(id!==run||!$('#tv'))return res(false);const p=Math.min(1,(now-t0)/ms);drawT(ts,p);if(p<1)requestAnimationFrame(f);else res(true)};requestAnimationFrame(f)});
+  const anim=(ts,ms,id)=>new Promise(res=>{const t0=performance.now();const f=now=>{if(id!==run||!live()||!$('#tv'))return res(false);const p=Math.min(1,(now-t0)/ms);drawT(ts,p);if(p<1)requestAnimationFrame(f);else res(true)};requestAnimationFrame(f)});
   async function playT(slow){const id=++run;hi(0);cap(dm.tone.map(t=>TNAME[t]).join(' + '),dm.w);say(dm.w,slow?0.5:0.8);hi(1);await anim(dm.tone,(slow?1500:850)*dm.tone.length,id);if(id===run)hi(2)}
-  async function cmpT(){const id=++run;hi(-1);for(const [t,w] of dm.cmp){const ts=LANG==='zh'&&LP.tones?LP.tones(info(w).py||''):[t];cap(TNAME[t],w);say(w,0.75);if(!await anim(ts.length?ts:[t],950,id))return;await wait(700);if(id!==run)return}}
+  async function cmpT(){const id=++run;hi(-1);for(const [t,w] of dm.cmp){const ts=LP.PITCH&&LP.PITCH[w]?LP.PITCH[w]:LANG==='zh'&&LP.tones?LP.tones(info(w).py||''):[t];cap(TNAME[t],w);say(w,0.75);if(!await anim(ts.length?ts:[t],950,id))return;await wait(700);if(id!==run)return}}
   $('#pl').onclick=()=>playT(false);$('#ps').onclick=()=>playT(true);if($('#pc'))$('#pc').onclick=cmpT;
  }else{
  const MO=window.MOUTH;let cur=MO.REST;
- const draw=p=>{if(!$('#sv')){run++;return}$('#sv').innerHTML=MO.side(p);$('#fv').innerHTML=MO.front(p.f)};draw(cur);
+ const draw=p=>{if(!live()||!$('#sv')){run++;return}$('#sv').innerHTML=MO.side(p);$('#fv').innerHTML=MO.front(p.f)};draw(cur);
  function move(to,ms,id){const from=cur;return new Promise(res=>{const t0=performance.now();
-  const f=now=>{if(id!==run)return res(false);let t=Math.min(1,(now-t0)/ms);const e=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;draw(MO.lerp(from,to,e));
+  const f=now=>{if(id!==run||!live())return res(false);let t=Math.min(1,(now-t0)/ms);const e=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;draw(MO.lerp(from,to,e));
    if(t<1)requestAnimationFrame(f);else{cur=to;res(true)}};requestAnimationFrame(f)})}
  async function playMain(slow){const id=++run,k=slow?1.8:1,Pz=MO.M[dm.m];
   cap('ท่าปกติ');hi(0);draw(cur=MO.REST);await wait(300*k);
