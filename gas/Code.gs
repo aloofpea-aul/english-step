@@ -122,6 +122,30 @@ function robotLog_(b) {
   return { ok: true, name: who.name };
 }
 
+/** ตารางแต้มเกมรายสัปดาห์ (ต่อภาษา) — อ่านจากผลเรียนของทุกคน เก็บผลไว้ 2 นาที */
+function board_(b) {
+  const me = auth_(b.token);
+  if (!me) return { ok: false, auth: false, msg: 'กรุณาเข้าสู่ระบบใหม่' };
+  const lang = /^(en|zh|ja)$/.test(String(b.lang)) ? String(b.lang) : 'en';
+  const week = String(b.week || '').slice(0, 8);
+  const ck = 'board_' + lang + '_' + week, c = CacheService.getScriptCache(), hit = c.get(ck);
+  if (hit) return JSON.parse(hit);
+  const names = {}, uv = users_().getDataRange().getValues();
+  for (let i = 1; i < uv.length; i++) names[String(uv[i][0])] = String(uv[i][1] || '');
+  const pv = progress_().getDataRange().getValues(), list = [];
+  for (let i = 1; i < pv.length; i++) {
+    const u = String(pv[i][0]); if (u.indexOf('hub:') !== 0) continue;
+    let d = null; try { d = progData_(pv[i]); } catch (e) { continue; }
+    if (!d) continue;
+    const g = lang === 'en' ? d.game : (d.L && d.L[lang] && d.L[lang].game);
+    if (g && g.wk === week && Number(g.wpts) > 0) list.push({ u: u, name: names[u] || u.slice(4), pts: Number(g.wpts) || 0 });
+  }
+  list.sort((x, y) => y.pts - x.pts);
+  const out = { ok: true, list: list.slice(0, 30), updated: Utilities.formatDate(new Date(), 'Asia/Bangkok', 'HH:mm') };
+  c.put(ck, JSON.stringify(out), 120);
+  return out;
+}
+
 /** กดรันครั้งเดียวเพื่อขอสิทธิ์เชื่อมต่อภายนอก (UrlFetchApp) */
 function authorizeHub() { UrlFetchApp.fetch(HUB_URL, { method: 'post', contentType: 'text/plain', payload: JSON.stringify({ action: 'whoAmI' }), muteHttpExceptions: true }); }
 
@@ -153,6 +177,7 @@ function route_(b) {
     case 'robotUser': return robotUser_(b);
     case 'robotSummary': return robotSummary_(b);
     case 'robotLog': return robotLog_(b);
+    case 'board': return board_(b);
     case 'register':
     case 'login': return { ok: false, msg: 'กรุณาเข้าสู่ระบบด้วยบัญชีศูนย์รวมงาน' };
     case 'load': return load_(b);

@@ -31,7 +31,7 @@ button{font:inherit;cursor:pointer;min-height:44px;border-radius:12px}
 .okn{background:#D2F0EA;color:#0B5E54;border-radius:12px;padding:10px 12px;font-size:14px}
 .mic{width:80px;height:80px;border-radius:40px;border:none;background:var(--org);color:#fff;display:flex;align-items:center;justify-content:center;align-self:center}
 .mic.on{background:#B42318;animation:p 1s infinite}@keyframes p{50%{opacity:.6}}
-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding:4px 0 10px}
+nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:4px 0 10px}
 nav button{border:none;background:none;color:var(--mut);font-size:13px}nav button.on{color:var(--blue2);font-weight:700}
 .inp{min-height:48px;border:1px solid #C9D3F2;border-radius:12px;padding:0 12px;font:inherit;font-size:16px;color:var(--ink)}
 .inp:focus,button:focus-visible{outline:3px solid #9DB3FF;outline-offset:1px}
@@ -55,9 +55,10 @@ label{font-size:14px;font-weight:600}
 <body>
 <div class="wrap" id="app"></div>
 <nav id="nav">
-<button data-go="home">หน้าหลัก</button><button data-go="sounds">ออกเสียง</button><button data-go="vocab">คำศัพท์</button><button data-go="tips">เทคนิคจำ</button>
+<button data-go="home">หน้าหลัก</button><button data-go="sounds">ออกเสียง</button><button data-go="vocab">คำศัพท์</button><button data-go="games">เกม</button><button data-go="tips">เทคนิคจำ</button>
 </nav>
 <script src="mouth.js"></script>
+<script src="games.js?v=20261127e"></script>
 <script>
 (function(){var L='en';try{L=new URLSearchParams(location.search).get('lang')||localStorage.getItem('langstep_lang')||'en'}catch(e){}
 if(!/^(en|zh|ja)$/.test(L))L='en';try{var A=JSON.parse(localStorage.getItem('pea_hub_auth')||'null');if(L!=='en'&&A&&A.role!=='admin'&&Array.isArray(A.apps)&&A.apps.indexOf('lang_'+L)<0){window.LANG_DENIED=L;L='en'}}catch(e){}window.LANG=L;try{localStorage.setItem('langstep_lang',L)}catch(e){}
@@ -161,7 +162,7 @@ const BACK='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="
 function alertBox(m){const n=document.createElement('div');n.className='note';n.textContent=m;app.prepend(n);setTimeout(()=>n.remove(),4000)}
 function nav(v){document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.go===v))}
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>go(b.dataset.go));
-function go(v,arg){window.scrollTo(0,0);nav(v==='sound'?'sounds':v==='review'?'vocab':v);({home,sounds,sound,vocab,review,tips}[v])(arg)}
+function go(v,arg){window.scrollTo(0,0);nav(v==='sound'?'sounds':v==='review'?'vocab':v);({home,sounds,sound,vocab,review,tips,games:window.games,game:window.game}[v])(arg)}
 const bigW=w=>CJK?`<div class="cjk">${esc(w)}</div>`:`<div class="big">${esc(w)}</div>`;
 
 function stats(lv){const C=P().cards;const ws=lv==null?ALL:inLv(lv);const learned=ws.filter(e=>(C[e.w]||{}).box>=2).length;const seen=ws.filter(e=>C[e.w]).length;
@@ -181,13 +182,14 @@ function home(){const s=stats(0),sa=stats();const n0=Math.max(inLv(0).length,1);
  <div style="font-size:14px">ผ่านเกณฑ์ Level 0: ออกเสียงได้ ≥70% ครบ ${SOUNDS.length} บท และจำศัพท์ได้ครบ ${n0} คำ</div></div>
  <div class="g2"><div class="card"><div class="mut">บทเสียงที่ผ่านแล้ว</div><div class="big">${s.snd}<span class="mut"> / ${SOUNDS.length}</span></div><button class="btn org" id="gS">ฝึกออกเสียง</button></div>
  <div class="card"><div class="mut">คำที่จำได้ (ทุกระดับ)</div><div class="big">${sa.learned}<span class="mut"> / ${ALL.length}</span></div><button class="btn" id="gV">ทบทวนศัพท์${s.due?' ('+s.due+')':''}</button></div></div>
+ <button class="item" id="gG"><span style="font-size:30px">🎮</span><span style="flex:1"><b>เกมภาษา</b><br><span class="mut">จับคู่คำ · ฟังแล้วเลือก · พูดให้ทัน · เรียงประโยค</span></span><span class="tag" style="background:#FFF1C7;color:#5E2C05">${((P().game||{}).wk===window.weekKeyNow?.()?(P().game.wpts||0):0)} แต้ม</span></button>
  <label class="card sw" for="rdsw"><span><b>แสดงคำอ่านภาษาพูด</b><br><span class="mut">${CJK?(LANG==='ja'?'คำอ่านไทยจากคานะ (สระยาว っ ん ตามเสียงจริง)':'คำอ่านไทยตามเสียงจริง (เปลี่ยนวรรณยุกต์ให้แล้ว)'):'อ่านแบบที่เจ้าของภาษาพูดจริง'} · <span class="rx">เส้นจุด</span> = เสียงที่ภาษาไทยไม่มี</span></span><input type="checkbox" id="rdsw" ${D.showRD?"checked":""}></label>
  <label class="card sw" for="thsw"><span><b>แสดงคำแปลภาษาไทย</b><br><span class="mut">คำแปลตัวเล็กใต้คำ · บัตรคำทบทวนยังซ่อนไว้เสมอ</span></span><input type="checkbox" id="thsw" ${D.showTH?"checked":""}></label>
  <div class="card"><h2>แผนวันนี้ (ประมาณ 15–20 นาที)</h2><div>1. ฝึกออกเสียง 1 บท: ฟัง → ทายคู่เสียง → พูด</div><div>2. ทบทวนคำที่ครบรอบ และเรียนคำใหม่ ${P().perDay||10} คำ</div><div>3. อ่านเทคนิคจำ 1 เรื่อง แล้วลองใช้จริง</div></div>
  <div class="row" style="justify-content:space-between;align-items:center"><span class="mut">ผลการเรียนบันทึกขึ้นระบบอัตโนมัติ</span><a class="soft" href="/index.html" style="display:flex;align-items:center;text-decoration:none;border-radius:12px">ศูนย์รวมงาน</a></div>`;
  $('#thsw').onchange=e=>{D.showTH=e.target.checked;save(D)};$('#rdsw').onchange=e=>{D.showRD=e.target.checked;save(D)};
  app.querySelectorAll('[data-lang]').forEach(b=>b.onclick=()=>switchLang(b.dataset.lang));
- $('#gS').onclick=()=>go('sounds');$('#gV').onclick=()=>go('review')}
+ $('#gS').onclick=()=>go('sounds');$('#gV').onclick=()=>go('review');$('#gG').onclick=()=>go('games')}
 
 function sounds(){app.innerHTML=`<h1>ห้องออกเสียง${CJK?' · '+esc(LP.thName):''}</h1><div class="mut">${SOUNDS.length} บทที่คนไทยมักพลาด เรียงจากง่ายไปยาก</div>`+
  SOUNDS.map((s,i)=>{const b=(P().sounds[s.id]||{}).best;const t=b>=70?`<span class="tag" style="background:#D2F0EA;color:#0B5E54">ผ่าน ${b}</span>`:b?`<span class="tag" style="background:#FCE3CC;color:#7A3A08">${b}</span>`:'<span class="tag" style="background:#EEF0F5;color:#4A5470">ยังไม่ฝึก</span>';
