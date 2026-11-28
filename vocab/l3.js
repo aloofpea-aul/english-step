@@ -1062,7 +1062,7 @@ base|ฐาน|เบส|The base of the pole is weak.|ฐานเสาอ่�
 bit|นิดหน่อย / ชิ้นเล็ก|บิท|Wait a bit.|รอสักแป๊บ
 border|ชายแดน / ขอบ|บอร์-เดอร์|Thailand has a border with Malaysia.|ไทยมีชายแดนติดมาเลเซีย
 brand|ยี่ห้อ / แบรนด์|แบรนด์|What brand is your phone?|โทรศัพท์คุณยี่ห้ออะไร
-centre|ศูนย์กลาง|เซน-เตอร์|It's in the centre of town.|อยู่ใจกลางเมือง
+center|ศูนย์กลาง (อังกฤษแบบบริติชสะกด centre)|เซน-เตอร์|It's in the center of town.|อยู่ใจกลางเมือง
 circumstance|สถานการณ์ / สภาวการณ์|เซอร์-คัม-สแตนซ์|In this circumstance, call us.|ในสถานการณ์นี้ให้โทรหาเรา
 collection|การสะสม / การรวบรวม|คอล-เล็ค-{ชั่น}|He has a coin collection.|เขาสะสมเหรียญ
 comfort|ความสะดวกสบาย|คัม-เฟิร์ท|Comfort is important.|ความสะดวกสบายสำคัญ

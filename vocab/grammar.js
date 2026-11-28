@@ -49,7 +49,7 @@ window.GRAMMAR.en=[
  rule:'เวลา: at + เวลาเป๊ะ · on + วัน / วันที่ · in + เดือน / ปี / ช่วงของวัน\nสถานที่: in = ข้างใน · on = บนพื้นผิว · at = ที่จุดนั้น',
  table:[['at','at 7 o\'clock, at night, at school'],['on','on Monday, on 5 May, on the table'],['in','in June, in 2026, in the morning, in the box']],
  ex:[['The meeting is at 9 a.m.','','ประชุมเก้าโมงเช้า'],['I was born in 2013.','','ฉันเกิดปี 2013'],['The keys are on the table.','','กุญแจอยู่บนโต๊ะ']],
- q:[{q:'See you ___ Friday.',o:['on','in','at'],a:0},{q:'I get up ___ 6 o\'clock.',o:['at','in','on'],a:0},{q:'It is hot ___ April.',o:['in','on','at'],a:0},{q:'The cat is ___ the box.',o:['in','at','on'],a:0},{order:'We have lunch at noon.',th:'เรากินข้าวเที่ยงตอนเที่ยงตรง'}]},
+ q:[{q:'See you ___ Friday.',o:['on','in','at'],a:0},{q:'I get up ___ 6 o\'clock.',o:['at','in','on'],a:0},{q:'It is hot ___ April.',o:['in','on','at'],a:0},{q:'The cat is ___ the box. (อยู่ข้างในกล่อง)',o:['in','at','on'],a:0,why:'อยู่ข้างใน = in · ถ้าอยู่บนฝากล่อง = on'},{order:'We have lunch at noon.',th:'เรากินข้าวเที่ยงตอนเที่ยงตรง'}]},
 {id:'en10',lv:1,t:'คำแสดงความเป็นเจ้าของ',sub:'my your his her ... \'s',
  rule:'my ของฉัน · your ของคุณ · his ของเขา (ชาย) · her ของเธอ · its ของมัน · our ของเรา · their ของพวกเขา\nชื่อคน + \'s = ของคนนั้น เช่น Tom\'s bag',
  table:[['I → my','You → your'],['He → his','She → her'],['We → our','They → their']],
@@ -125,5 +125,5 @@ window.GRAMMAR.en=[
  rule:'เล่าต่อว่าคนอื่นพูดอะไร มักถอยเวลาไปหนึ่งขั้น\nam / is → was · will → would · ปัจจุบัน → อดีต\nใช้ said (that) ... หรือ told + คน + (that) ...',
  table:[['"I am tired."','He said he was tired.'],['"I will come."','She said she would come.'],['"I like it."','He told me he liked it.']],
  ex:[['The customer said the power was off.','','ลูกค้าบอกว่าไฟดับ'],['She told me she would be late.','','เธอบอกฉันว่าจะมาสาย'],['He said that he lived in Krabi.','','เขาบอกว่าเขาอาศัยอยู่ที่กระบี่']],
- q:[{q:'"I am busy." → She said she ___ busy.',o:['was','is','were'],a:0},{q:'"I will call you." → He said he ___ call me.',o:['would','will','can'],a:0},{q:'She ___ me that she was sick.',o:['told','said','spoke'],a:0,why:'told ตามด้วยคนเสมอ ส่วน said ไม่ต้อง'},{q:'"We need help." → They said they ___ help.',o:['needed','need','needs'],a:0},{order:'He said that the meeting was cancelled.',th:'เขาบอกว่าการประชุมถูกยกเลิก'}]}
+ q:[{q:'"I am busy." → She said she ___ busy.',o:['was','is','were'],a:0,why:'แบบมาตรฐานให้ถอยกาล is → was (ถ้ายังจริงอยู่ตอนนี้ เจ้าของภาษาบางครั้งก็ใช้ is ได้)'},{q:'"I will call you." → He said he ___ call me.',o:['would','will','can'],a:0},{q:'She ___ me that she was sick.',o:['told','said','spoke'],a:0,why:'told ตามด้วยคนเสมอ ส่วน said ไม่ต้อง'},{q:'"We need help." → They said they ___ help.',o:['needed','need','needs'],a:0},{order:'He said that the meeting was cancelled.',th:'เขาบอกว่าการประชุมถูกยกเลิก'}]}
 ];

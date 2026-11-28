@@ -43,7 +43,7 @@ window.GRAMMAR.fr=[
  rule:'คำคุณศัพท์เปลี่ยนตามเพศและจำนวนของคำนาม\nหญิงเติม -e · พหูพจน์เติม -s\nส่วนมากวางหลังคำนาม ยกเว้นคำสั้นที่ใช้บ่อย เช่น grand, petit, beau, bon, jeune, vieux วางหน้า',
  table:[['ชาย','un petit chat'],['หญิง','une petite maison'],['พหูพจน์','des voitures rouges'],['ไม่ปกติ','beau → belle, bon → bonne, blanc → blanche']],
  ex:[['Une robe blanche.','ยุน รอบ บล็องช','ชุดสีขาว'],['Un bon restaurant.','แอ็ง บง แรส-โต-ร็อง','ร้านอาหารอร่อย'],['Elles sont contentes.','แอล ซง กง-ต็องต์','พวกเธอดีใจ']],
- q:[{q:'une ___ fille (เล็ก)',o:['petite','petit','petits'],a:0},{q:'des livres ___ (ใหม่ / intéressant)',o:['intéressants','intéressant','intéressante'],a:0},{q:'une ___ ville (สวย)',o:['belle','beau','beaux'],a:0},{q:'une voiture ___ (verte / vert)',o:['verte','vert','verts'],a:0},{order:'C\'est une grande maison.',th:'เป็นบ้านหลังใหญ่'}]},
+ q:[{q:'une ___ fille (เล็ก)',o:['petite','petit','petits'],a:0},{q:'des livres ___ (น่าสนใจ / intéressant)',o:['intéressants','intéressant','intéressante'],a:0},{q:'une ___ ville (สวย)',o:['belle','beau','beaux'],a:0},{q:'une voiture ___ (verte / vert)',o:['verte','vert','verts'],a:0},{order:'C\'est une grande maison.',th:'เป็นบ้านหลังใหญ่'}]},
 {id:'fr09',lv:1,t:'คำบุพบท à / de + ประเทศ',sub:'ไป อยู่ มาจาก',
  rule:'เมือง: à Paris (ที่ / ไป), de Paris (จาก)\nประเทศเพศหญิง: en France · ประเทศเพศชาย: au Japon · พหูพจน์: aux États-Unis\nà + le = au · à + les = aux · de + le = du · de + les = des',
  table:[['เมือง','à Krabi, de Krabi'],['ประเทศหญิง','en Thaïlande, de Thaïlande'],['ประเทศชาย','au Japon, du Japon'],['รวมคำ','au marché, du bureau']],
