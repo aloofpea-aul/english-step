@@ -10,6 +10,8 @@ const LOCK_MIN = 15;         // ล็อกกี่นาทีเมื่อ
 // ใช้บัญชีศูนย์รวมงาน กฟส.อ่าวลึก — ตรวจตัวตนและสิทธิ์โปรแกรม 'english' กับหลังบ้านศูนย์รวมงาน
 const HUB_URL = 'https://script.google.com/macros/s/AKfycbzqsOqJJQlF4SS1UX_YM6hmhd3lUXCVocAJiK7l28Tzddms9SQ9Z7p-iYgrrgd2B2meWw/exec';
 const HUB_APP = 'english';
+// บัญชีกลาง Aloof Apps (ผู้ทดสอบ/ลูกค้า) — แยกกลุ่มจากพนักงาน (username = 'app:' + ชื่อผู้ใช้)
+const APPS_URL = 'https://script.google.com/macros/s/AKfycbw3ify1S1DyG8fmm-xuDuEoTY7_vl6caAjlpnt5RNU-1I3lB6N5h8bWbz1-Jfxv3eU1/exec';
 
 function sheet_(name, head) {
   let s = SS.getSheetByName(name);
@@ -38,6 +40,20 @@ function hubAuth_(b) {
   else sh.getRange(f.row, 6, 1, 2).setValues([[r.role, new Date()]]);
   const p = find_(progress_(), u);
   return { ok: true, token: newSession_(u), user: { username: u, name: name, role: r.role }, data: p ? progData_(p.vals) : null };
+}
+
+/** เข้าด้วยบัญชี Aloof Apps: ส่ง token ของบัญชีกลางมาตรวจ แล้วออก session ของ English Step */
+function appAuth_(b) {
+  if (!b.appToken) return { ok: false, auth: false, msg: 'ยังไม่ได้เข้าสู่ระบบ Aloof Apps' };
+  let r;
+  try { r = JSON.parse(UrlFetchApp.fetch(APPS_URL, { method: 'post', contentType: 'text/plain', muteHttpExceptions: true, payload: JSON.stringify({ action: 'verify', token: String(b.appToken), app: 'english' }) }).getContentText()); }
+  catch (e) { return { ok: false, msg: 'ตรวจสอบบัญชีไม่ได้ ลองใหม่อีกครั้ง' }; }
+  if (!r || !r.ok) return { ok: false, auth: r && r.auth === false ? false : undefined, perm: r && r.perm === false ? false : undefined, msg: (r && r.msg) || 'เข้าสู่ระบบไม่สำเร็จ' };
+  const u = 'app:' + String(r.user.username).toLowerCase(), sh = users_(), f = find_(sh, u), role = 'app-' + r.user.type;
+  if (!f) sh.appendRow([u, safe_(r.user.name), '', '', new Date(), role, new Date()]);
+  else sh.getRange(f.row, 2, 1, 1).setValue(safe_(r.user.name)), sh.getRange(f.row, 6, 1, 2).setValues([[role, new Date()]]);
+  const p = find_(progress_(), u);
+  return { ok: true, token: newSession_(u), user: { username: u, name: r.user.name, role: role, type: r.user.type, avatar: r.user.avatar, langs: (r.perm && r.perm.langs) || ['en'], expires: r.user.expires }, data: p ? progData_(p.vals) : null };
 }
 
 /* ---------- ช่องสำหรับน้องมีไฟ ----------
@@ -128,13 +144,14 @@ function board_(b) {
   if (!me) return { ok: false, auth: false, msg: 'กรุณาเข้าสู่ระบบใหม่' };
   const lang = /^(en|zh|ja)$/.test(String(b.lang)) ? String(b.lang) : 'en';
   const week = String(b.week || '').slice(0, 8);
-  const ck = 'board_' + lang + '_' + week, c = CacheService.getScriptCache(), hit = c.get(ck);
+  const grp = me.indexOf('app:') === 0 ? 'app:' : 'hub:';
+  const ck = 'board_' + grp + lang + '_' + week, c = CacheService.getScriptCache(), hit = c.get(ck);
   if (hit) return JSON.parse(hit);
   const names = {}, uv = users_().getDataRange().getValues();
   for (let i = 1; i < uv.length; i++) names[String(uv[i][0])] = String(uv[i][1] || '');
   const pv = progress_().getDataRange().getValues(), list = [];
   for (let i = 1; i < pv.length; i++) {
-    const u = String(pv[i][0]); if (u.indexOf('hub:') !== 0) continue;
+    const u = String(pv[i][0]); if (u.indexOf(grp) !== 0) continue;
     let d = null; try { d = progData_(pv[i]); } catch (e) { continue; }
     if (!d) continue;
     const g = lang === 'en' ? d.game : (d.L && d.L[lang] && d.L[lang].game);
@@ -147,7 +164,7 @@ function board_(b) {
 }
 
 /** กดรันครั้งเดียวเพื่อขอสิทธิ์เชื่อมต่อภายนอก (UrlFetchApp) */
-function authorizeHub() { UrlFetchApp.fetch(HUB_URL, { method: 'post', contentType: 'text/plain', payload: JSON.stringify({ action: 'whoAmI' }), muteHttpExceptions: true }); }
+function authorizeHub() { if (APPS_URL.indexOf('http') === 0) UrlFetchApp.fetch(APPS_URL, { muteHttpExceptions: true }); UrlFetchApp.fetch(HUB_URL, { method: 'post', contentType: 'text/plain', payload: JSON.stringify({ action: 'whoAmI' }), muteHttpExceptions: true }); }
 
 /** รันครั้งแรกครั้งเดียว เพื่อสร้างชีตทั้งหมด */
 function setup() { users_(); sessions_(); progress_(); }
@@ -174,6 +191,7 @@ function out_(o) {
 function route_(b) {
   switch (b.action) {
     case 'hubAuth': return hubAuth_(b);
+    case 'appAuth': return appAuth_(b);
     case 'robotUser': return robotUser_(b);
     case 'robotSummary': return robotSummary_(b);
     case 'robotLog': return robotLog_(b);

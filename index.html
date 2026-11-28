@@ -2,7 +2,9 @@
 <html lang="th">
 <head>
 <meta charset="utf-8">
-<script src="/pea-hub.js?v=20261126" data-app="english" data-name="English Step ฝึกภาษาอังกฤษ"></script>
+<script src="/pea-hub.js?v=20261128a" data-app="english" data-name="English Step ฝึกภาษาอังกฤษ" data-alt-auth="aloof_apps_auth" data-alt-login="/apps/?next=%2Fenglish-step%2F%3Fapp%3D1"></script>
+<link rel="stylesheet" href="/apps/icons.css?v=20261128a">
+<script src="/apps/aloof.js?v=20261128a"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>English Step · Level 0</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet">
@@ -62,7 +64,7 @@ label{font-size:14px;font-weight:600}
 <script src="games.js?v=20261128a"></script><script src="dict.js?v=20261128b"></script><script src="dialogs.js?v=20261127g"></script><script src="games2.js?v=20261128b"></script>
 <script>
 (function(){var L='en';try{L=new URLSearchParams(location.search).get('lang')||localStorage.getItem('langstep_lang')||'en'}catch(e){}
-if(!/^(en|zh|ja)$/.test(L))L='en';try{var A=JSON.parse(localStorage.getItem('pea_hub_auth')||'null');if(L!=='en'&&A&&A.role!=='admin'&&Array.isArray(A.apps)&&A.apps.indexOf('lang_'+L)<0){window.LANG_DENIED=L;L='en'}}catch(e){}window.LANG=L;try{localStorage.setItem('langstep_lang',L)}catch(e){}
+if(!/^(en|zh|ja)$/.test(L))L='en';try{var X=JSON.parse(localStorage.getItem('aloof_apps_auth')||'null');window.APP_MODE=!!(X&&X.token&&localStorage.getItem('aloof_mode_english')!=='staff');if(window.APP_MODE){var OK=(X.user&&X.user.apps&&X.user.apps.english&&X.user.apps.english.langs)||['en'];window.APP_LANGS=OK;if(OK.indexOf(L)<0){if(new URLSearchParams(location.search).get('lang'))window.LANG_DENIED=L;L=OK[0]||'en'}}}catch(e){}try{var A=window.APP_MODE?null:JSON.parse(localStorage.getItem('pea_hub_auth')||'null');if(L!=='en'&&A&&A.role!=='admin'&&Array.isArray(A.apps)&&A.apps.indexOf('lang_'+L)<0){window.LANG_DENIED=L;L='en'}}catch(e){}window.LANG=L;try{localStorage.setItem('langstep_lang',L)}catch(e){}
 document.write('<script src="'+(L==='en'?'data.js?v=20261127':L+'/pack.js?v=20261127d')+'"><\/script>')})();
 </script>
 <script>
@@ -121,7 +123,7 @@ const INT=[1,3,7,14,30,60];
 const today=()=>new Date().toISOString().slice(0,10);
 function touch(){const t=today();if(D.last!==t){const y=new Date(Date.now()-DAY).toISOString().slice(0,10);D.streak=D.last===y?D.streak+1:1;D.last=t}save(D)}
 function logout(expired){if(AUTH){const t=AUTH.token;if(!expired)api('logout',{token:t}).catch(()=>{})}
- AUTH=null;ldel(AKEY);D=blank();hubLogin()}
+ AUTH=null;ldel(AKEY);D=blank();if(window.APP_MODE){if(!expired&&window.AloofApps)return AloofApps.logout('/english-step/?app=1');return appLogin()}hubLogin()}
 
 /* ================= เสียง ================= */
 let voice=null;
@@ -171,14 +173,15 @@ function stats(lv){const C=P().cards;const ws=lv==null?ALL:inLv(lv);const learne
  const snd=Object.values(P().sounds).filter(s=>s.best>=70).length;return{learned,seen,due,snd}}
 let LANG_OK=null; // รายการภาษาที่บัญชีนี้ใช้ได้ (มาจากศูนย์รวมงาน: แอดมินได้ทุกภาษา · สมาชิกต้องได้สิทธิ์ lang_zh / lang_ja)
 try{const A=JSON.parse(localStorage.getItem('pea_hub_auth')||'null');if(A&&A.role!=='admin'&&Array.isArray(A.apps))LANG_OK=['en'].concat(A.apps.filter(x=>/^lang_/.test(x)).map(x=>x.slice(5)))}catch(e){}
-const langAllowed=c=>c==='en'||!LANG_OK||LANG_OK.includes(c);
+if(window.APP_MODE)LANG_OK=window.APP_LANGS||['en'];
+const langAllowed=c=>window.APP_MODE?LANG_OK.includes(c):(c==='en'||!LANG_OK||LANG_OK.includes(c));
 function langRow(){const ls=LANGS.filter(x=>langAllowed(x.code));if(ls.length<2)return '';
  return `<div class="row" role="group" aria-label="เลือกภาษา">${ls.map(x=>`<button class="lg ${x.code===LANG?'on':''}" data-lang="${x.code}">${esc(x.label)}</button>`).join('')}</div>`}
 function switchLang(c){if(c===LANG)return;if(syncT)push();try{localStorage.setItem('langstep_lang',c)}catch(e){}location.href=location.pathname+'?lang='+c}
 
 function home(){const s=stats(0),sa=stats();const n0=Math.max(inLv(0).length,1);const pct=Math.round(((s.learned/n0)+(s.snd/SOUNDS.length))*50);if(!allReady)loadAll().then(()=>{if(!allReady){allReady=true;if($('#gS'))home()}});
  const L0=LEVELS[0];
- app.innerHTML=`${window.LANG_DENIED?`<div class="note">บัญชีนี้ยังไม่ได้รับสิทธิ์${window.LANG_DENIED==='zh'?'ภาษาจีน':'ภาษาญี่ปุ่น'} — ขอสิทธิ์จากผู้ดูแลระบบในศูนย์รวมงาน</div>`:''}${langRow()}<div class="row" style="justify-content:space-between;align-items:center"><div class="mut">สวัสดี ${esc(AUTH?AUTH.user.name:'')} · ${esc(LP.thName)}</div>${FX.pillsHTML()}</div>
+ app.innerHTML=`${window.LANG_DENIED?`<div class="note">บัญชีนี้ยังไม่ได้รับสิทธิ์${window.LANG_DENIED==='zh'?'ภาษาจีน':'ภาษาญี่ปุ่น'} — ${window.APP_MODE?'ติดต่อผู้ดูแลเพื่อเพิ่มภาษา':'ขอสิทธิ์จากผู้ดูแลระบบในศูนย์รวมงาน'}</div>`:''}${langRow()}<div class="row" style="justify-content:space-between;align-items:center"><div class="mut">สวัสดี ${esc(AUTH?AUTH.user.name:'')} · ${esc(LP.thName)}</div>${FX.pillsHTML()}</div>
  ${window.dictBoxHTML?dictBoxHTML():''}
  ${FX.heroHTML()}
  ${FX.questsHTML()}
@@ -327,9 +330,9 @@ function tips(){app.innerHTML=`<h1>เทคนิคจำศัพท์${CJK?
 
 function hubCreds(){try{return{name:localStorage.getItem('pea_aoluek_username')||'',pass:localStorage.getItem('pea_aoluek_password')||''}}catch(e){return{name:'',pass:''}}}
 function authBox(msg,err){$('#nav').style.display='none';window.scrollTo(0,0);
- app.innerHTML=`<div style="padding-top:24px"><div class="mut">${esc(LP.label)} Step</div><h1 style="font-size:26px">เข้าสู่ระบบ</h1><div class="mut">ใช้บัญชีเดียวกับศูนย์รวมงาน กฟส.อ่าวลึก</div></div>
- <div class="card"><div class="${err?'note':'mut'}">${esc(msg)}</div>${err?'<button class="btn" id="rt">ลองใหม่</button>':''}<a class="soft" href="/index.html" style="display:flex;align-items:center;justify-content:center;text-decoration:none">ไปหน้าศูนย์รวมงาน</a></div>`;
- if(err)$('#rt').onclick=hubLogin}
+ app.innerHTML=`<div style="padding-top:24px"><div class="mut">${esc(LP.label)} Step</div><h1 style="font-size:26px">เข้าสู่ระบบ</h1><div class="mut">${window.APP_MODE?'บัญชี Aloof Apps':'ใช้บัญชีเดียวกับศูนย์รวมงาน กฟส.อ่าวลึก'}</div></div>
+ <div class="card"><div class="${err?'note':'mut'}">${esc(msg)}</div>${err?'<button class="btn" id="rt">ลองใหม่</button>':''}<a class="soft" href="${window.APP_MODE?'/apps/':'/index.html'}" style="display:flex;align-items:center;justify-content:center;text-decoration:none">${window.APP_MODE?'ไปหน้าบัญชีของฉัน':'ไปหน้าศูนย์รวมงาน'}</a></div>`;
+ if(err)$('#rt').onclick=window.APP_MODE?appLogin:hubLogin}
 let hubWait=null;
 async function hubLogin(){clearTimeout(hubWait);const c=hubCreds();
  if(!c.name||!c.pass){authBox('รอเข้าสู่ระบบศูนย์รวมงาน…');hubWait=setTimeout(hubLogin,1500);return}
@@ -340,10 +343,21 @@ async function hubLogin(){clearTimeout(hubWait);const c=hubCreds();
   const local=lget(dkey());if(r.data)useData(r.data);else{useData(local);push()}
   lset(dkey(),D);start()}
  catch(e){authBox('เชื่อมต่อระบบไม่ได้ ตรวจอินเทอร์เน็ตแล้วลองใหม่',true)}}
+async function appLogin(){const X=window.AloofApps&&AloofApps.get();if(!X||!X.token){location.href='/apps/?next='+encodeURIComponent('/english-step/?app=1');return}
+ authBox('กำลังเข้าสู่ระบบด้วยบัญชี Aloof Apps…');
+ try{const r=await api('appAuth',{appToken:X.token});
+  if(!r.ok){if(r.auth===false){AloofApps.set(null);location.href='/apps/?next='+encodeURIComponent('/english-step/?app=1');return}
+   app.innerHTML=`<div style="padding-top:24px"><h1 style="font-size:24px">เข้าใช้ไม่ได้</h1></div><div class="card"><div class="note">${esc(r.msg||'เข้าสู่ระบบไม่สำเร็จ')}</div><button class="btn" id="rt">ลองใหม่</button><a class="soft" href="/apps/" style="display:flex;align-items:center;justify-content:center;text-decoration:none">ไปหน้าบัญชีของฉัน</a></div>`;$('#rt').onclick=appLogin;return}
+  AUTH={token:r.token,user:r.user,appTok:X.token};lset(AKEY,AUTH);
+  const L=JSON.stringify(r.user.langs||['en']);if(L!==JSON.stringify(window.APP_LANGS||[])){const x=AloofApps.get();if(x&&x.user){x.user.apps=x.user.apps||{};x.user.apps.english={langs:r.user.langs};AloofApps.set(x)}location.reload();return}
+  const local=lget(dkey());if(r.data)useData(r.data);else{useData(local);push()}
+  lset(dkey(),D);start()}
+ catch(e){authBox('เชื่อมต่อระบบไม่ได้ ตรวจอินเทอร์เน็ตแล้วลองใหม่',true)}}
 function start(){$('#nav').style.display='';go('home')}
-if(AUTH&&AUTH.hubName&&AUTH.hubName===hubCreds().name){useData(lget(dkey()));start();
+const AX=window.AloofApps&&AloofApps.get();
+if(window.APP_MODE?(AUTH&&AUTH.appTok&&AX&&AUTH.appTok===AX.token):(AUTH&&AUTH.hubName&&AUTH.hubName===hubCreds().name)){useData(lget(dkey()));start();
  api('load',{token:AUTH.token}).then(r=>{if(r.auth===false)return logout(true);if(r.ok){AUTH.user=r.user;lset(AKEY,AUTH);if(r.data){useData(r.data);lset(dkey(),D)}else push();if(!$('#fc'))go('home')}}).catch(()=>{})}
-else{AUTH=null;ldel(AKEY);hubLogin()}
+else{AUTH=null;ldel(AKEY);if(window.APP_MODE)appLogin();else hubLogin()}
 </script>
 </body>
 </html>
