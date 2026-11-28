@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <script src="/pea-hub.js?v=20261128a" data-app="english" data-name="English Step ฝึกภาษาอังกฤษ" data-alt-auth="aloof_apps_auth" data-alt-login="/apps/?next=%2Fenglish-step%2F%3Fapp%3D1"></script>
-<link rel="stylesheet" href="/apps/icons.css?v=20261128a">
+<link rel="stylesheet" href="/apps/icons.css?v=20261128c">
 <script src="/apps/aloof.js?v=20261128a"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>English Step · Level 0</title>
@@ -61,7 +61,7 @@ label{font-size:14px;font-weight:600}
 </nav>
 <script src="mouth.js"></script>
 <script src="fx.js?v=20261127g"></script>
-<script src="games.js?v=20261128a"></script><script src="dict.js?v=20261128b"></script><script src="dialogs.js?v=20261127g"></script><script src="games2.js?v=20261128b"></script>
+<script src="games.js?v=20261128a"></script><script src="dict.js?v=20261128b"></script><script src="dialogs.js?v=20261128c"></script><script src="games2.js?v=20261128c"></script>
 <script>
 (function(){var L='en';try{L=new URLSearchParams(location.search).get('lang')||localStorage.getItem('langstep_lang')||'en'}catch(e){}
 if(!/^(en|zh|ja)$/.test(L))L='en';try{var X=JSON.parse(localStorage.getItem('aloof_apps_auth')||'null');window.APP_MODE=!!(X&&X.token&&localStorage.getItem('aloof_mode_english')!=='staff');if(window.APP_MODE){var OK=(X.user&&X.user.apps&&X.user.apps.english&&X.user.apps.english.langs)||['en'];window.APP_LANGS=OK;if(OK.indexOf(L)<0){if(new URLSearchParams(location.search).get('lang'))window.LANG_DENIED=L;L=OK[0]||'en'}}}catch(e){}try{var A=window.APP_MODE?null:JSON.parse(localStorage.getItem('pea_hub_auth')||'null');if(L!=='en'&&A&&A.role!=='admin'&&Array.isArray(A.apps)&&A.apps.indexOf('lang_'+L)<0){window.LANG_DENIED=L;L='en'}}catch(e){}window.LANG=L;try{localStorage.setItem('langstep_lang',L)}catch(e){}
