@@ -142,7 +142,7 @@ function robotLog_(b) {
 function board_(b) {
   const me = auth_(b.token);
   if (!me) return { ok: false, auth: false, msg: 'กรุณาเข้าสู่ระบบใหม่' };
-  const lang = /^(en|zh|ja)$/.test(String(b.lang)) ? String(b.lang) : 'en';
+  const lang = /^(en|zh|ja|fr)$/.test(String(b.lang)) ? String(b.lang) : 'en';
   const week = String(b.week || '').slice(0, 8);
   const grp = me.indexOf('app:') === 0 ? 'app:' : 'hub:';
   const ck = 'board_' + grp + lang + '_' + week, c = CacheService.getScriptCache(), hit = c.get(ck);
