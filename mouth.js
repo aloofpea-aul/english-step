@@ -68,6 +68,11 @@ const M={
  'ɸ':{label:'ฟุ เป่าลมผ่านริมฝีปาก',jaw:2,tip:[132,90],body:80,lipX:3,lipLowY:74,air:74,f:{round:.5,open:.1,teethTop:false}},
  'ts':{label:'ts ปลายลิ้นแตะฟัน',jaw:2,tip:[140,62],body:86,touch:[140,60],air:76,f:{spread:.8,open:.18}},
  'Q':{label:'หยุดลม (っ)',jaw:2,tip:[139,59],body:92,touch:[139,57],f:{spread:.4,open:.1}},
+ 'ʁ':{label:'R ฝรั่งเศส (ในคอ)',jaw:6,tip:[134,96],body:60,touch:[90,58],air:74,voice:1,f:{spread:.4,open:.4}},
+ 'ɑ̃':{label:'สระขึ้นจมูก อ็อง',jaw:12,tip:[134,98],body:100,lipX:3,voice:1,f:{round:.5,open:.75}},
+ 'ø':{label:'เออ ปากจู๋ (eu)',jaw:5,tip:[136,88],body:72,lipX:6,voice:1,f:{round:.9,open:.3,teethTop:false}},
+ 'u':{label:'อู ปากจู๋ (ou)',jaw:3,tip:[130,92],body:62,lipX:8,voice:1,f:{round:1,open:.2,teethTop:false}},
+ 'ʒ':{label:'เสียง j ฝรั่งเศส (ฌ)',jaw:3,tip:[128,64],body:80,lipX:7,air:76,voice:1,f:{round:.8,open:.3}},
  'p':{label:'ปากปิด (p/b)',jaw:0,tip:[132,88],body:94,lipLowY:76,f:{spread:.4,open:0,teethTop:false}}
 };
 

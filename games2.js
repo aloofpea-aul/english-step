@@ -63,6 +63,7 @@ function rain(){if(!needWords(rain))return;const my=run();const P0=pool();let pt
 /* ---------- 2) เติมคำในช่องว่าง ---------- */
 function blankOf(e){const ex=String(e.ex||''),w=e.w;if(!ex||!w)return null;
  if(LANG==='en'){const re=new RegExp('\\b'+w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b','i');if(!re.test(ex))return null;return ex.replace(re,'＿＿＿')}
+ if(LANG==='fr'){const re=new RegExp('(^|[^\\p{L}])('+w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')(?![\\p{L}])','iu');if(!re.test(ex))return null;return ex.replace(re,'$1＿＿＿')}
  if(!ex.includes(w))return null;return ex.replace(w,'＿＿＿')}
 function fill(){if(!needWords(fill))return;const P0=pool();let C=sh(P0).map(e=>({e,b:blankOf(e)})).filter(x=>x.b);if(C.length<8)C=sh(ALL).map(e=>({e,b:blankOf(e)})).filter(x=>x.b).slice(0,200);
  const N=Math.min(A.CN('fill',10),C.length);
@@ -71,6 +72,7 @@ function fill(){if(!needWords(fill))return;const P0=pool();let C=sh(P0).map(e=>(
 
 /* ---------- 3) สะกดคำ ---------- */
 function unitsOf(e){if(LANG==='en')return /^[a-z]{3,10}$/i.test(e.w)?[...e.w.toLowerCase()]:null;
+ if(LANG==='fr')return /^[a-zàâçéèêëîïôûùüÿœ]{3,10}$/i.test(e.w)?[...e.w.toLowerCase()]:null;
  if(LANG==='zh'){const u=[...e.w];return u.length>=2&&u.length<=4&&u.every(hasHan)?u:null}
  const k=String(e.kana||'').replace(/\s/g,'');const u=[...k];return u.length>=2&&u.length<=7&&!/[\s]/.test(k)?u:null}
 function spell(){if(!needWords(spell))return;const my=run();const P0=pool();let C=sh(P0).filter(unitsOf);if(C.length<6)C=sh(ALL.filter(unitsOf)).slice(0,200);
@@ -79,7 +81,7 @@ function spell(){if(!needWords(spell))return;const my=run();const P0=pool();let 
  function q(){if(my!==run())return;if(qi>=N)return finish('spell',pts,`สะกดถูก ${ok}/${N} คำ`);
   const e=C[qi],U=unitsOf(e),kt=c=>/[\u30a0-\u30ff]/.test(c),isK=U.some(kt),dec=sh(allU.filter(x=>!U.includes(x)&&(LANG!=='ja'||kt(x)===isK))).slice(0,U.length>5?3:2);const bank=sh([...U,...dec].map((x,i)=>({x,i})));let ans=[],tries=0,hint=false,over=false;
   const draw=()=>{app.innerHTML=head('สะกดคำ',`คำที่ ${qi+1}/${N} · ${pts} แต้ม`)+`<div class="bar"><i style="width:${qi/N*100}%"></i></div>
-   <div class="card" style="align-items:center;text-align:center"><div class="mut">${LANG==='en'?'เรียงตัวอักษรให้เป็นคำที่แปลว่า':LANG==='zh'?'เรียงตัวอักษรจีนให้เป็นคำที่แปลว่า':'เรียงคานะให้เป็นคำที่แปลว่า'}</div><div style="font-size:22px;font-weight:700">${esc(e.th)}</div>
+   <div class="card" style="align-items:center;text-align:center"><div class="mut">${LANG==='en'||LANG==='fr'?'เรียงตัวอักษรให้เป็นคำที่แปลว่า':LANG==='zh'?'เรียงตัวอักษรจีนให้เป็นคำที่แปลว่า':'เรียงคานะให้เป็นคำที่แปลว่า'}</div><div style="font-size:22px;font-weight:700">${esc(e.th)}</div>
    ${hint&&D.showRD&&e.rd?`<div class="rd" style="font-size:16px">${rdHTML(e.rd)}</div>`:''}${hint&&LANG==='ja'&&e.w!==e.kana?`<div style="font-size:18px">${esc(e.w)}</div>`:''}
    <div id="sa" style="min-height:58px;width:100%;border:2px dashed #C9D3F2;border-radius:12px;padding:8px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center">${ans.map((b,k)=>`<button class="soft" data-a="${k}" style="min-width:44px;font-size:${CJK?24:20}px">${esc(b.x)}</button>`).join('')||'<span class="mut">แตะตัวด้านล่าง</span>'}</div></div>
    <div class="row" style="justify-content:center">${bank.map((b,k)=>ans.includes(b)?'':`<button class="opt" data-b="${k}" style="min-width:50px;font-size:${CJK?24:20}px">${esc(b.x)}</button>`).join('')}</div>
@@ -126,7 +128,7 @@ function hunter(){if(!needWords(hunter))return;const P0=pool();const N=A.CN('hun
  const pairs=(typeof SOUNDS!=='undefined'?SOUNDS:[]).flatMap(s=>(s.pairs||[]).map(p=>p.slice(0,2))).filter(p=>p[0]&&p[1]&&p[0]!==p[1]);let C=[];
  if(LANG==='zh'){C=sh(P0.filter(e=>e.py&&LP.tones(e.py).length>=1&&LP.tones(e.py).length<=3))}
  else if(LANG==='ja'){C=sh(P0.filter(e=>e.kana&&!/\s/.test(e.kana)&&e.kana.length>=2&&jaVariants(e.kana).length>=2))}
- const items=[];for(let i=0;i<N;i++){if((LANG==='en'||!C.length||i%4===3)&&pairs.length)items.push({pair:sh(pairs)[0]});else if(C.length)items.push({e:C[i%C.length]})}
+ const items=[];for(let i=0;i<N;i++){if((LANG==='en'||LANG==='fr'||!C.length||i%4===3)&&pairs.length)items.push({pair:sh(pairs)[0]});else if(C.length)items.push({e:C[i%C.length]})}
  const title=LANG==='zh'?'นักล่าเสียง · วรรณยุกต์':LANG==='ja'?'นักล่าเสียง · สั้น/ยาว/っ':'นักล่าเสียง · คู่เสียงคล้าย';
  mcq({id:'hunter',title,n:items.length,make(i){const it=items[i];
   if(it.pair){const [a,b]=it.pair,t=Math.random()<.5?a:b;const ia=info(a),ib=info(b);const h=w=>{const x=info(w);return `<span style="font-weight:700;font-size:${CJK?24:20}px">${esc(w)}</span>${x.th?`<span class="tr">${esc(x.th)}</span>`:''}`};
@@ -183,7 +185,7 @@ function stage(i){const p=P(),L=advList(),boss=(i+1)%5===0;const words=boss?L.sl
 
 /* ---------- 8) บทสนทนาหน้างาน ---------- */
 function rdS(l){if(!D.showRD)return '';const r=LANG==='en'?(typeof autoRead==='function'?autoRead(l[0]):''):l[1]?LP.readSentence(l[1],l[0]):'';return r?`<span class="rd">${rdHTML(r)}</span>`:''}
-const lineHTML=(l,big)=>`<span style="font-weight:700;font-size:${big?(CJK?20:18):16}px">${esc(l[0])}</span>${CJK&&l[1]?`<span class="py" style="font-weight:400">${esc(l[1])}</span>`:''}${rdS(l)}`;
+const lineHTML=(l,big)=>`<span style="font-weight:700;font-size:${big?(CJK?20:18):16}px">${esc(l[0])}</span>${CJK&&l[1]&&LANG!=='fr'?`<span class="py" style="font-weight:400">${esc(l[1])}</span>`:''}${rdS(l)}`;
 function dialog(){const DL=(window.DIALOGS||{})[LANG]||[];const p=P();p.dlg=p.dlg||{};
  app.innerHTML=head('ฝึกบทสนทนา',`${DL.length} สถานการณ์ · จบแล้ว ${Object.keys(p.dlg).length}`)+DL.map((d,i)=>`<button class="fx-gc" data-d="${i}" style="background:${p.dlg[i]?'#EAF3DE':'#F1EFE8'};flex-direction:row;align-items:center;gap:12px;min-height:70px"><i class="ti ${d.icon||'ti-message-circle'}" style="font-size:28px;color:#444441" aria-hidden="true"></i><span style="flex:1"><b style="font-size:16px;color:#2C2C2A">${esc(d.t)}</b><br><span class="mut">${d.turns.length} ช่วงสนทนา</span></span><span class="fx-pill" style="background:#fff;color:#444441">${p.dlg[i]?'★'.repeat(p.dlg[i]):'ใหม่'}</span></button>`).join('')+(DL.length?'':'<div class="note">ยังไม่มีบทสนทนาสำหรับภาษานี้</div>');back();
  app.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>scene(+b.dataset.d))}

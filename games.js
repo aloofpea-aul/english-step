@@ -121,7 +121,7 @@ function speak(){if(!needWords(speak))return;const my=RUN;
 
 /* ---------- 4) เรียงประโยค ---------- */
 function tokens(e){const strip=s=>s.replace(/[.,!?;:。、！？，．「」"]/g,'');
- if(LANG==='en')return e.ex.split(/\s+/).map(strip).filter(Boolean);
+ if(LANG==='en'||LANG==='fr')return e.ex.split(/\s+/).map(strip).filter(Boolean);
  if(LANG==='ja')return String(e.expy||'').split(/[\s　]+/).map(strip).filter(Boolean);
  // จีน: ตัดตัวอักษรจีนตามจำนวนพยางค์ของพินอินแต่ละคำ
  const hz=[...String(e.ex).replace(/[^㐀-鿿]/g,'')];const ws=String(e.expy||'').split(/\s+/).map(w=>LP.parse(w).length).filter(n=>n>0);

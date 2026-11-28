@@ -59,17 +59,17 @@ label{font-size:14px;font-weight:600}
 <nav id="nav">
 <button data-go="home">หน้าหลัก</button><button data-go="sounds">ออกเสียง</button><button data-go="vocab">คำศัพท์</button><button data-go="games">เกม</button><button data-go="tips">เทคนิคจำ</button>
 </nav>
-<script src="mouth.js"></script>
+<script src="mouth.js?v=20261128f"></script>
 <script src="fx.js?v=20261127g"></script>
-<script src="games.js?v=20261128a"></script><script src="dict.js?v=20261128b"></script><script src="dialogs.js?v=20261128c"></script><script src="games2.js?v=20261128c"></script>
+<script src="games.js?v=20261128f"></script><script src="dict.js?v=20261128f"></script><script src="dialogs.js?v=20261128f"></script><script src="games2.js?v=20261128f"></script>
 <script>
 (function(){var L='en';try{L=new URLSearchParams(location.search).get('lang')||localStorage.getItem('langstep_lang')||'en'}catch(e){}
-if(!/^(en|zh|ja)$/.test(L))L='en';try{var X=JSON.parse(localStorage.getItem('aloof_apps_auth')||'null');window.APP_MODE=!!(X&&X.token&&localStorage.getItem('aloof_mode_english')!=='staff');if(window.APP_MODE){var OK=(X.user&&X.user.apps&&X.user.apps.english&&X.user.apps.english.langs)||['en'];window.APP_LANGS=OK;if(OK.indexOf(L)<0){if(new URLSearchParams(location.search).get('lang'))window.LANG_DENIED=L;L=OK[0]||'en'}}}catch(e){}try{var A=window.APP_MODE?null:JSON.parse(localStorage.getItem('pea_hub_auth')||'null');if(L!=='en'&&A&&A.role!=='admin'&&Array.isArray(A.apps)&&A.apps.indexOf('lang_'+L)<0){window.LANG_DENIED=L;L='en'}}catch(e){}window.LANG=L;try{localStorage.setItem('langstep_lang',L)}catch(e){}
-document.write('<script src="'+(L==='en'?'data.js?v=20261127':L+'/pack.js?v=20261127d')+'"><\/script>')})();
+if(!/^(en|zh|ja|fr)$/.test(L))L='en';try{var X=JSON.parse(localStorage.getItem('aloof_apps_auth')||'null');window.APP_MODE=!!(X&&X.token&&localStorage.getItem('aloof_mode_english')!=='staff');if(window.APP_MODE){var OK=(X.user&&X.user.apps&&X.user.apps.english&&X.user.apps.english.langs)||['en'];window.APP_LANGS=OK;if(OK.indexOf(L)<0){if(new URLSearchParams(location.search).get('lang'))window.LANG_DENIED=L;L=OK[0]||'en'}}}catch(e){}try{var A=window.APP_MODE?null:JSON.parse(localStorage.getItem('pea_hub_auth')||'null');if(L!=='en'&&A&&A.role!=='admin'&&Array.isArray(A.apps)&&A.apps.indexOf('lang_'+L)<0){window.LANG_DENIED=L;L='en'}}catch(e){}window.LANG=L;try{localStorage.setItem('langstep_lang',L)}catch(e){}
+document.write('<script src="'+(L==='en'?'data.js?v=20261127':L+'/pack.js?v=20261128f')+'"><\/script>')})();
 </script>
 <script>
 /* ===== ชุดภาษา ===== */
-const LANGS=[{code:'en',label:'English'},{code:'zh',label:'中文 จีน'},{code:'ja',label:'日本語 ญี่ปุ่น'}];
+const LANGS=[{code:'en',label:'English'},{code:'zh',label:'中文 จีน'},{code:'ja',label:'日本語 ญี่ปุ่น'},{code:'fr',label:'Français ฝรั่งเศส'}];
 const EN=window.ES_DATA||{};
 const LP=LANG==='en'?{code:'en',label:'English',thName:'ภาษาอังกฤษ',tts:'en-US',ttsRe:/en-US/i,SOUNDS:EN.SOUNDS,DEMO:EN.DEMO,TIPS:EN.TIPS,DICT:{},
  levels:[{lv:0,name:'ปูพื้นเสียง',cefr:'Pre-A1',goal:150},{lv:1,name:'เอาตัวรอด',cefr:'A1',goal:500},{lv:2,name:'สื่อสารประจำวัน',cefr:'A2',goal:1200},{lv:3,name:'คุยได้คล่อง',cefr:'B1',goal:2500},{lv:4,name:'มั่นใจในที่ทำงาน',cefr:'B2',goal:4000}],
@@ -84,7 +84,7 @@ function addE(e){const w=CJK?e.w:e.w.toLowerCase();if(BYW[w])return;e.w=w;BYW[w]
 if(!CJK)(EN.VOCAB||[]).forEach((v,k)=>addE({lv:0,cat:v[0],w:v[1],th:v[2],rd:RD[v[1]]||'',ex:v[3],exth:VTH[k]||'',srd:SRD[k]||'',note:SNOTE[k]||''}));
 window.ES_ADD=(lv,cat,txt)=>txt.split('\n').map(x=>x.trim()).filter(Boolean).forEach(line=>{const f=line.split('|').map(x=>x.trim());
  if(!CJK){if(f.length>=5)addE({lv,cat,w:f[0],th:f[1],rd:f[2],ex:f[3],exth:f[4],srd:'',note:f[5]||''});return}
- if(f.length<6)return;addE({lv,cat,w:f[0],py:f[1],kana:LP.kana?f[1]:undefined,th:f[2],ex:f[3],expy:f[4],exth:f[5],note:f[6]||'',rd:LP.read(f[1],f[0]),srd:LP.readSentence(f[4],f[3])})});
+ if(f.length<6)return;const FR=LP.code==='fr';addE({lv,cat,w:f[0],py:FR?undefined:f[1],kana:LP.kana?f[1]:undefined,th:f[2],ex:f[3],expy:FR?undefined:f[4],exth:f[5],note:f[6]||'',rd:LP.read(f[1],f[0]),srd:LP.readSentence(f[4],f[3])})});
 const LV_FILES=[0,1,2,3,4],lvLoaded={};let allLoaded=null;
 function loadLevel(lv){if(window.ES_SALE)return lvLoaded[lv]||(lvLoaded[lv]=ES_SALE.load(LP.lvFile(lv)).catch(()=>{lvLoaded[lv]=null}));return lvLoaded[lv]||(lvLoaded[lv]=new Promise(res=>{const s=document.createElement('script');s.src=LP.lvFile(lv)+'?v=20261127d';s.onload=res;s.onerror=()=>{lvLoaded[lv]=null;res()};document.head.append(s)}))}
 function loadAll(){return allLoaded||(allLoaded=LV_FILES.reduce((p,lv)=>p.then(()=>loadLevel(lv)),Promise.resolve()))}
@@ -92,7 +92,7 @@ const inLv=lv=>ALL.filter(e=>e.lv===lv);
 const autoRead=ex=>String(ex||'').replace(/[A-Za-z][A-Za-z']*/g,m=>{const k=m.toLowerCase();const r=RDALL[k]||RDALL[k.replace(/'s$|s$|es$|ed$|ing$/,'')];return r?r:m});
 // ข้อมูลของคำใดๆ (คลังศัพท์ → คำในบทเรียนเสียง)
 function info(w){const e=BYW[CJK?w:String(w).toLowerCase()];if(e)return e;
- if(CJK){const d=(LP.DICT||{})[w];return d?{w,py:d[0],kana:LP.kana?d[0]:undefined,th:d[1],rd:LP.read(d[0],w)}:{w}}return {w,th:TH[w],rd:RD[w]}}
+ if(CJK){const d=(LP.DICT||{})[w];return d?{w,py:LP.code==='fr'?undefined:d[0],kana:LP.kana?d[0]:undefined,th:d[1],rd:LP.read(d[0],w)}:{w}}return {w,th:TH[w],rd:RD[w]}}
 
 /* ================= ล็อกอิน + เก็บข้อมูล ================= */
 const API='https://script.google.com/macros/s/AKfycby-QfNUJFz0vCVtD4K0Fk3_k4d-U6pkkdjxjCgk69eRbdohQJPRJjU7zkllpJ2FS9ky/exec';
@@ -181,7 +181,7 @@ function switchLang(c){if(c===LANG)return;if(syncT)push();try{localStorage.setIt
 
 function home(){const s=stats(0),sa=stats();const n0=Math.max(inLv(0).length,1);const pct=Math.round(((s.learned/n0)+(s.snd/SOUNDS.length))*50);if(!allReady)loadAll().then(()=>{if(!allReady){allReady=true;if($('#gS'))home()}});
  const L0=LEVELS[0];
- app.innerHTML=`${window.LANG_DENIED?`<div class="note">บัญชีนี้ยังไม่ได้รับสิทธิ์${window.LANG_DENIED==='zh'?'ภาษาจีน':'ภาษาญี่ปุ่น'} — ${window.APP_MODE?'ติดต่อผู้ดูแลเพื่อเพิ่มภาษา':'ขอสิทธิ์จากผู้ดูแลระบบในศูนย์รวมงาน'}</div>`:''}${langRow()}<div class="row" style="justify-content:space-between;align-items:center"><div class="mut">สวัสดี ${esc(AUTH?AUTH.user.name:'')} · ${esc(LP.thName)}</div>${FX.pillsHTML()}</div>
+ app.innerHTML=`${window.LANG_DENIED?`<div class="note">บัญชีนี้ยังไม่ได้รับสิทธิ์${({zh:'ภาษาจีน',ja:'ภาษาญี่ปุ่น',fr:'ภาษาฝรั่งเศส'})[window.LANG_DENIED]||''} — ${window.APP_MODE?'ติดต่อผู้ดูแลเพื่อเพิ่มภาษา':'ขอสิทธิ์จากผู้ดูแลระบบในศูนย์รวมงาน'}</div>`:''}${langRow()}<div class="row" style="justify-content:space-between;align-items:center"><div class="mut">สวัสดี ${esc(AUTH?AUTH.user.name:'')} · ${esc(LP.thName)}</div>${FX.pillsHTML()}</div>
  ${window.dictBoxHTML?dictBoxHTML():''}
  ${FX.heroHTML()}
  ${FX.questsHTML()}
