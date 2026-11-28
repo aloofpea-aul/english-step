@@ -90,7 +90,7 @@ function listenG(){if(!needWords(listenG))return;const my=RUN;const P0=pool();co
   <div class="card" style="align-items:center"><button class="mic" id="lp" aria-label="ฟังอีกครั้ง" style="background:var(--blue)"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 010 7M19 5a10 10 0 010 14"/></svg></button><div class="row"><button class="soft" id="ls">ฟังช้า</button></div><div class="mut">ฟังแล้วเลือกคำที่ได้ยิน</div></div>
   <div class="g2" id="lo">${opts.map((o,i)=>`<button class="opt w2" data-i="${i}" style="min-height:76px">${wordHTML(o)}</button>`).join('')}</div><div id="lr"></div>`;
   $('#gbk').onclick=()=>go('games');$('#lp').onclick=()=>say(e.w);$('#ls').onclick=()=>say(e.w,0.55);setTimeout(()=>{if(my===RUN)say(e.w)},250);
-  app.querySelectorAll('#lo [data-i]').forEach(b=>b.onclick=()=>{if(done)return;done=true;const o=opts[+b.dataset.i],right=o===e;
+  app.querySelectorAll('#lo [data-i]').forEach(b=>b.onclick=()=>{const o=opts[+b.dataset.i];say(o.w);if(done)return;done=true;const right=o===e;
    if(right){ok++;streak++;pts+=10+(streak>=3?5:0);b.classList.add('ok');FX.sfx.ok();if(streak>=3)FX.toast('ติดกัน '+streak+' ข้อ! +5','#0F6E56')}else{streak=0;FX.sfx.bad();b.classList.add('bad');app.querySelectorAll('#lo [data-i]')[opts.indexOf(e)].classList.add('ok')}
    $('#lr').innerHTML=`<div class="${right?'okn':'note'}">${right?'ถูกต้อง':'คำที่ได้ยินคือ'} <b>${esc(e.w)}</b> = ${esc(e.th)}</div><button class="btn" id="ln">${qi<qs.length-1?'ข้อต่อไป':'ดูผล'}</button>`;
    $('#ln').onclick=()=>{qi++;q()}})}

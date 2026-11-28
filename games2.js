@@ -35,11 +35,11 @@ function mcq(o){const my=run();let qi=0,pts=0,ok=0,streak=0;const N=o.n;A.LIVE((
   <div class="card" style="align-items:center;text-align:center">${Q.prompt}${Q.say?`<div class="row"><button class="soft" id="qp">ฟังอีกครั้ง</button><button class="soft" id="qs">ฟังช้า</button></div>`:''}</div>
   <div class="${Q.cols===1?'':'g2'}" id="qo" style="${Q.cols===1?'display:flex;flex-direction:column;gap:8px':''}">${Q.opts.map((x,i)=>`<button class="opt w2" data-i="${i}" style="min-height:${Q.tall||72}px">${x.h}</button>`).join('')}</div><div id="qr"></div>`;
   back();if(Q.say){$('#qp').onclick=()=>say(Q.say);$('#qs').onclick=()=>say(Q.say,0.55);setTimeout(()=>{if(my===run())say(Q.say)},250)}
-  app.querySelectorAll('#qo [data-i]').forEach(b=>b.onclick=()=>{if(done)return;done=true;const x=Q.opts[+b.dataset.i];
+  app.querySelectorAll('#qo [data-i]').forEach(b=>b.onclick=()=>{const x=Q.opts[+b.dataset.i];if(x.w)say(x.w);if(done)return;done=true;
    if(x.ok){ok++;streak++;pts+=10+(streak>=3?5:0);b.classList.add('ok');FX.sfx.ok();if(streak===5||streak===10)FX.toast('ติดกัน '+streak+' ข้อ!','#0F6E56')}
    else{streak=0;b.classList.add('bad');FX.sfx.bad();app.querySelectorAll('#qo [data-i]')[Q.opts.findIndex(z=>z.ok)].classList.add('ok')}
    if(Q.after)Q.after(x.ok);
-   $('#qr').innerHTML=`<div class="${x.ok?'okn':'note'}">${x.ok?'ถูกต้อง':'ยังไม่ใช่'} · ${Q.explain||''}</div><button class="btn" id="qn">${qi<N-1?'ข้อต่อไป':'ดูผล'}</button>`;
+   $('#qr').innerHTML=`<div class="${x.ok?'okn':'note'}">${x.ok?'ถูกต้อง':'ยังไม่ใช่'} · ${Q.explain||''}</div>${Q.opts.some(z=>z.w)?'<div class="mut" style="font-size:13px">แตะการ์ดคำไหนก็ได้เพื่อฟังเสียง</div>':''}<button class="btn" id="qn">${qi<N-1?'ข้อต่อไป':'ดูผล'}</button>`;
    $('#qn').onclick=()=>{qi++;q()}})}
  q()}
 
@@ -66,8 +66,8 @@ function blankOf(e){const ex=String(e.ex||''),w=e.w;if(!ex||!w)return null;
  if(!ex.includes(w))return null;return ex.replace(w,'＿＿＿')}
 function fill(){if(!needWords(fill))return;const P0=pool();let C=sh(P0).map(e=>({e,b:blankOf(e)})).filter(x=>x.b);if(C.length<8)C=sh(ALL).map(e=>({e,b:blankOf(e)})).filter(x=>x.b).slice(0,200);
  const N=Math.min(A.CN('fill',10),C.length);
- mcq({id:'fill',title:'เติมคำในช่องว่าง',n:N,make(i){const {e,b}=C[i];const opts=sh([e,...distract(e,P0,3,x=>x.w)]).map(x=>({h:wordHTML(x),ok:x===e}));
-  return{prompt:`<div style="font-size:${CJK?24:20}px;font-weight:700;line-height:1.5">${esc(b)}</div><div class="trs" style="font-size:15px">${esc(e.exth||'')}</div>`,opts,explain:`<b>${esc(e.ex)}</b>`,after(){say(e.ex,0.85)}}}})}
+ mcq({id:'fill',title:'เติมคำในช่องว่าง',n:N,make(i){const {e,b}=C[i];const opts=sh([e,...distract(e,P0,3,x=>x.w)]).map(x=>({h:wordHTML(x),ok:x===e,w:x.w}));
+  return{prompt:`<div style="font-size:${CJK?24:20}px;font-weight:700;line-height:1.5">${esc(b)}</div><div class="trs" style="font-size:15px">${esc(e.exth||'')}</div>`,opts,explain:`<b>${esc(e.ex)}</b>`,after(){setTimeout(()=>say(e.ex,0.85),1100)}}}})}
 
 /* ---------- 3) สะกดคำ ---------- */
 function unitsOf(e){if(LANG==='en')return /^[a-z]{3,10}$/i.test(e.w)?[...e.w.toLowerCase()]:null;
@@ -130,14 +130,14 @@ function hunter(){if(!needWords(hunter))return;const P0=pool();const N=A.CN('hun
  const title=LANG==='zh'?'นักล่าเสียง · วรรณยุกต์':LANG==='ja'?'นักล่าเสียง · สั้น/ยาว/っ':'นักล่าเสียง · คู่เสียงคล้าย';
  mcq({id:'hunter',title,n:items.length,make(i){const it=items[i];
   if(it.pair){const [a,b]=it.pair,t=Math.random()<.5?a:b;const ia=info(a),ib=info(b);const h=w=>{const x=info(w);return `<span style="font-weight:700;font-size:${CJK?24:20}px">${esc(w)}</span>${x.th?`<span class="tr">${esc(x.th)}</span>`:''}`};
-   return{prompt:`${FX.ICON.listen}<div style="font-size:18px;font-weight:700">ฟังแล้วเลือกคำที่ได้ยิน</div>`,say:t,opts:[{h:h(a),ok:t===a},{h:h(b),ok:t===b}],explain:`ได้ยินว่า <b>${esc(t)}</b>${ia.th&&ib.th?' · '+esc(a)+' = '+esc(ia.th)+' · '+esc(b)+' = '+esc(ib.th):''}`}}
+   return{prompt:`${FX.ICON.listen}<div style="font-size:18px;font-weight:700">ฟังแล้วเลือกคำที่ได้ยิน</div>`,say:t,opts:[{h:h(a),ok:t===a,w:a},{h:h(b),ok:t===b,w:b}],explain:`ได้ยินว่า <b>${esc(t)}</b>${ia.th&&ib.th?' · '+esc(a)+' = '+esc(ia.th)+' · '+esc(b)+' = '+esc(ib.th):''}`}}
   const e=it.e;
   if(LANG==='zh'){const T=LP.tones(e.py);const key=x=>x.join('-');const set=new Set([key(T)]);const opts=[T];let guard=0;
    while(opts.length<4&&guard++<60){const r=T.map(()=>1+Math.floor(Math.random()*4));if(!set.has(key(r))){set.add(key(r));opts.push(r)}}
    const show=x=>`<span style="font-size:30px;font-weight:700;letter-spacing:6px">${x.map(t=>TM[t]).join(' ')}</span><span class="tr">เสียง ${x.map(t=>TNm[t]).join(' + ')}</span>`;
    return{prompt:`<div style="font-size:40px;font-weight:700">${esc(e.w)}</div><div class="trs">${esc(e.th)}</div><div class="mut">ฟังแล้วเลือกวรรณยุกต์ของคำนี้</div>`,say:e.w,opts:sh(opts).map(x=>({h:show(x),ok:key(x)===key(T)})),explain:`${esc(e.w)} = <b>${esc(e.py)}</b>`}}
   const V=jaVariants(e.kana).slice(0,3);
-  return{prompt:`<div class="trs" style="font-size:17px">${esc(e.th)}</div><div class="mut">ฟังแล้วเลือกคานะที่ตรงกับเสียง</div>`,say:e.w,opts:sh([e.kana,...V]).map(x=>({h:`<span style="font-size:24px;font-weight:700">${esc(x)}</span>`,ok:x===e.kana})),explain:`<b>${esc(e.kana)}</b>${e.w!==e.kana?' ('+esc(e.w)+')':''}`}}})}
+  return{prompt:`<div class="trs" style="font-size:17px">${esc(e.th)}</div><div class="mut">ฟังแล้วเลือกคานะที่ตรงกับเสียง</div>`,say:e.w,opts:sh([e.kana,...V]).map(x=>({h:`<span style="font-size:24px;font-weight:700">${esc(x)}</span>`,ok:x===e.kana,w:x})),explain:`<b>${esc(e.kana)}</b>${e.w!==e.kana?' ('+esc(e.w)+')':''}`}}})}
 
 /* ---------- 6) บิงโกศัพท์ ---------- */
 const LINES=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
@@ -174,9 +174,9 @@ function stage(i){const p=P(),L=advList(),boss=(i+1)%5===0;const words=boss?L.sl
  const P0=words.length>=4?words:pool();const qs=sh(boss?[...words,...words].slice(0,n):words.concat(sh(words)).slice(0,n));
  if(window.DUEL)DUEL.stop();
  mcq({id:'adv',title:(boss?'ด่านบอส ':'ด่าน ')+(i+1),n:qs.length,make(k){const e=qs[k],t=k%3;const near=distract(e,ALL.filter(x=>x.lv===e.lv),3);
-  if(t===0)return{prompt:`${wordHTML(e,true)}<div class="mut">แปลว่าอะไร</div>`,opts:sh([e,...near]).map(x=>({h:`<span style="font-size:16px;font-weight:600">${esc(shortTh(x.th))}</span>`,ok:x===e})),explain:`${esc(e.w)} = ${esc(e.th)}`,after(){say(e.w)}};
-  if(t===1)return{prompt:`<div style="font-size:22px;font-weight:700">${esc(e.th)}</div><div class="mut">ภาษา${esc(LP.thName.replace('ภาษา',''))}คือคำไหน</div>`,opts:sh([e,...near]).map(x=>({h:wordHTML(x),ok:x===e})),explain:`${esc(e.th)} = ${esc(e.w)}`,after(){say(e.w)}};
-  return{prompt:`${FX.ICON.listen}<div class="mut">ฟังแล้วเลือกคำที่ได้ยิน</div>`,say:e.w,opts:sh([e,...near]).map(x=>({h:wordHTML(x),ok:x===e})),explain:`${esc(e.w)} = ${esc(e.th)}`}},
+  if(t===0)return{prompt:`${wordHTML(e,true)}<div class="mut">แปลว่าอะไร</div>`,opts:sh([e,...near]).map(x=>({h:`<span style="font-size:16px;font-weight:600">${esc(shortTh(x.th))}</span>`,ok:x===e,w:x.w})),explain:`${esc(e.w)} = ${esc(e.th)}`};
+  if(t===1)return{prompt:`<div style="font-size:22px;font-weight:700">${esc(e.th)}</div><div class="mut">ภาษา${esc(LP.thName.replace('ภาษา',''))}คือคำไหน</div>`,opts:sh([e,...near]).map(x=>({h:wordHTML(x),ok:x===e,w:x.w})),explain:`${esc(e.th)} = ${esc(e.w)}`};
+  return{prompt:`${FX.ICON.listen}<div class="mut">ฟังแล้วเลือกคำที่ได้ยิน</div>`,say:e.w,opts:sh([e,...near]).map(x=>({h:wordHTML(x),ok:x===e,w:x.w})),explain:`${esc(e.w)} = ${esc(e.th)}`}},
   done(pts,ok,N){const pass=ok>=need,st=pass?(ok===N?3:ok>=N-1?2:1):0;p.adv=p.adv||{done:{}};if(pass){p.adv.done[i]=Math.max(p.adv.done[i]||0,st);p.adv.page=Math.floor((i+1)/20)}
    if(pass)words.forEach(e=>{const C=p.cards;if(!C[e.w])C[e.w]={box:1,due:Date.now()+86400000}});
    finish('adv',pts+(pass?st*10+(boss?30:0):0),pass?`${boss?'ชนะบอส! ':''}ผ่านด่าน ${i+1} · ถูก ${ok}/${N} · ${'★'.repeat(st)} · ปลดล็อกด่าน ${i+2}`:`ถูก ${ok}/${N} ต้องได้ ${need} ข้อจึงผ่าน`,()=>pass?adv():stage(i))}})}
@@ -195,7 +195,7 @@ function scene(si){const my=run();const d=window.DIALOGS[LANG][si];let ti=0,pts=
   <div style="display:flex;gap:8px;align-items:flex-end" class="fx-pop"><span style="flex:none;width:40px;height:40px;border-radius:50%;background:#D3D1C7;display:flex;align-items:center;justify-content:center"><i class="ti ti-user" style="font-size:22px;color:#444441" aria-hidden="true"></i></span><div style="background:#fff;border:1px solid #E3E7F1;border-radius:14px 14px 14px 2px;padding:10px 12px;max-width:85%">${T.who?`<div class="mut" style="font-size:12px">${esc(T.who)}</div>`:''}${lineHTML(T.npc,true)}<div class="trs">${esc(T.npc[2])}</div><button class="soft" id="dpl" style="min-height:34px;margin-top:4px">ฟังอีกครั้ง</button></div></div></div>
   <div class="mut">เลือกคำตอบที่เหมาะที่สุด</div><div style="display:flex;flex-direction:column;gap:8px" id="do">${opts.map((x,k)=>`<button class="opt w2" data-o="${k}" style="align-items:flex-start;text-align:left;min-height:60px">${lineHTML(x.o)}</button>`).join('')}</div><div id="dr"></div>`;back();
   setTimeout(()=>{if(my===run())say(T.npc[0],0.85)},250);$('#dpl').onclick=()=>say(T.npc[0],0.75);
-  app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{if(done)return;done=true;const x=opts[+b.dataset.o],good=opts.find(z=>z.ok).o;
+  app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const x=opts[+b.dataset.o],good=opts.find(z=>z.ok).o;if(done){say(x.o[0],0.85);return}done=true;
    if(x.ok){ok++;pts+=15;b.classList.add('ok');FX.sfx.ok()}else{b.classList.add('bad');FX.sfx.bad();app.querySelectorAll('[data-o]')[opts.findIndex(z=>z.ok)].classList.add('ok')}
    setTimeout(()=>say(good[0],0.85),300);
    $('#dr').innerHTML=`<div class="${x.ok?'okn':'note'}">${x.ok?'ตอบได้เหมาะสม':'คำตอบที่เหมาะกว่าคือ'}<br><b>${esc(good[0])}</b><br>${esc(good[2])}</div><div class="g2"><button class="soft" id="dsp">พูดตาม (+5)</button><button class="btn" id="dn">${ti<d.turns.length-1?'ต่อไป':'จบบทสนทนา'}</button></div><div id="dsr"></div>`;
