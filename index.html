@@ -62,7 +62,7 @@ label{font-size:14px;font-weight:600}
 </nav>
 <script src="mouth.js?v=20261128f"></script>
 <script src="fx.js?v=20261127g"></script>
-<script src="games.js?v=20261128f"></script><script src="dict.js?v=20261128f"></script><script src="dialogs.js?v=20261128f"></script><script src="games2.js?v=20261128f"></script>
+<script src="games.js?v=20261128f"></script><script src="dict.js?v=20261128f"></script><script src="dialogs.js?v=20261128f"></script><script src="games2.js?v=20261128f"></script><script src="grammar.js?v=20261128a"></script>
 <script>
 (function(){var L='en';try{L=new URLSearchParams(location.search).get('lang')||localStorage.getItem('langstep_lang')||'en'}catch(e){}
 if(!/^(en|zh|ja|fr)$/.test(L))L='en';try{var X=JSON.parse(localStorage.getItem('aloof_apps_auth')||'null');window.APP_MODE=!!(X&&X.token&&localStorage.getItem('aloof_mode_english')!=='staff');if(window.APP_MODE){var OK=(X.user&&X.user.apps&&X.user.apps.english&&X.user.apps.english.langs)||['en'];window.APP_LANGS=OK;if(OK.indexOf(L)<0){if(new URLSearchParams(location.search).get('lang'))window.LANG_DENIED=L;L=OK[0]||'en'}}}catch(e){}try{var A=window.APP_MODE?null:JSON.parse(localStorage.getItem('pea_hub_auth')||'null');if(L!=='en'&&A&&A.role!=='admin'&&Array.isArray(A.apps)&&A.apps.indexOf('lang_'+L)<0){window.LANG_DENIED=L;L='en'}}catch(e){}window.LANG=L;try{localStorage.setItem('langstep_lang',L)}catch(e){}
@@ -174,7 +174,7 @@ const BACK='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="
 function alertBox(m){const n=document.createElement('div');n.className='note';n.textContent=m;app.prepend(n);setTimeout(()=>n.remove(),4000)}
 function nav(v){document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.go===v))}
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>go(b.dataset.go));
-function go(v,arg){window.scrollTo(0,0);nav(v==='sound'?'sounds':v==='review'?'vocab':v);({home,sounds,sound,vocab,review,tips,games:window.games,game:window.game,dict:window.dict}[v])(arg)}
+function go(v,arg){window.scrollTo(0,0);nav(v==='sound'?'sounds':v==='review'?'vocab':v);({home,sounds,sound,vocab,review,tips,games:window.games,game:window.game,dict:window.dict,grammar:window.grammar}[v])(arg)}
 const bigW=w=>CJK?`<div class="cjk">${esc(w)}</div>`:`<div class="big">${esc(w)}</div>`;
 
 function stats(lv){const C=P().cards;const ws=lv==null?ALL:inLv(lv);const learned=ws.filter(e=>(C[e.w]||{}).box>=2).length;const seen=ws.filter(e=>C[e.w]).length;
@@ -195,6 +195,7 @@ function home(){const s=stats(0),sa=stats();const n0=Math.max(inLv(0).length,1);
  ${FX.heroHTML()}
  ${FX.questsHTML()}
  <h2 style="margin-top:4px">เกมภาษา</h2>${FX.gamesHTML()}
+ ${window.grammarCardHTML?grammarCardHTML():''}
  <h2 style="margin-top:4px">Level 0 · ${esc(L0.name)}</h2>
  <div class="hero"><div style="font-size:14px">ความคืบหน้า Level 0</div><div class="big">${pct}%</div><div class="bar" style="background:rgba(255,255,255,.3)"><i style="width:${pct}%;background:#fff"></i></div>
  <div style="font-size:14px">ผ่านเกณฑ์ Level 0: ออกเสียงได้ ≥70% ครบ ${SOUNDS.length} บท และจำศัพท์ได้ครบ ${n0} คำ</div></div>
@@ -205,7 +206,7 @@ function home(){const s=stats(0),sa=stats();const n0=Math.max(inLv(0).length,1);
  <div class="row" style="justify-content:space-between;align-items:center"><span class="mut">ผลการเรียนบันทึกขึ้นระบบอัตโนมัติ</span><a class="soft" href="/index.html" style="display:flex;align-items:center;text-decoration:none;border-radius:12px">ศูนย์รวมงาน</a></div>`;
  $('#thsw').onchange=e=>{D.showTH=e.target.checked;save(D)};$('#rdsw').onchange=e=>{D.showRD=e.target.checked;save(D)};
  app.querySelectorAll('[data-lang]').forEach(b=>b.onclick=()=>switchLang(b.dataset.lang));
- $('#gS').onclick=()=>go('sounds');$('#gV').onclick=()=>go('review');FX.bindHome();if(window.dictBind){dictBind();dictResume()}}
+ $('#gS').onclick=()=>go('sounds');$('#gV').onclick=()=>go('review');FX.bindHome();if(window.grammarBind)grammarBind();if(window.dictBind){dictBind();dictResume()}}
 
 function sounds(){app.innerHTML=`<h1>ห้องออกเสียง${CJK?' · '+esc(LP.thName):''}</h1><div class="mut">${SOUNDS.length} บทที่คนไทยมักพลาด เรียงจากง่ายไปยาก</div>`+
  SOUNDS.map((s,i)=>{const b=(P().sounds[s.id]||{}).best;const t=b>=70?`<span class="tag" style="background:#D2F0EA;color:#0B5E54">ผ่าน ${b}</span>`:b?`<span class="tag" style="background:#FCE3CC;color:#7A3A08">${b}</span>`:'<span class="tag" style="background:#EEF0F5;color:#4A5470">ยังไม่ฝึก</span>';
