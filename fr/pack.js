@@ -51,7 +51,7 @@ const TIPS=[
 ['เริ่มจากรูป vous สุภาพ','คุยกับคนไม่สนิท ลูกค้า ผู้ใหญ่ ใช้ vous เสมอ ใช้ tu กับเพื่อนและเด็ก'],
 ['ทบทวนตามรอบ','ระบบนัดทบทวน 1, 3, 7, 14, 30, 60 วัน กดปุ่มตามจริง ลืมก็กดลืม ระบบจะนำมาให้ทวนเร็วขึ้น']
 ];
-const LEVELS=[{lv:0,name:'ปูพื้นเสียง',cefr:'A1 ต้น',goal:150},{lv:1,name:'เอาตัวรอด',cefr:'A1',goal:500},{lv:2,name:'สื่อสารประจำวัน',cefr:'A2',goal:1000},{lv:3,name:'คุยได้คล่อง',cefr:'B1',goal:2000},{lv:4,name:'มั่นใจในที่ทำงาน',cefr:'B2',goal:3000}];
+const LEVELS=[{lv:0,name:'ปูพื้นเสียง',cefr:'A1 ต้น',goal:150},{lv:1,name:'เอาตัวรอด',cefr:'A1',goal:400},{lv:2,name:'สื่อสารประจำวัน',cefr:'A2',goal:750},{lv:3,name:'คุยได้คล่อง',cefr:'B1',goal:950},{lv:4,name:'มั่นใจในที่ทำงาน',cefr:'B2',goal:1100}];
 function soundFor(e){const w=String(e&&e.w||'').toLowerCase();if(!w)return null;
  if(/[jg][eiéèêy]|^j|ge|j/.test(w)&&!/gn/.test(w))return 'j';if(/ch/.test(w))return 'j';
  if(/(an|am|en|em|on|om|in|im|ain|ein|un)(?![aeiouyéèên])/.test(w))return 'nasal';
