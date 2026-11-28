@@ -86,7 +86,7 @@ window.ES_ADD=(lv,cat,txt)=>txt.split('\n').map(x=>x.trim()).filter(Boolean).for
  if(!CJK){if(f.length>=5)addE({lv,cat,w:f[0],th:f[1],rd:f[2],ex:f[3],exth:f[4],srd:'',note:f[5]||''});return}
  if(f.length<6)return;addE({lv,cat,w:f[0],py:f[1],kana:LP.kana?f[1]:undefined,th:f[2],ex:f[3],expy:f[4],exth:f[5],note:f[6]||'',rd:LP.read(f[1],f[0]),srd:LP.readSentence(f[4],f[3])})});
 const LV_FILES=[0,1,2,3,4],lvLoaded={};let allLoaded=null;
-function loadLevel(lv){return lvLoaded[lv]||(lvLoaded[lv]=new Promise(res=>{const s=document.createElement('script');s.src=LP.lvFile(lv)+'?v=20261127d';s.onload=res;s.onerror=()=>{lvLoaded[lv]=null;res()};document.head.append(s)}))}
+function loadLevel(lv){if(window.ES_SALE)return lvLoaded[lv]||(lvLoaded[lv]=ES_SALE.load(LP.lvFile(lv)).catch(()=>{lvLoaded[lv]=null}));return lvLoaded[lv]||(lvLoaded[lv]=new Promise(res=>{const s=document.createElement('script');s.src=LP.lvFile(lv)+'?v=20261127d';s.onload=res;s.onerror=()=>{lvLoaded[lv]=null;res()};document.head.append(s)}))}
 function loadAll(){return allLoaded||(allLoaded=LV_FILES.reduce((p,lv)=>p.then(()=>loadLevel(lv)),Promise.resolve()))}
 const inLv=lv=>ALL.filter(e=>e.lv===lv);
 const autoRead=ex=>String(ex||'').replace(/[A-Za-z][A-Za-z']*/g,m=>{const k=m.toLowerCase();const r=RDALL[k]||RDALL[k.replace(/'s$|s$|es$|ed$|ing$/,'')];return r?r:m});
@@ -111,7 +111,7 @@ const packCards=c=>Object.keys(c).map(w=>w+'\t'+c[w].box+'\t'+Math.round(c[w].du
 const unpackCards=s=>{const c={};String(s||'').split('\n').forEach(l=>{const f=l.split('\t');if(f.length===3)c[f[0]]={box:+f[1],due:+f[2]*DAY}});return c};
 function useData(x){x=Object.assign({},x||{});if(x.cz!=null){x.cards=unpackCards(x.cz);delete x.cz}
  const L={};Object.keys(x.L||{}).forEach(k=>{const o=Object.assign({},x.L[k]);if(o.cz!=null){o.cards=unpackCards(o.cz);delete o.cz}o.cards=o.cards||{};o.sounds=o.sounds||{};L[k]=o});x.L=L;D=Object.assign(blank(),x)}
-async function api(action,body){
+async function api(action,body){if(window.ES_SALE)return ES_SALE.call(action,body);
  const r=await fetch(API,{method:'POST',body:JSON.stringify(Object.assign({action},body||{}))});
  return r.json()}
 let syncT=null;
