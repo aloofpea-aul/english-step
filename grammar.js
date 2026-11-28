@@ -48,7 +48,7 @@ function quiz(i){const g=GRAMMAR[LANG][i],Q=g.q||[];let n=0,ok=0;
     app.querySelectorAll('[data-u]').forEach(b=>b.onclick=()=>{pick.splice(+b.dataset.u,1);draw()});
     app.querySelector('#gChk').onclick=()=>{if(pick.length<W.length){alertBox('ใช้ให้ครบทุกคำก่อน');return}
      const got=pick.map(p=>p.w).join(' '),want=W.join(' ');app.querySelector('#gChk').remove();app.querySelectorAll('[data-p],[data-u]').forEach(b=>b.onclick=null);
-     say(q.order);after(got===want,q.why,W.join(LANG==='en'||LANG==='fr'?' ':''))}};draw();return}
+     say(q.order.replace(/\|/g,''));after(got===want,q.why,W.join(LANG==='en'||LANG==='fr'?' ':''))}};draw();return}
   const opts=q.o.map((t,k)=>({t,k})),sh=q.keep?opts:shuffle(opts);
   app.innerHTML=head()+`<div class="card"><div style="font-size:19px;line-height:1.6">${esc(q.q)}</div>${q.th?`<div class="mut">${esc(q.th)}</div>`:''}</div>`+
    sh.map(o=>`<button class="item" data-o="${o.k}" style="justify-content:center;font-size:17px">${esc(o.t)}</button>`).join('');bindBack();
