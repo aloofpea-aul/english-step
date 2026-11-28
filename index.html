@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="/apps/icons.css?v=20261128c">
 <script src="/apps/aloof.js?v=20261128a"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="fit.js?v=1"></script>
 <title>English Step · Level 0</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -129,7 +130,15 @@ function logout(expired){if(AUTH){const t=AUTH.token;if(!expired)api('logout',{t
 let voice=null;
 function pickVoice(){const v=speechSynthesis.getVoices(),pre=LP.tts.slice(0,2);voice=v.find(x=>LP.ttsRe.test(x.lang)&&/Google|Samantha|Microsoft|Tingting|Kyoko|O-ren/i.test(x.name))||v.find(x=>LP.ttsRe.test(x.lang))||v.find(x=>x.lang.toLowerCase().startsWith(pre))||null}
 if('speechSynthesis' in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice}
-function say(t,rate){if(!('speechSynthesis' in window))return alertBox('เครื่องนี้ไม่รองรับเสียงอ่าน');speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang=LP.tts;if(voice)u.voice=voice;u.rate=rate||(CJK?0.8:0.9);speechSynthesis.speak(u)}
+let ttsWarned=false;
+function ttsHelp(){if(ttsWarned)return;ttsWarned=true;const and=/Android/i.test(navigator.userAgent);const msg=(and?'มือถือเครื่องนี้ยังไม่มีเสียงอ่าน'+LP.thName+'\n\nวิธีแก้ (ทำครั้งเดียว):\n1. ติดตั้งแอป "Speech Services by Google" จาก Play Store\n2. ตั้งค่า > การช่วยเหลือพิเศษ (หรือ ภาษาและการป้อนข้อมูล) > เอาต์พุตการอ่านออกเสียง > เลือก Google เป็นเครื่องมือหลัก\n3. เปิดแอปนี้ใหม่\n\nแนะนำให้เปิดแอปด้วย Chrome':'เครื่องนี้ยังไม่มีเสียงอ่าน'+LP.thName+' ลองเปิดด้วย Chrome หรือ Safari');const n=document.createElement('div');n.className='note';n.style.whiteSpace='pre-line';n.textContent=msg+'\n\n(แตะเพื่อปิด)';n.onclick=()=>n.remove();app.prepend(n);window.scrollTo(0,0);setTimeout(()=>n.remove(),20000)}
+function say(t,rate){if(!('speechSynthesis' in window))return alertBox('เครื่องนี้ไม่รองรับเสียงอ่าน');const ss=speechSynthesis;
+ if(!voice)pickVoice();const vs=ss.getVoices();
+ const u=new SpeechSynthesisUtterance(t);u.lang=LP.tts;if(voice)u.voice=voice;u.rate=rate||(CJK?0.8:0.9);u.volume=1;
+ let started=false;u.onstart=()=>{started=true};u.onerror=e=>{if(e&&/synthesis|language|voice|not-allowed/.test(e.error||''))ttsHelp()};
+ const go=()=>{try{ss.resume()}catch(e){}ss.speak(u);setTimeout(()=>{if(!started&&!ss.speaking&&vs.length&&!voice)ttsHelp()},2500)};
+ if(ss.speaking||ss.pending){ss.cancel();setTimeout(go,80)}else go();
+ if(!vs.length)setTimeout(()=>{if(!started&&!ss.getVoices().length)ttsHelp()},2500)}
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 function listen(onDone,onErr){if(!SR){onErr('เครื่องหรือเบราว์เซอร์นี้ยังไม่รองรับการฟังเสียงพูด แนะนำให้เปิดด้วย Chrome');return null}
  const r=new SR();r.lang=LP.tts;r.interimResults=false;r.maxAlternatives=5;
